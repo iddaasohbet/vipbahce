@@ -11,7 +11,7 @@ import NewsSection from "@/components/NewsSection";
 import SEOArticle from "@/components/SEOArticle";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
-import ComingSoon from "@/components/ComingSoon"; // Geçici - kaldırmak için bu satırı sil
+import PremiumComingSoon from "@/components/PremiumComingSoon";
 
 export default function HomeContent() {
   const [showSplash, setShowSplash] = useState(true);
@@ -22,8 +22,7 @@ export default function HomeContent() {
         <SplashScreen onComplete={() => setShowSplash(false)} />
       )}
       
-      {/* YAKINDA GELİYORUZ OVERLAY - Kaldırmak için bu satırı ve aşağıdaki <ComingSoon /> satırını sil */}
-      <ComingSoon />
+      <PremiumComingSoon />
       
       <div className={`bg-white ${showSplash ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
         <Header />
