@@ -4,99 +4,103 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, MoveHorizontal } from "lucide-react";
+import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, Layers } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Sürgülü cam kategorisindeki proje görselleri
-const surguluCamProjects = [
+// Cam tavan kategorisindeki proje görselleri
+const camTavanProjects = [
   { 
-    src: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg", 
-    title: "Modern Sürgülü Cam",
-    alt: "Modern tasarım sürgülü cam projesi"
+    src: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg", 
+    title: "Modern Cam Tavan",
+    alt: "Modern tasarım cam tavan projesi"
   },
   { 
-    src: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg", 
-    title: "Panoramik Sürgülü Cam",
-    alt: "Panoramik görünümlü sürgülü cam"
+    src: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg", 
+    title: "Panoramik Cam Tavan",
+    alt: "Panoramik görünümlü cam tavan"
   },
   { 
-    src: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg", 
-    title: "Villa Sürgülü Cam",
-    alt: "Villa için özel tasarım sürgülü cam"
+    src: "/images/projects/a77c368b-8476-4a92-a01c-6c08f705b980.jpg", 
+    title: "Villa Cam Tavan",
+    alt: "Villa için özel tasarım cam tavan"
   },
   { 
-    src: "/images/projects/6f262068-8523-46bb-8db4-89d9a2cfb385.jpg", 
-    title: "Lüks Sürgülü Cam",
-    alt: "Lüks sürgülü cam projesi"
+    src: "/images/projects/cf3777cd-a53c-44d5-aa2b-f0562621a607.jpg", 
+    title: "Lüks Cam Tavan",
+    alt: "Lüks cam tavan projesi"
   },
   { 
-    src: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg", 
-    title: "Bahçe Entegrasyonlu Sürgülü Cam",
-    alt: "Bahçe ile entegre sürgülü cam"
+    src: "/images/projects/df5971d9-c105-4b7e-bbe5-17f182ae8bc8.jpg", 
+    title: "Bahçe Entegrasyonlu Cam Tavan",
+    alt: "Bahçe ile entegre cam tavan"
   },
   { 
-    src: "/images/projects/8e0ee8dd-3e22-4322-95c7-17a507f0ed28.jpg", 
-    title: "Premium Sürgülü Cam",
-    alt: "Premium kalite sürgülü cam sistemi"
+    src: "/images/projects/e327a0bb-698e-448b-94e1-126291cb38be.jpg", 
+    title: "Premium Cam Tavan",
+    alt: "Premium kalite cam tavan sistemi"
   },
 ];
 
 const advantages = [
   {
-    image: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg",
-    imageAlt: "Modern sürgülü cam tasarımı",
-    title: "Yatay Kaydırma Sistemi",
-    content: "Sürgülü cam sisteminiz, cam panellerin yatay olarak kaydırılması ile çalışır. Bu sayede tamamen açık bir alan yaratabilir veya istediğiniz kadar açık bırakabilirsiniz. Motorlu sistem sayesinde tek dokunuşla kontrol edebilirsiniz. Modern teknoloji ile esnek ve konforlu yaşam alanları yaratın.",
+    image: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg",
+    imageAlt: "Modern cam tavan tasarımı",
+    title: "Doğal Işık ve Görünüm",
+    content: "Cam tavan sisteminiz, iç mekanınıza bol doğal ışık sağlar ve gökyüzünü izleme imkanı sunar. Modern mimaride şık ve estetik bir görünüm yaratır. Geniş cam yüzeyler sayesinde mekanınız daha ferah ve aydınlık görünür. Cam tavan modelleri arasından size en uygun olanını seçebilirsiniz.",
+    keywords: ["cam tavan", "cam tavan modelleri"]
   },
   {
-    image: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg",
-    imageAlt: "Panoramik sürgülü cam görünümü",
-    title: "Yıl Boyu Kullanılabilir Yaşam Alanı",
-    content: "Sürgülü cam sisteminiz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında kapalı konumda korunaklı bir alan oluştururken, yaz aylarında tamamen açık konumda doğayla iç içe vakit geçirebilirsiniz. İstediğiniz kadar açarak kısmi açıklık da sağlayabilirsiniz.",
+    image: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg",
+    imageAlt: "Panoramik cam tavan görünümü",
+    title: "Modern ve Şık Tasarım",
+    content: "Cam tavan sisteminiz, modern mimariye uyumlu, şık ve estetik bir tasarıma sahip olur. İç mekanınızı genişletir ve ferah bir atmosfer yaratır. Profesyonel tasarım ekibimiz, projenizi baştan sona planlar ve size özel çözümler sunar. Cam tavan sistemleri ile yaşam alanlarınızı dönüştürün.",
+    keywords: ["cam tavan", "cam tavan sistemleri"]
   },
   {
-    image: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg",
-    imageAlt: "Lüks sürgülü cam iç mekan",
-    title: "Evinizin Değerini Artırır",
-    content: "Profesyonel olarak tasarlanmış ve montaj edilmiş bir sürgülü cam sistemi, evinizin değerini önemli ölçüde artırır. Emlak değeri artışı yanında, yaşam kalitenizi de yükseltir. Yatırım olarak düşünüldüğünde, sürgülü cam uzun vadede size kazanç sağlar. Modern ve teknolojik görünümüyle evinizin çekiciliğini artırır.",
+    image: "/images/projects/cf3777cd-a53c-44d5-aa2b-f0562621a607.jpg",
+    imageAlt: "Lüks cam tavan iç mekan",
+    title: "Enerji Verimliliği",
+    content: "Isı yalıtımlı cam tavan sistemlerimiz sayesinde enerji tasarrufu sağlarsınız. Çift cam veya izolasyonlu cam seçenekleriyle kış aylarında ısı kaybını minimuma indirirsiniz. Modern teknoloji ile üretilmiş cam tavan sistemleri, uzun vadede size tasarruf sağlar. Cam tavan firmaları arasında kaliteli hizmet sunuyoruz.",
+    keywords: ["cam tavan", "cam tavan firmaları"]
   },
   {
-    image: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg",
-    imageAlt: "Bahçe entegrasyonlu sürgülü cam",
-    title: "Doğayla İç İçe Yaşam",
-    content: "Sürgülü cam sisteminiz, evinizle bahçeniz arasında köprü görevi görür. Tamamen açık konumda doğayla iç içe olabilir, kapalı konumda korunaklı bir alan oluşturabilirsiniz. İstediğiniz kadar açarak kısmi açıklık sağlayabilirsiniz. Panoramik görünüm sayesinde manzaranın her köşesini net bir şekilde görebilirsiniz.",
+    image: "/images/projects/df5971d9-c105-4b7e-bbe5-17f182ae8bc8.jpg",
+    imageAlt: "Bahçe entegrasyonlu cam tavan",
+    title: "Yaşam Kalitesini Artırır",
+    content: "Cam tavan sisteminiz, yaşam kalitenizi önemli ölçüde artırır. Doğal ışık sayesinde daha sağlıklı bir yaşam alanı yaratır. Gökyüzünü izleme imkanı sunarak iç mekanınızı dışarıya bağlar. Modern ve bakımlı görünümüyle mekanınızın çekiciliğini artırır.",
+    keywords: ["cam tavan"]
   },
 ];
 
 const faqData = [
   {
-    question: "Sürgülü cam fiyatları ne kadar?",
-    answer: "Sürgülü cam fiyatları, projenin büyüklüğüne, kullanılan malzemeye, cam tipine, motor tipine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir sürgülü cam için fiyat aralığı 45.000 TL ile 180.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
+    question: "Cam tavan fiyatları ne kadar?",
+    answer: "Cam tavan fiyatları, projenin büyüklüğüne, kullanılan cam tipine, alüminyum profil kalitesine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir cam tavan için fiyat aralığı 30.000 TL ile 150.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
   },
   {
-    question: "Sürgülü cam montajı ne kadar sürer?",
-    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-3 hafta arasında değişir. Standart bir sürgülü cam montajı genellikle 1-2 hafta içinde tamamlanır. Özel tasarım ve teknoloji entegrasyonu gerektiren projelerde bu süre biraz daha uzayabilir.",
+    question: "Cam tavan montajı ne kadar sürer?",
+    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-2 hafta arasında değişir. Standart bir cam tavan montajı genellikle 1 hafta içinde tamamlanır. Özel tasarım projelerde bu süre biraz daha uzayabilir.",
   },
   {
-    question: "Sürgülü cam hangi malzemelerden yapılır?",
-    answer: "Sürgülü cam sistemlerimiz, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak temperli cam veya çift cam (izolasyonlu) kullanılır. Motorlar Avrupa standartlarında, sessiz ve güvenilir sistemlerdir. Ray sistemleri paslanmaz çelikten yapılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
+    question: "Cam tavan hangi malzemelerden yapılır?",
+    answer: "Cam tavanlarımız, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak temperli cam, çift cam (izolasyonlu) veya lamine cam kullanılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
   },
   {
-    question: "Sürgülü cam nasıl çalışır?",
-    answer: "Sürgülü cam sistemleri, cam panellerin yatay olarak kaydırılması ile çalışır. Elektrikli motorlar ile uzaktan kumanda, akıllı telefon uygulaması veya duvar anahtarı ile kontrol edilebilir. Sistem tamamen açılabilir veya kapanabilir. İstediğiniz kadar açık bırakabilirsiniz. Ray sistemleri sayesinde sorunsuz kaydırma sağlanır.",
+    question: "Cam tavan izolasyonlu mu?",
+    answer: "Evet, tüm cam tavan sistemlerimiz ısı yalıtımlı cam sistemleri ve alüminyum profillerle üretilir. Bu sayede kış aylarında ısı kaybı minimuma iner ve enerji tasarrufu sağlanır.",
   },
   {
-    question: "Sürgülü cam için ruhsat gerekir mi?",
-    answer: "Sürgülü cam için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
+    question: "Cam tavan için ruhsat gerekir mi?",
+    answer: "Cam tavan için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
   },
   {
-    question: "Sürgülü cam bakımı nasıl yapılır?",
-    answer: "Alüminyum profillerin bakımı çok kolaydır. Düzenli olarak su ve sabunlu bezle temizlenmesi yeterlidir. Cam yüzeyler için cam temizleyici kullanabilirsiniz. Ray sistemlerinin temiz tutulması önemlidir. Motor sistemleri yılda bir kez profesyonel kontrol ve bakım gerektirir. Tüm bakım işlemleri için teknik destek ekibimiz hizmetinizdedir.",
+    question: "Cam tavan bakımı nasıl yapılır?",
+    answer: "Alüminyum profillerin bakımı çok kolaydır. Düzenli olarak su ve sabunlu bezle temizlenmesi yeterlidir. Cam yüzeyler için cam temizleyici kullanabilirsiniz. Yılda bir kez profesyonel bakım önerilir.",
   },
 ];
 
-export default function SurguluCamPage() {
+export default function CamTavanPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
@@ -134,10 +138,10 @@ export default function SurguluCamPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Sürgülü Cam Sistemleri",
+    "serviceType": "Cam Tavan Sistemleri",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Kış Bahçesi",
+      "name": "Cam Tavan",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "İstanbul",
@@ -149,7 +153,7 @@ export default function SurguluCamPage() {
       "@type": "City",
       "name": "İstanbul"
     },
-    "description": "İstanbul'da profesyonel sürgülü cam sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
+    "description": "İstanbul'da profesyonel cam tavan sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
   };
 
   const faqJsonLd = {
@@ -223,7 +227,7 @@ export default function SurguluCamPage() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="mb-6 inline-block rounded-full bg-teal-100 px-4 py-1.5 text-sm font-medium text-teal-800"
                   >
-                    Premium Sürgülü Cam Sistemleri
+                    Premium Cam Tavan Sistemleri
                   </motion.div>
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
@@ -233,7 +237,7 @@ export default function SurguluCamPage() {
                   >
                     Hayalinizdeki{" "}
                     <span className="bg-gradient-to-r from-teal-900 via-teal-800 to-teal-900 bg-clip-text text-transparent">
-                      Sürgülü Cam
+                      Cam Tavan
                     </span>{" "}
                     Burada
                   </motion.h1>
@@ -243,7 +247,7 @@ export default function SurguluCamPage() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mb-8 text-lg leading-relaxed text-gray-700 md:text-xl"
                   >
-                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, evinize değer katacak modern sürgülü cam sistemleri sunuyoruz. Yatay kaydırma sistemi, motorlu kontrol ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
+                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, mekanınıza değer katacak modern cam tavan sistemleri sunuyoruz. Profesyonel tasarım, kaliteli malzeme ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -252,7 +256,7 @@ export default function SurguluCamPage() {
                     className="flex flex-col sm:flex-row gap-4"
                   >
                     <Link
-                      href="https://wa.me/905333593466?text=Sürgülü%20cam%20hakkında%20bilgi%20almak%20istiyorum"
+                      href="https://wa.me/905333593466?text=Cam%20tavan%20hakkında%20bilgi%20almak%20istiyorum"
                       target="_blank"
                       className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
                     >
@@ -278,8 +282,8 @@ export default function SurguluCamPage() {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl">
                     <Image
-                      src="/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg"
-                      alt="Modern Sürgülü Cam"
+                      src="/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg"
+                      alt="Modern Cam Tavan"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -303,7 +307,7 @@ export default function SurguluCamPage() {
                     className="absolute -bottom-6 -left-6 hidden lg:block"
                   >
                     <div className="rounded-2xl bg-white p-4 shadow-xl border border-teal-100">
-                      <MoveHorizontal className="h-8 w-8 text-teal-900" />
+                      <Shield className="h-8 w-8 text-teal-900" />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -324,19 +328,19 @@ export default function SurguluCamPage() {
                   Özellikler
                 </span>
                 <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
-                  Neden Sürgülü Cam?
+                  Neden Cam Tavan?
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                  Sürgülü cam sisteminiz, evinize değer katan ve yaşam kalitenizi artıran özel bir alan
+                  Cam tavanınız, mekanınıza değer katan ve yaşam kalitenizi artıran özel bir alan
                 </p>
               </motion.div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {[
-                  { icon: MoveHorizontal, title: "Yatay Kaydırma", desc: "Cam panellerin yatay olarak kaydırılması" },
-                  { icon: Sun, title: "Esnek Kontrol", desc: "İstediğiniz kadar açık bırakabilme" },
-                  { icon: Droplets, title: "Enerji Tasarrufu", desc: "Kapalı konumda ısı yalıtımı ile enerji tasarrufu" },
-                  { icon: Sparkles, title: "Değer Artışı", desc: "Evinizin değerini önemli ölçüde artırır" },
+                  { icon: Sun, title: "Doğal Işık", desc: "Bol doğal ışık ile aydınlık mekanlar" },
+                  { icon: Layers, title: "Modern Tasarım", desc: "Şık ve estetik görünüm" },
+                  { icon: Droplets, title: "Enerji Tasarrufu", desc: "Isı yalıtımlı sistemlerle tasarruf" },
+                  { icon: Sparkles, title: "Değer Artışı", desc: "Mekanınızın değerini artırır" },
                 ].map((feature, index) => (
                   <motion.div
                     key={feature.title}
@@ -402,7 +406,10 @@ export default function SurguluCamPage() {
                       {advantage.title}
                     </h2>
                     <p className="text-lg leading-relaxed text-gray-700 md:text-xl">
-                      {advantage.content}
+                      {advantage.keywords ? advantage.content.split(new RegExp(`(${advantage.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi')).map((part, i) => {
+                        const isKeyword = advantage.keywords?.some(k => part.toLowerCase() === k.toLowerCase());
+                        return isKeyword ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>;
+                      }) : advantage.content}
                     </p>
                     {index === advantages.length - 1 && (
                       <div className="mt-8">
@@ -421,6 +428,44 @@ export default function SurguluCamPage() {
             </section>
           ))}
 
+          {/* SEO Content Section */}
+          <section className="py-16 md:py-24 bg-white">
+            <div className="mx-auto max-w-7xl px-4 md:px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="prose prose-lg max-w-none"
+              >
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 md:text-4xl">
+                  Cam Tavan: Modern Mimarinin Vazgeçilmezi
+                </h2>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p className="text-lg">
+                    <strong>Cam tavan</strong>, modern mimaride iç mekanları aydınlatan ve gökyüzünü izleme imkanı sunan özel tasarım yapılardır. 
+                    <strong> Cam tavan fiyatları</strong>, projenin büyüklüğü, kullanılan cam tipi ve tasarım özelliklerine göre değişiklik gösterir. 
+                    Kaliteli bir <strong>cam tavan sistemi</strong>, mekanınıza değer katar ve yaşam kalitenizi artırır. İstanbul'un Sarıyer, Bahçeşehir, Beykoz, Şile, Büyükçekmece, Florya, Silivri, Tuzla, Çekmeköy ve Kurtköy gibi bölgelerinde profesyonel <strong>cam tavan firmaları</strong> arasında yer alıyoruz.
+                  </p>
+
+                  <p>
+                    <strong>Cam tavan modelleri</strong> arasında düz cam tavan, eğimli cam tavan ve panoramik cam tavan tasarımlar yer alır. 
+                    Her model, farklı ihtiyaçlara ve zevklere hitap eder. <strong>Cam tavan modelleri fiyatları</strong> ise 
+                    seçtiğiniz modelin özelliklerine, boyutlarına ve ekstra donanımlarına göre belirlenir. <strong>Kış bahçesi cam tavan</strong> sistemleri de çözümlerimiz arasında yer alır.
+                  </p>
+
+                  <p>
+                    <strong>Sarıyer cam tavan</strong>, <strong>Bahçeşehir cam tavan</strong>, <strong>Beykoz cam tavan</strong>, <strong>Şile cam tavan</strong>, <strong>Büyükçekmece cam tavan</strong>, <strong>Florya cam tavan</strong>, <strong>Silivri cam tavan</strong>, <strong>Tuzla cam tavan</strong>, <strong>Çekmeköy cam tavan</strong>, <strong>Kurtköy cam tavan</strong> projelerimizle İstanbul genelinde hizmet veriyoruz. Ayrıca <strong>Tekirdağ cam tavan</strong>, <strong>Kayseri cam tavan</strong>, <strong>Kocaeli cam tavan</strong> ve <strong>Bodrum cam tavan</strong> projelerimizle Türkiye'nin farklı şehirlerinde de hizmetinizdeyiz.
+                  </p>
+
+                  <p>
+                    <strong>Cam tavan sistemleri</strong> ile modern ve şık bir yaşam alanı yaratabilirsiniz. Isı yalıtımlı cam seçenekleriyle enerji tasarrufu sağlarken, doğal ışık sayesinde daha sağlıklı bir ortam yaratırsınız.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* Projects Gallery */}
           <section className="py-16 md:py-24 bg-gradient-to-b from-white via-gray-50 to-white">
             <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -437,12 +482,12 @@ export default function SurguluCamPage() {
                   Tamamlanan Projelerimiz
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  15+ yıllık tecrübemizle tamamladığımız başarılı sürgülü cam projelerinden örnekler
+                  15+ yıllık tecrübemizle tamamladığımız başarılı cam tavan projelerinden örnekler
                 </p>
               </motion.div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {surguluCamProjects.map((project, index) => (
+                {camTavanProjects.map((project, index) => (
                   <motion.div
                     key={project.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -515,8 +560,8 @@ export default function SurguluCamPage() {
                   {/* Image */}
                   <div className="relative w-full h-[90vh] bg-gray-100">
                     <Image
-                      src={surguluCamProjects[selectedProject].src}
-                      alt={surguluCamProjects[selectedProject].alt}
+                      src={camTavanProjects[selectedProject].src}
+                      alt={camTavanProjects[selectedProject].alt}
                       fill
                       className="object-contain"
                       sizes="100vw"
@@ -544,7 +589,7 @@ export default function SurguluCamPage() {
                   Sıkça Sorulan Sorular
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  Sürgülü cam hakkında merak ettikleriniz ve cevapları
+                  Cam tavan hakkında merak ettikleriniz ve cevapları
                 </p>
               </motion.div>
 
@@ -629,7 +674,7 @@ export default function SurguluCamPage() {
                     Aradığınız cevabı bulamadınız mı? Bizimle iletişime geçin, size yardımcı olalım.
                   </p>
                   <Link
-                    href="https://wa.me/905333593466?text=Sürgülü%20cam%20hakkında%20soru%20sormak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Cam%20tavan%20hakkında%20soru%20sormak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-900 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                   >
@@ -692,7 +737,7 @@ export default function SurguluCamPage() {
                   Hayalinizdeki Yaşam Alanı
                 </motion.div>
                 <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                  Hayalinizdeki Sürgülü Cama{" "}
+                  Hayalinizdeki Cam Tavana{" "}
                   <span className="bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent">
                     Kavuşun
                   </span>
@@ -703,7 +748,7 @@ export default function SurguluCamPage() {
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
-                    href="https://wa.me/905333593466?text=Sürgülü%20cam%20hakkında%20bilgi%20almak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Cam%20tavan%20hakkında%20bilgi%20almak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-800 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
                   >

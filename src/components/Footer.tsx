@@ -7,11 +7,14 @@ import { Phone, Mail, MapPin, ArrowUpRight, Flower2, Sun } from "lucide-react";
 export default function Footer() {
   const links = [
     { name: 'Ana Sayfa', href: "/" },
+    { name: 'Cam Tavan', href: "/cam-tavan" },
+    { name: 'Sandviç Panel', href: "/sandvic-panel" },
+    { name: 'Bioklimatik', href: "/bioklimatik" },
+    { name: 'Rolling Roof', href: "/rolling-roof" },
+    { name: 'Otomatik Pergola', href: "/otomatik-pergola" },
+    { name: 'Veranda', href: "/veranda" },
     { name: 'Kış Bahçesi', href: "/kis-bahcesi" },
     { name: 'Teras Kapama', href: "/teras-kapama" },
-    { name: 'Otomatik Pergola', href: "/otomatik-pergola" },
-    { name: 'Rolling Roof', href: "/rolling-roof" },
-    { name: 'Bioklimatik', href: "/bioklimatik" },
     { name: 'Giyotin Cam', href: "/giyotin-cam" },
     { name: 'Sürgülü Cam', href: "/surgulu-cam" },
     { name: 'Katlanır Cam', href: "/katlanir-cam" },

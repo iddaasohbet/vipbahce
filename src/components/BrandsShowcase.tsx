@@ -6,34 +6,34 @@ import { motion } from "framer-motion";
 
 const services = [
   { 
-    name: "Kış Bahçesi", 
-    href: "/kis-bahcesi",
-    image: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg"
+    name: "Cam Tavan", 
+    href: "/cam-tavan",
+    image: "/images/projects/vamtavan.jpg"
   },
   { 
-    name: "Teras Kapama", 
-    href: "/teras-kapama",
-    image: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg"
-  },
-  { 
-    name: "Otomatik Pergola", 
-    href: "/otomatik-pergola",
-    image: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg"
-  },
-  { 
-    name: "Rolling Roof", 
-    href: "/rolling-roof",
-    image: "/images/projects/e672ed00-ee93-49eb-8ff6-5f95772ae59e.jpg"
+    name: "Sandviç Panel", 
+    href: "/sandvic-panel",
+    image: "/images/projects/Sandvicpanel.jpg"
   },
   { 
     name: "Bioklimatik", 
     href: "/bioklimatik",
-    image: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg"
+    image: "/images/projects/Bioklimatik.jpg"
   },
   { 
-    name: "Giyotin Cam", 
-    href: "/giyotin-cam",
-    image: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg"
+    name: "Rolling Roof", 
+    href: "/rolling-roof",
+    image: "/images/projects/RollingRoof.jpg"
+  },
+  { 
+    name: "Otomatik Pergola", 
+    href: "/otomatik-pergola",
+    image: "/images/projects/Otomatikpergola.jpg"
+  },
+  { 
+    name: "Veranda", 
+    href: "/veranda",
+    image: "/images/projects/Veranda.jpg"
   },
 ];
 

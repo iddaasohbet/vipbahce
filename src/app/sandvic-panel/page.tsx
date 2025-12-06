@@ -4,99 +4,72 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, MoveHorizontal } from "lucide-react";
+import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, Square } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Sürgülü cam kategorisindeki proje görselleri
-const surguluCamProjects = [
+const sandvicPanelProjects = [
   { 
-    src: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg", 
-    title: "Modern Sürgülü Cam",
-    alt: "Modern tasarım sürgülü cam projesi"
+    src: "/images/projects/Sandvicpanel.jpg", 
+    title: "Modern Sandviç Panel",
+    alt: "Modern tasarım sandviç panel projesi"
   },
   { 
-    src: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg", 
-    title: "Panoramik Sürgülü Cam",
-    alt: "Panoramik görünümlü sürgülü cam"
+    src: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg", 
+    title: "Panoramik Sandviç Panel",
+    alt: "Panoramik görünümlü sandviç panel"
   },
   { 
-    src: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg", 
-    title: "Villa Sürgülü Cam",
-    alt: "Villa için özel tasarım sürgülü cam"
-  },
-  { 
-    src: "/images/projects/6f262068-8523-46bb-8db4-89d9a2cfb385.jpg", 
-    title: "Lüks Sürgülü Cam",
-    alt: "Lüks sürgülü cam projesi"
-  },
-  { 
-    src: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg", 
-    title: "Bahçe Entegrasyonlu Sürgülü Cam",
-    alt: "Bahçe ile entegre sürgülü cam"
-  },
-  { 
-    src: "/images/projects/8e0ee8dd-3e22-4322-95c7-17a507f0ed28.jpg", 
-    title: "Premium Sürgülü Cam",
-    alt: "Premium kalite sürgülü cam sistemi"
+    src: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg", 
+    title: "Villa Sandviç Panel",
+    alt: "Villa için özel tasarım sandviç panel"
   },
 ];
 
 const advantages = [
   {
-    image: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg",
-    imageAlt: "Modern sürgülü cam tasarımı",
-    title: "Yatay Kaydırma Sistemi",
-    content: "Sürgülü cam sisteminiz, cam panellerin yatay olarak kaydırılması ile çalışır. Bu sayede tamamen açık bir alan yaratabilir veya istediğiniz kadar açık bırakabilirsiniz. Motorlu sistem sayesinde tek dokunuşla kontrol edebilirsiniz. Modern teknoloji ile esnek ve konforlu yaşam alanları yaratın.",
+    image: "/images/projects/Sandvicpanel.jpg",
+    imageAlt: "Modern sandviç panel tasarımı",
+    title: "Üstün İzolasyon Özelliği",
+    content: "Sandviç panel sisteminiz, iç ve dış yüzeyler arasında mükemmel bir izolasyon sağlar. Poliüretan veya mineral yün dolgulu sandviç paneller sayesinde ısı ve ses yalıtımı maksimum seviyededir. Enerji tasarrufu sağlarken konforlu bir yaşam alanı yaratır. Sandviç panel modelleri arasından size en uygun olanını seçebilirsiniz.",
+    keywords: ["sandviç panel", "sandviç panel modelleri"]
   },
   {
-    image: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg",
-    imageAlt: "Panoramik sürgülü cam görünümü",
-    title: "Yıl Boyu Kullanılabilir Yaşam Alanı",
-    content: "Sürgülü cam sisteminiz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında kapalı konumda korunaklı bir alan oluştururken, yaz aylarında tamamen açık konumda doğayla iç içe vakit geçirebilirsiniz. İstediğiniz kadar açarak kısmi açıklık da sağlayabilirsiniz.",
+    image: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg",
+    imageAlt: "Panoramik sandviç panel görünümü",
+    title: "Hızlı Montaj ve Dayanıklılık",
+    content: "Sandviç panel sisteminiz, hızlı montaj özelliği ile zamandan tasarruf sağlar. Hafif ama güçlü yapısı sayesinde uzun yıllar sorunsuz kullanım imkanı sunar. Paslanmaz çelik veya alüminyum dış yüzeyler sayesinde dış etkenlere karşı dayanıklıdır. Sandviç panel sistemleri ile güvenli ve kalıcı çözümler.",
+    keywords: ["sandviç panel", "sandviç panel sistemleri"]
   },
   {
-    image: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg",
-    imageAlt: "Lüks sürgülü cam iç mekan",
-    title: "Evinizin Değerini Artırır",
-    content: "Profesyonel olarak tasarlanmış ve montaj edilmiş bir sürgülü cam sistemi, evinizin değerini önemli ölçüde artırır. Emlak değeri artışı yanında, yaşam kalitenizi de yükseltir. Yatırım olarak düşünüldüğünde, sürgülü cam uzun vadede size kazanç sağlar. Modern ve teknolojik görünümüyle evinizin çekiciliğini artırır.",
-  },
-  {
-    image: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg",
-    imageAlt: "Bahçe entegrasyonlu sürgülü cam",
-    title: "Doğayla İç İçe Yaşam",
-    content: "Sürgülü cam sisteminiz, evinizle bahçeniz arasında köprü görevi görür. Tamamen açık konumda doğayla iç içe olabilir, kapalı konumda korunaklı bir alan oluşturabilirsiniz. İstediğiniz kadar açarak kısmi açıklık sağlayabilirsiniz. Panoramik görünüm sayesinde manzaranın her köşesini net bir şekilde görebilirsiniz.",
+    image: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg",
+    imageAlt: "Lüks sandviç panel iç mekan",
+    title: "Modern ve Estetik Tasarım",
+    content: "Sandviç panel sisteminiz, modern mimariye uyumlu, şık ve estetik bir görünüme sahip olur. Farklı renk ve dokularla istediğiniz görünümü elde edebilirsiniz. Profesyonel tasarım ekibimiz, projenizi baştan sona planlar ve size özel çözümler sunar. Sandviç panel firmaları arasında kaliteli hizmet sunuyoruz.",
+    keywords: ["sandviç panel", "sandviç panel firmaları"]
   },
 ];
 
 const faqData = [
   {
-    question: "Sürgülü cam fiyatları ne kadar?",
-    answer: "Sürgülü cam fiyatları, projenin büyüklüğüne, kullanılan malzemeye, cam tipine, motor tipine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir sürgülü cam için fiyat aralığı 45.000 TL ile 180.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
+    question: "Sandviç panel fiyatları ne kadar?",
+    answer: "Sandviç panel fiyatları, projenin büyüklüğüne, kullanılan malzemeye, panel kalınlığına ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir sandviç panel için fiyat aralığı 25.000 TL ile 120.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
   },
   {
-    question: "Sürgülü cam montajı ne kadar sürer?",
-    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-3 hafta arasında değişir. Standart bir sürgülü cam montajı genellikle 1-2 hafta içinde tamamlanır. Özel tasarım ve teknoloji entegrasyonu gerektiren projelerde bu süre biraz daha uzayabilir.",
+    question: "Sandviç panel montajı ne kadar sürer?",
+    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 3-7 gün arasında değişir. Sandviç panellerin hızlı montaj özelliği sayesinde standart bir proje genellikle 3-5 gün içinde tamamlanır.",
   },
   {
-    question: "Sürgülü cam hangi malzemelerden yapılır?",
-    answer: "Sürgülü cam sistemlerimiz, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak temperli cam veya çift cam (izolasyonlu) kullanılır. Motorlar Avrupa standartlarında, sessiz ve güvenilir sistemlerdir. Ray sistemleri paslanmaz çelikten yapılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
+    question: "Sandviç panel hangi malzemelerden yapılır?",
+    answer: "Sandviç panellerimiz, dış yüzeylerde paslanmaz çelik veya alüminyum, iç dolgu olarak poliüretan veya mineral yün kullanılarak üretilir. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
   },
   {
-    question: "Sürgülü cam nasıl çalışır?",
-    answer: "Sürgülü cam sistemleri, cam panellerin yatay olarak kaydırılması ile çalışır. Elektrikli motorlar ile uzaktan kumanda, akıllı telefon uygulaması veya duvar anahtarı ile kontrol edilebilir. Sistem tamamen açılabilir veya kapanabilir. İstediğiniz kadar açık bırakabilirsiniz. Ray sistemleri sayesinde sorunsuz kaydırma sağlanır.",
-  },
-  {
-    question: "Sürgülü cam için ruhsat gerekir mi?",
-    answer: "Sürgülü cam için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
-  },
-  {
-    question: "Sürgülü cam bakımı nasıl yapılır?",
-    answer: "Alüminyum profillerin bakımı çok kolaydır. Düzenli olarak su ve sabunlu bezle temizlenmesi yeterlidir. Cam yüzeyler için cam temizleyici kullanabilirsiniz. Ray sistemlerinin temiz tutulması önemlidir. Motor sistemleri yılda bir kez profesyonel kontrol ve bakım gerektirir. Tüm bakım işlemleri için teknik destek ekibimiz hizmetinizdedir.",
+    question: "Sandviç panel izolasyonlu mu?",
+    answer: "Evet, tüm sandviç panel sistemlerimiz mükemmel ısı ve ses yalıtımı sağlar. Poliüretan veya mineral yün dolgulu paneller sayesinde enerji tasarrufu maksimum seviyededir.",
   },
 ];
 
-export default function SurguluCamPage() {
+export default function SandvicPanelPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
@@ -112,7 +85,6 @@ export default function SurguluCamPage() {
     setSelectedProject(null);
   };
 
-  // ESC tuşu ile modal'ı kapat
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && selectedProject !== null) {
@@ -134,10 +106,10 @@ export default function SurguluCamPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Sürgülü Cam Sistemleri",
+    "serviceType": "Sandviç Panel Sistemleri",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Kış Bahçesi",
+      "name": "Sandviç Panel",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "İstanbul",
@@ -149,7 +121,7 @@ export default function SurguluCamPage() {
       "@type": "City",
       "name": "İstanbul"
     },
-    "description": "İstanbul'da profesyonel sürgülü cam sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
+    "description": "İstanbul'da profesyonel sandviç panel sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
   };
 
   const faqJsonLd = {
@@ -179,7 +151,6 @@ export default function SurguluCamPage() {
         <Header />
         
         <main className="min-h-screen pt-24">
-          {/* Hero Section */}
           <section className="relative isolate overflow-hidden bg-gradient-to-br from-teal-50 via-white to-cyan-50 pt-8 pb-16 md:pt-16 md:pb-24">
             <div className="absolute inset-0 -z-10">
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#0d4c4a08_1px,transparent_1px),linear-gradient(to_bottom,#0d4c4a08_1px,transparent_1px)] bg-[size:64px_64px]" />
@@ -194,19 +165,6 @@ export default function SurguluCamPage() {
                   ease: "easeInOut",
                 }}
                 className="absolute -left-1/4 top-0 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-teal-200/30 to-cyan-300/20 blur-[120px]"
-              />
-              <motion.div
-                animate={{
-                  scale: [1.2, 1, 1.2],
-                  opacity: [0.1, 0.15, 0.1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute -right-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-l from-cyan-200/20 to-teal-300/15 blur-[100px]"
               />
             </div>
 
@@ -223,7 +181,7 @@ export default function SurguluCamPage() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="mb-6 inline-block rounded-full bg-teal-100 px-4 py-1.5 text-sm font-medium text-teal-800"
                   >
-                    Premium Sürgülü Cam Sistemleri
+                    Premium Sandviç Panel Sistemleri
                   </motion.div>
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
@@ -233,7 +191,7 @@ export default function SurguluCamPage() {
                   >
                     Hayalinizdeki{" "}
                     <span className="bg-gradient-to-r from-teal-900 via-teal-800 to-teal-900 bg-clip-text text-transparent">
-                      Sürgülü Cam
+                      Sandviç Panel
                     </span>{" "}
                     Burada
                   </motion.h1>
@@ -243,7 +201,7 @@ export default function SurguluCamPage() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mb-8 text-lg leading-relaxed text-gray-700 md:text-xl"
                   >
-                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, evinize değer katacak modern sürgülü cam sistemleri sunuyoruz. Yatay kaydırma sistemi, motorlu kontrol ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
+                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, mekanınıza değer katacak modern sandviç panel sistemleri sunuyoruz. Profesyonel tasarım, kaliteli malzeme ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -252,7 +210,7 @@ export default function SurguluCamPage() {
                     className="flex flex-col sm:flex-row gap-4"
                   >
                     <Link
-                      href="https://wa.me/905333593466?text=Sürgülü%20cam%20hakkında%20bilgi%20almak%20istiyorum"
+                      href="https://wa.me/905333593466?text=Sandviç%20panel%20hakkında%20bilgi%20almak%20istiyorum"
                       target="_blank"
                       className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
                     >
@@ -278,8 +236,8 @@ export default function SurguluCamPage() {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl">
                     <Image
-                      src="/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg"
-                      alt="Modern Sürgülü Cam"
+                      src="/images/projects/Sandvicpanel.jpg"
+                      alt="Modern Sandviç Panel"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -287,31 +245,11 @@ export default function SurguluCamPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                   </div>
-                  {/* Decorative elements */}
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-6 -right-6 hidden lg:block"
-                  >
-                    <div className="rounded-2xl bg-white p-4 shadow-xl border border-teal-100">
-                      <Award className="h-8 w-8 text-teal-900" />
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute -bottom-6 -left-6 hidden lg:block"
-                  >
-                    <div className="rounded-2xl bg-white p-4 shadow-xl border border-teal-100">
-                      <MoveHorizontal className="h-8 w-8 text-teal-900" />
-                    </div>
-                  </motion.div>
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Features Section */}
           <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
             <div className="mx-auto max-w-7xl px-4 md:px-6">
               <motion.div
@@ -324,19 +262,19 @@ export default function SurguluCamPage() {
                   Özellikler
                 </span>
                 <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
-                  Neden Sürgülü Cam?
+                  Neden Sandviç Panel?
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                  Sürgülü cam sisteminiz, evinize değer katan ve yaşam kalitenizi artıran özel bir alan
+                  Sandviç panel sisteminiz, mekanınıza değer katan ve yaşam kalitenizi artıran özel bir çözüm
                 </p>
               </motion.div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {[
-                  { icon: MoveHorizontal, title: "Yatay Kaydırma", desc: "Cam panellerin yatay olarak kaydırılması" },
-                  { icon: Sun, title: "Esnek Kontrol", desc: "İstediğiniz kadar açık bırakabilme" },
-                  { icon: Droplets, title: "Enerji Tasarrufu", desc: "Kapalı konumda ısı yalıtımı ile enerji tasarrufu" },
-                  { icon: Sparkles, title: "Değer Artışı", desc: "Evinizin değerini önemli ölçüde artırır" },
+                  { icon: Shield, title: "Üstün İzolasyon", desc: "Mükemmel ısı ve ses yalıtımı" },
+                  { icon: Square, title: "Hızlı Montaj", desc: "Zamandan tasarruf sağlar" },
+                  { icon: Droplets, title: "Enerji Tasarrufu", desc: "Isı yalıtımlı sistemlerle tasarruf" },
+                  { icon: Sparkles, title: "Dayanıklılık", desc: "Uzun yıllar sorunsuz kullanım" },
                 ].map((feature, index) => (
                   <motion.div
                     key={feature.title}
@@ -357,7 +295,6 @@ export default function SurguluCamPage() {
             </div>
           </section>
 
-          {/* Content Sections - Image Left, Text Right */}
           {advantages.map((advantage, index) => (
             <section
               key={advantage.title}
@@ -382,9 +319,6 @@ export default function SurguluCamPage() {
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      {/* Decorative border */}
-                      <div className="absolute inset-0 rounded-3xl border-2 border-white/20" />
                     </div>
                   </motion.div>
                   
@@ -402,26 +336,45 @@ export default function SurguluCamPage() {
                       {advantage.title}
                     </h2>
                     <p className="text-lg leading-relaxed text-gray-700 md:text-xl">
-                      {advantage.content}
+                      {advantage.keywords ? advantage.content.split(new RegExp(`(${advantage.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi')).map((part, i) => {
+                        const isKeyword = advantage.keywords?.some(k => part.toLowerCase() === k.toLowerCase());
+                        return isKeyword ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>;
+                      }) : advantage.content}
                     </p>
-                    {index === advantages.length - 1 && (
-                      <div className="mt-8">
-                        <Link
-                          href="/teklif-al"
-                          className="inline-flex items-center gap-2 rounded-full bg-teal-900 px-6 py-3 font-semibold text-white transition-all hover:bg-teal-800 hover:scale-105"
-                        >
-                          Hemen Teklif Alın
-                          <ArrowRight className="h-5 w-5" />
-                        </Link>
-                      </div>
-                    )}
                   </motion.div>
                 </div>
               </div>
             </section>
           ))}
 
-          {/* Projects Gallery */}
+          <section className="py-16 md:py-24 bg-white">
+            <div className="mx-auto max-w-7xl px-4 md:px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="prose prose-lg max-w-none"
+              >
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 md:text-4xl">
+                  Sandviç Panel: Modern Yapıların Vazgeçilmezi
+                </h2>
+                
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p className="text-lg">
+                    <strong>Sandviç panel</strong>, modern yapılarda üstün izolasyon ve hızlı montaj özellikleri ile tercih edilen özel tasarım yapı malzemeleridir. 
+                    <strong> Sandviç panel fiyatları</strong>, projenin büyüklüğü, kullanılan malzeme ve panel kalınlığına göre değişiklik gösterir. 
+                    Kaliteli bir <strong>sandviç panel sistemi</strong>, mekanınıza değer katar ve enerji tasarrufu sağlar.
+                  </p>
+
+                  <p>
+                    <strong>Sandviç panel modelleri</strong> arasında poliüretan dolgulu, mineral yün dolgulu ve farklı dış yüzey kaplamalı modeller yer alır. 
+                    Her model, farklı ihtiyaçlara ve zevklere hitap eder. <strong>Sandviç panel sistemleri</strong> ile modern ve dayanıklı yapılar inşa edebilirsiniz.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           <section className="py-16 md:py-24 bg-gradient-to-b from-white via-gray-50 to-white">
             <div className="mx-auto max-w-7xl px-4 md:px-6">
               <motion.div
@@ -436,13 +389,10 @@ export default function SurguluCamPage() {
                 <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
                   Tamamlanan Projelerimiz
                 </h2>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  15+ yıllık tecrübemizle tamamladığımız başarılı sürgülü cam projelerinden örnekler
-                </p>
               </motion.div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {surguluCamProjects.map((project, index) => (
+                {sandvicPanelProjects.map((project, index) => (
                   <motion.div
                     key={project.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -461,31 +411,12 @@ export default function SurguluCamPage() {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 border-2 border-teal-500/0 group-hover:border-teal-500/50 rounded-3xl transition-all duration-300" />
                   </motion.div>
                 ))}
               </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-                className="mt-16 text-center"
-              >
-                <Link
-                  href="/galeri"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
-                >
-                  Tüm Projeleri İnceleyin
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </motion.div>
             </div>
           </section>
 
-          {/* Project Modal */}
           <AnimatePresence>
             {selectedProject !== null && (
               <motion.div
@@ -503,7 +434,6 @@ export default function SurguluCamPage() {
                   className="relative max-w-6xl w-full max-h-[90vh] bg-white rounded-3xl overflow-hidden shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Close Button */}
                   <button
                     onClick={closeProjectModal}
                     className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm text-gray-900 shadow-lg transition-all hover:bg-white hover:scale-110"
@@ -511,12 +441,10 @@ export default function SurguluCamPage() {
                   >
                     <X className="h-6 w-6" />
                   </button>
-
-                  {/* Image */}
                   <div className="relative w-full h-[90vh] bg-gray-100">
                     <Image
-                      src={surguluCamProjects[selectedProject].src}
-                      alt={surguluCamProjects[selectedProject].alt}
+                      src={sandvicPanelProjects[selectedProject].src}
+                      alt={sandvicPanelProjects[selectedProject].alt}
                       fill
                       className="object-contain"
                       sizes="100vw"
@@ -528,7 +456,6 @@ export default function SurguluCamPage() {
             )}
           </AnimatePresence>
 
-          {/* FAQ Section */}
           <section className="py-16 md:py-24 bg-gradient-to-b from-white via-teal-50/30 to-white">
             <div className="mx-auto max-w-4xl px-4 md:px-6">
               <motion.div
@@ -543,9 +470,6 @@ export default function SurguluCamPage() {
                 <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
                   Sıkça Sorulan Sorular
                 </h2>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  Sürgülü cam hakkında merak ettikleriniz ve cevapları
-                </p>
               </motion.div>
 
               <div className="space-y-4">
@@ -607,71 +531,12 @@ export default function SurguluCamPage() {
                   );
                 })}
               </div>
-
-              {/* Additional CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-                className="mt-16 rounded-3xl bg-gradient-to-br from-teal-900 via-teal-800 to-teal-900 p-8 md:p-12 text-center shadow-2xl relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
-                <div className="relative z-10">
-                  <div className="mb-4 inline-flex rounded-full bg-white/20 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Hemen İletişime Geçin
-                  </div>
-                  <h3 className="mb-3 text-2xl font-bold text-white md:text-3xl">
-                    Sorunuz mu var?
-                  </h3>
-                  <p className="mb-6 text-teal-100 md:text-lg">
-                    Aradığınız cevabı bulamadınız mı? Bizimle iletişime geçin, size yardımcı olalım.
-                  </p>
-                  <Link
-                    href="https://wa.me/905333593466?text=Sürgülü%20cam%20hakkında%20soru%20sormak%20istiyorum"
-                    target="_blank"
-                    className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-900 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-                  >
-                    <Phone className="h-5 w-5" />
-                    Bize Ulaşın
-                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </motion.div>
             </div>
           </section>
 
-          {/* CTA Section */}
           <section className="relative py-20 md:py-28 bg-gradient-to-br from-teal-900 via-teal-800 to-teal-900 overflow-hidden">
-            {/* Background decorations */}
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.2, 0.1],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -left-1/4 top-0 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-white/10 to-transparent blur-[120px]"
-              />
-              <motion.div
-                animate={{
-                  scale: [1.2, 1, 1.2],
-                  opacity: [0.1, 0.15, 0.1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute -right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-gradient-to-l from-white/10 to-transparent blur-[100px]"
-              />
             </div>
 
             <div className="relative mx-auto max-w-5xl px-4 text-center md:px-6">
@@ -692,18 +557,17 @@ export default function SurguluCamPage() {
                   Hayalinizdeki Yaşam Alanı
                 </motion.div>
                 <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                  Hayalinizdeki Sürgülü Cama{" "}
+                  Hayalinizdeki Sandviç Panele{" "}
                   <span className="bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent">
                     Kavuşun
                   </span>
                 </h2>
                 <p className="mb-10 text-lg text-teal-100 md:text-xl max-w-2xl mx-auto">
-                  Ücretsiz keşif ve fiyat teklifi için hemen bizimle iletişime geçin. 
-                  Uzman ekibimiz size en uygun çözümü sunacaktır.
+                  Ücretsiz keşif ve fiyat teklifi için hemen bizimle iletişime geçin.
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
-                    href="https://wa.me/905333593466?text=Sürgülü%20cam%20hakkında%20bilgi%20almak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Sandviç%20panel%20hakkında%20bilgi%20almak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-800 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
                   >
@@ -729,5 +593,4 @@ export default function SurguluCamPage() {
     </>
   );
 }
-
 
