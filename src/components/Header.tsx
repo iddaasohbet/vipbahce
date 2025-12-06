@@ -135,13 +135,34 @@ export default function Header() {
           </motion.div>
           
           <div>
-            <motion.span 
-              className={`block text-base sm:text-xl font-bold tracking-tight transition-colors ${
-                scrolled ? "text-gray-900" : "text-gray-900"
-              } group-hover:text-teal-900`}
-            >
-              Kış Bahçesi
-            </motion.span>
+            <span className="block text-base sm:text-xl font-bold tracking-tight">
+              {"Kış Bahçesi".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  className="inline-block"
+                  animate={{
+                    color: [
+                      "#0d4c4a",
+                      "#14b8a6",
+                      "#0f766e",
+                      "#115e59",
+                      "#0d4c4a",
+                    ],
+                  }}
+                  transition={{
+                    duration: 2 + index * 0.3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.1,
+                  }}
+                  style={{
+                    marginRight: char === " " ? "0.3em" : "0",
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
             <span className="block text-[8px] sm:text-[10px] uppercase tracking-widest font-semibold text-gray-900">
               Kış bahçesi fiyatları
             </span>
