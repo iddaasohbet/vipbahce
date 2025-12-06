@@ -111,8 +111,8 @@ export default function Header() {
             
             <div className={`relative flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 ${
               scrolled 
-                ? "bg-gradient-to-br from-teal-600 to-teal-700 shadow-lg shadow-teal-500/20" 
-                : "bg-gradient-to-br from-teal-600 to-teal-700 shadow-xl shadow-teal-500/30"
+                ? "bg-gradient-to-br from-teal-800 to-teal-900 shadow-lg shadow-teal-500/20" 
+                : "bg-gradient-to-br from-teal-800 to-teal-900 shadow-xl shadow-teal-500/30"
             }`}>
               {/* Shine effect */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/30 via-transparent to-transparent" />
@@ -138,7 +138,7 @@ export default function Header() {
             <motion.span 
               className={`block text-base sm:text-xl font-bold tracking-tight transition-colors ${
                 scrolled ? "text-gray-900" : "text-gray-900"
-              } group-hover:text-teal-700`}
+              } group-hover:text-teal-900`}
             >
               Kış Bahçesi
             </motion.span>
@@ -161,8 +161,8 @@ export default function Header() {
                 href={item.href}
                 className={`group relative flex items-center gap-1 rounded-full px-5 py-2.5 text-sm font-medium transition-all ${
                   scrolled 
-                    ? "text-gray-700 hover:text-teal-700" 
-                    : "text-gray-700 hover:text-teal-700"
+                    ? "text-gray-700 hover:text-teal-900" 
+                    : "text-gray-700 hover:text-teal-900"
                 }`}
               >
                 <span className="relative z-10">{item.label}</span>
@@ -196,7 +196,7 @@ export default function Header() {
                       <div className="relative w-72 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/50">
                         {/* Header */}
                         <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-5 py-3 border-b border-gray-100">
-                          <p className="text-xs font-semibold text-teal-700 flex items-center gap-2">
+                          <p className="text-xs font-semibold text-teal-900 flex items-center gap-2">
                             <Sparkles className="h-3 w-3" />
                             Hizmetlerimiz
                           </p>
@@ -212,8 +212,8 @@ export default function Header() {
                               transition={{ delay: i * 0.05 }}
                               className="group flex items-center justify-between rounded-xl px-4 py-3 text-sm text-gray-700 transition-all hover:bg-gradient-to-r hover:from-teal-50 hover:to-cyan-50"
                             >
-                              <span className="font-medium group-hover:text-teal-700">{subItem.label}</span>
-                              <ArrowRight className="h-4 w-4 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-teal-600" />
+                              <span className="font-medium group-hover:text-teal-900">{subItem.label}</span>
+                              <ArrowRight className="h-4 w-4 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-teal-800" />
                             </motion.a>
                           ))}
                         </div>
@@ -244,7 +244,7 @@ export default function Header() {
           {/* Main CTA */}
           <Link
             href="/teklif-al"
-            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 transition-all hover:shadow-xl hover:shadow-teal-500/30"
+            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 transition-all hover:shadow-xl hover:shadow-teal-500/30"
           >
             {/* Shimmer */}
             <motion.div
@@ -270,7 +270,7 @@ export default function Header() {
           <div className={`absolute inset-0 rounded-2xl transition-all duration-300 ${
             scrolled 
               ? "bg-white shadow-lg border border-gray-200" 
-              : "bg-gradient-to-br from-teal-500 to-teal-600 shadow-xl shadow-teal-500/30"
+              : "bg-gradient-to-br from-teal-500 to-teal-800 shadow-xl shadow-teal-500/30"
           }`}>
             {/* Inner glow */}
             <div className={`absolute inset-0 rounded-2xl transition-opacity ${
@@ -288,7 +288,7 @@ export default function Header() {
               }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               className={`absolute h-[3px] rounded-full ${
-                scrolled ? "bg-teal-600" : "bg-white"
+                scrolled ? "bg-teal-800" : "bg-white"
               }`}
             />
             <motion.span
@@ -310,7 +310,7 @@ export default function Header() {
               }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               className={`absolute h-[3px] rounded-full ${
-                scrolled ? "bg-teal-600" : "bg-white"
+                scrolled ? "bg-teal-800" : "bg-white"
               }`}
             />
           </div>
@@ -361,7 +361,7 @@ export default function Header() {
                 {/* Header */}
                 <div className="mb-6 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-teal-600 to-teal-700 shadow-lg shadow-teal-500/20">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-teal-800 to-teal-900 shadow-lg shadow-teal-500/20">
                       <svg viewBox="0 0 40 40" className="h-6 w-6" fill="none">
                         <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#fff" strokeWidth="2"/>
                         <path d="M13 18L20 13L27 18M14 18V26H26V18" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -369,7 +369,7 @@ export default function Header() {
                     </div>
                     <div>
                       <span className="block text-lg font-bold text-gray-900">Kış Bahçesi</span>
-                      <span className="block text-[9px] uppercase tracking-widest font-semibold text-teal-600">Premium</span>
+                      <span className="block text-[9px] uppercase tracking-widest font-semibold text-teal-800">Premium</span>
                     </div>
                   </div>
                   <button
@@ -385,11 +385,11 @@ export default function Header() {
                   href="tel:+905333593466"
                   className="mb-6 flex items-center gap-3 rounded-2xl bg-gradient-to-r from-teal-50 to-cyan-50 p-4 border border-teal-100"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-600 text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-800 text-white">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs text-teal-600 font-medium">Hemen Arayın</p>
+                    <p className="text-xs text-teal-800 font-medium">Hemen Arayın</p>
                     <p className="text-lg font-bold text-gray-900">0533 359 34 66</p>
                   </div>
                 </a>
@@ -411,7 +411,7 @@ export default function Header() {
                           >
                             <span>{item.label}</span>
                             <motion.div animate={{ rotate: mobileDropdownOpen === item.label ? 180 : 0 }}>
-                              <ChevronDown className={`h-4 w-4 ${mobileDropdownOpen === item.label ? 'text-teal-600' : 'text-gray-400'}`} />
+                              <ChevronDown className={`h-4 w-4 ${mobileDropdownOpen === item.label ? 'text-teal-800' : 'text-gray-400'}`} />
                             </motion.div>
                           </button>
 
@@ -431,7 +431,7 @@ export default function Header() {
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{ delay: idx * 0.03 }}
-                                      className="block py-2.5 text-sm text-gray-600 hover:text-teal-700"
+                                      className="block py-2.5 text-sm text-gray-600 hover:text-teal-900"
                                       onClick={() => { setOpen(false); setMobileDropdownOpen(null); }}
                                     >
                                       {subItem.label}
@@ -445,7 +445,7 @@ export default function Header() {
                       ) : (
                         <Link
                           href={item.href}
-                          className="flex items-center rounded-xl px-4 py-3.5 text-[15px] font-medium text-gray-800 transition-all hover:bg-gray-50 hover:text-teal-700"
+                          className="flex items-center rounded-xl px-4 py-3.5 text-[15px] font-medium text-gray-800 transition-all hover:bg-gray-50 hover:text-teal-900"
                           onClick={() => setOpen(false)}
                         >
                           {item.label}
@@ -459,7 +459,7 @@ export default function Header() {
                 <div className="mt-auto pt-6 border-t border-gray-100">
                   <Link
                     href="/teklif-al"
-                    className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/25"
+                    className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-800 to-teal-900 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/25"
                     onClick={() => setOpen(false)}
                   >
                     Ücretsiz Teklif Alın

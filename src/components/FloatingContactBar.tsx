@@ -20,8 +20,8 @@ export default function FloatingContactBar() {
       name: "Ara",
       icon: Phone,
       href: "tel:+905333593466",
-      bgColor: "from-teal-500 to-teal-600",
-      shadowColor: "shadow-teal-500/40",
+      bgColor: "from-teal-700 to-teal-800",
+      shadowColor: "shadow-teal-700/40",
     },
     {
       name: "WhatsApp",
@@ -73,7 +73,7 @@ export default function FloatingContactBar() {
                 repeat: Infinity,
                 ease: "easeOut",
               }}
-              className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 shadow-xl shadow-teal-500/30"
+              className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-700 to-teal-800 shadow-xl shadow-teal-700/30"
             >
               {/* Shine effect */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/30 via-transparent to-transparent" />
@@ -112,7 +112,7 @@ export default function FloatingContactBar() {
             >
               <div className="relative overflow-hidden rounded-t-[32px] bg-white shadow-2xl">
                 {/* Top gradient line */}
-                <div className="h-1 w-full bg-gradient-to-r from-teal-500 via-cyan-400 to-teal-500" />
+                <div className="h-1 w-full bg-gradient-to-r from-teal-700 via-cyan-400 to-teal-700" />
                 
                 {/* Handle bar */}
                 <div className="flex justify-center pt-3 pb-2">
@@ -173,7 +173,7 @@ export default function FloatingContactBar() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     whileTap={{ scale: 0.98 }}
-                    className="relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-teal-600 to-teal-500 px-6 py-4 shadow-xl shadow-teal-500/30"
+                    className="relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-teal-800 to-teal-700 px-6 py-4 shadow-xl shadow-teal-700/30"
                   >
                     {/* Shimmer effect */}
                     <motion.div

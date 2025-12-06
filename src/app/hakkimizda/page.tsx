@@ -78,7 +78,7 @@ export default function HakkimizdaPage() {
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 className="rounded-2xl bg-white p-6 text-center shadow-xl border border-gray-100"
               >
-                <stat.icon className="mx-auto mb-3 h-8 w-8 text-teal-600" />
+                <stat.icon className="mx-auto mb-3 h-8 w-8 text-teal-800" />
                 <p className="text-3xl font-bold text-gray-900 md:text-4xl">{stat.number}</p>
                 <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
               </motion.div>
@@ -97,7 +97,7 @@ export default function HakkimizdaPage() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">
-                  Kış Bahçesi Sektöründe <span className="text-teal-700">Güvenilir Çözüm Ortağınız</span>
+                  Kış Bahçesi Sektöründe <span className="text-teal-900">Güvenilir Çözüm Ortağınız</span>
                 </h2>
                 <div className="space-y-4 text-gray-600 leading-relaxed">
                   <p>
@@ -128,7 +128,7 @@ export default function HakkimizdaPage() {
                 <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6">
                   <div className="mb-4 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100">
-                      <Target className="h-6 w-6 text-teal-700" />
+                      <Target className="h-6 w-6 text-teal-900" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Misyonumuz</h3>
                   </div>
@@ -142,7 +142,7 @@ export default function HakkimizdaPage() {
                 <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6">
                   <div className="mb-4 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100">
-                      <Eye className="h-6 w-6 text-teal-700" />
+                      <Eye className="h-6 w-6 text-teal-900" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Vizyonumuz</h3>
                   </div>
@@ -184,7 +184,7 @@ export default function HakkimizdaPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
                 >
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-700 text-white">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-900 text-white">
                     <CheckCircle2 className="h-6 w-6" />
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-gray-900">{value.title}</h3>
@@ -228,7 +228,7 @@ export default function HakkimizdaPage() {
                   className="flex gap-4"
                 >
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-teal-100">
-                    <item.icon className="h-6 w-6 text-teal-700" />
+                    <item.icon className="h-6 w-6 text-teal-900" />
                   </div>
                   <div>
                     <h3 className="mb-2 font-bold text-gray-900">{item.title}</h3>
@@ -241,7 +241,7 @@ export default function HakkimizdaPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-teal-700 py-16">
+        <section className="bg-teal-900 py-16">
           <div className="mx-auto max-w-4xl px-4 md:px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -258,7 +258,7 @@ export default function HakkimizdaPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/teklif-al"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-semibold text-teal-700 shadow-lg transition-all hover:bg-gray-100 hover:scale-105"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-semibold text-teal-900 shadow-lg transition-all hover:bg-gray-100 hover:scale-105"
                 >
                   Ücretsiz Teklif Alın
                 </a>

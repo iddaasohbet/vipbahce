@@ -161,7 +161,7 @@ export default function Testimonials() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {/* Avatar */}
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-lg font-bold text-white shadow-lg shadow-teal-500/30">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-teal-700 to-teal-800 text-lg font-bold text-white shadow-lg shadow-teal-700/30">
               {testimonial.name[0]}
             </div>
             <div>
@@ -205,7 +205,7 @@ export default function Testimonials() {
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, type: "spring" }}
-            className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-teal-600 shadow-lg shadow-teal-500/30"
+            className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-700 to-teal-800 shadow-lg shadow-teal-700/30"
           >
             <Quote className="h-8 w-8 text-white" />
           </motion.div>
@@ -292,7 +292,7 @@ export default function Testimonials() {
 
                       {/* Author */}
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-sm font-bold text-white">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-700 to-teal-800 text-sm font-bold text-white">
                           {testimonial.name[0]}
                         </div>
                         <div>
@@ -315,7 +315,7 @@ export default function Testimonials() {
               onClick={goToPrev}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:bg-teal-50 active:scale-95"
             >
-              <ChevronLeft className="h-5 w-5 text-teal-600" />
+              <ChevronLeft className="h-5 w-5 text-teal-800" />
             </button>
 
             {/* Dots */}
@@ -326,7 +326,7 @@ export default function Testimonials() {
                   onClick={() => goToSlide(index)}
                   className={`h-2 rounded-full transition-all ${
                     currentIndex === index 
-                      ? 'w-6 bg-teal-600' 
+                      ? 'w-6 bg-teal-800' 
                       : 'w-2 bg-gray-300 hover:bg-gray-400'
                   }`}
                 />
@@ -337,7 +337,7 @@ export default function Testimonials() {
               onClick={goToNext}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:bg-teal-50 active:scale-95"
             >
-              <ChevronRight className="h-5 w-5 text-teal-600" />
+              <ChevronRight className="h-5 w-5 text-teal-800" />
             </button>
           </div>
         </div>

@@ -10,11 +10,10 @@ const materials = [
   { id: 1, src: "/images/projects/v1.jpeg" },
   { id: 2, src: "/images/projects/v2.jpeg" },
   { id: 3, src: "/images/projects/v3.jpeg" },
-  { id: 4, src: "/images/projects/v4.jpeg" },
-  { id: 5, src: "/images/projects/v6.jpeg" },
-  { id: 6, src: "/images/projects/v7.jpeg" },
-  { id: 7, src: "/images/projects/v8.jpeg" },
-  { id: 8, src: "/images/projects/v9.jpeg" },
+  { id: 4, src: "/images/projects/v6.jpeg" },
+  { id: 5, src: "/images/projects/v7.jpeg" },
+  { id: 6, src: "/images/projects/v8.jpeg" },
+  { id: 7, src: "/images/projects/v9.jpeg" },
 ];
 
 export default function Services() {
@@ -60,13 +59,13 @@ export default function Services() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mb-4 inline-block rounded-full border border-teal-600/30 bg-teal-50 px-4 py-2 text-sm font-medium text-teal-700"
+            className="mb-4 inline-block rounded-full border border-teal-800/30 bg-teal-50 px-4 py-2 text-sm font-medium text-teal-900"
           >
             Premium Kalite
           </motion.span>
           
           <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
-            Kullandığımız <span className="text-teal-700">Malzemeler</span>
+            Kullandığımız <span className="text-teal-900">Malzemeler</span>
           </h2>
           
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
@@ -101,7 +100,7 @@ export default function Services() {
               className="absolute inset-0 flex items-center justify-center"
             >
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-2xl backdrop-blur-sm">
-                <ZoomIn className="h-7 w-7 text-teal-700" />
+                <ZoomIn className="h-7 w-7 text-teal-900" />
               </div>
             </motion.div>
             <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
@@ -134,7 +133,7 @@ export default function Services() {
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
-                  <ZoomIn className="h-5 w-5 text-teal-700" />
+                  <ZoomIn className="h-5 w-5 text-teal-900" />
                 </div>
               </motion.div>
               <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
@@ -168,7 +167,7 @@ export default function Services() {
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
-                  <ZoomIn className="h-5 w-5 text-teal-700" />
+                  <ZoomIn className="h-5 w-5 text-teal-900" />
                 </div>
               </motion.div>
               <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
@@ -177,8 +176,8 @@ export default function Services() {
         </div>
 
         {/* Second Row - Desktop */}
-        <div className="hidden md:grid md:grid-cols-3 gap-4 md:gap-5 mt-4 md:mt-5 h-[250px] lg:h-[300px]">
-          {materials.slice(5, 8).map((material, index) => (
+        <div className="hidden md:grid md:grid-cols-2 gap-4 md:gap-5 mt-4 md:mt-5 h-[250px] lg:h-[300px]">
+          {materials.slice(5, 7).map((material, index) => (
             <motion.div
               key={material.id}
               initial={{ opacity: 0, y: 30 }}
@@ -204,7 +203,7 @@ export default function Services() {
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
-                  <ZoomIn className="h-5 w-5 text-teal-700" />
+                  <ZoomIn className="h-5 w-5 text-teal-900" />
                 </div>
               </motion.div>
               <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
@@ -236,7 +235,7 @@ export default function Services() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm">
-                  <ZoomIn className="h-4 w-4 text-teal-700" />
+                  <ZoomIn className="h-4 w-4 text-teal-900" />
                 </div>
                 <div className="absolute inset-0 rounded-2xl border-2 border-white/0 transition-all group-active:border-teal-400/50" />
               </motion.div>

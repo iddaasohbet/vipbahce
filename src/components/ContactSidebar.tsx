@@ -76,7 +76,7 @@ export default function ContactSidebar() {
           
           <motion.div
             whileHover={{ x: -8, scale: 1.02 }}
-            className="relative flex h-36 w-12 cursor-pointer flex-col items-center justify-center gap-3 rounded-l-2xl bg-gradient-to-b from-teal-500 via-teal-600 to-teal-700 shadow-2xl shadow-teal-900/50 transition-all"
+            className="relative flex h-36 w-12 cursor-pointer flex-col items-center justify-center gap-3 rounded-l-2xl bg-gradient-to-b from-teal-700 via-teal-800 to-teal-700 shadow-2xl shadow-teal-900/50 transition-all"
           >
             {/* Shimmer effect */}
             <div className="absolute inset-0 overflow-hidden rounded-l-2xl">
@@ -145,7 +145,7 @@ export default function ContactSidebar() {
               <div className="absolute -left-20 top-40 h-32 w-32 rounded-full bg-cyan-100 opacity-50 blur-3xl" />
               
               {/* Premium Header */}
-              <div className="relative overflow-hidden bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 px-5 py-6">
+              <div className="relative overflow-hidden bg-gradient-to-br from-teal-800 via-teal-700 to-teal-800 px-5 py-6">
                 {/* Animated gradient overlay */}
                 <motion.div
                   animate={{
@@ -156,7 +156,7 @@ export default function ContactSidebar() {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute inset-0 bg-gradient-to-r from-teal-600/0 via-cyan-400/20 to-teal-600/0 bg-[length:200%_100%]"
+                  className="absolute inset-0 bg-gradient-to-r from-teal-800/0 via-cyan-400/20 to-teal-800/0 bg-[length:200%_100%]"
                 />
                 
                 {/* Grid pattern */}
@@ -251,8 +251,8 @@ export default function ContactSidebar() {
                     whileTap={{ scale: 0.95 }}
                     className="group relative flex flex-col items-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-teal-100/50 p-4 shadow-lg shadow-teal-100 transition-all"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-teal-600 opacity-0 transition-opacity group-hover:opacity-100" />
-                    <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-500/30 group-hover:from-white group-hover:to-white group-hover:text-teal-600">
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-700 to-teal-800 opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-teal-700 to-teal-800 text-white shadow-lg shadow-teal-700/30 group-hover:from-white group-hover:to-white group-hover:text-teal-800">
                       <Phone className="h-5 w-5" />
                     </div>
                     <span className="relative text-xs font-semibold text-teal-700 group-hover:text-white">Ara</span>
@@ -320,7 +320,7 @@ export default function ContactSidebar() {
                       <p className="text-xs text-slate-400">Hemen Arayın</p>
                       <p className="text-lg font-bold text-white">+90 533 359 34 66</p>
                     </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-500 text-white shadow-lg shadow-teal-500/50">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-700 text-white shadow-lg shadow-teal-700/50">
                       <Phone className="h-5 w-5" />
                     </div>
                   </div>
@@ -361,7 +361,7 @@ export default function ContactSidebar() {
                           type="text"
                           placeholder="Adınız Soyadınız"
                           required
-                          className="w-full rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+                          className="w-full rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-700/10"
                         />
                       </div>
                       <div className="relative">
@@ -369,7 +369,7 @@ export default function ContactSidebar() {
                           type="tel"
                           placeholder="Telefon Numaranız"
                           required
-                          className="w-full rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+                          className="w-full rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-700/10"
                         />
                       </div>
                       <div className="relative">
@@ -377,7 +377,7 @@ export default function ContactSidebar() {
                           placeholder="Mesajınız..."
                           rows={3}
                           required
-                          className="w-full resize-none rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+                          className="w-full resize-none rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-700/10"
                         ></textarea>
                       </div>
                       
@@ -386,7 +386,7 @@ export default function ContactSidebar() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-teal-600 to-teal-500 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/40"
+                        className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-teal-800 to-teal-700 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-teal-700/30 transition-all hover:shadow-xl hover:shadow-teal-700/40"
                       >
                         {/* Button shimmer */}
                         <motion.div
@@ -413,7 +413,7 @@ export default function ContactSidebar() {
               </div>
               
               {/* Bottom accent line */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-cyan-400 to-teal-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-700 via-cyan-400 to-teal-700" />
             </motion.div>
           </>
         )}

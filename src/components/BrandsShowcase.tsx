@@ -120,21 +120,21 @@ export default function BrandsShowcase() {
               whileInView={{ width: "45%" }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="h-full rounded-full bg-gradient-to-r from-transparent via-teal-600 to-teal-600"
+              className="h-full rounded-full bg-gradient-to-r from-transparent via-teal-800 to-teal-800"
             />
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 1.5 }}
-              className="h-2 w-2 rounded-full bg-teal-600"
+              className="h-2 w-2 rounded-full bg-teal-800"
             />
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "45%" }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="h-full rounded-full bg-gradient-to-l from-transparent via-teal-600 to-teal-600"
+              className="h-full rounded-full bg-gradient-to-l from-transparent via-teal-800 to-teal-800"
             />
           </div>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
@@ -167,7 +167,7 @@ export default function BrandsShowcase() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <brand.icon className="h-12 w-12 text-teal-600" strokeWidth={1.5} />
+                    <brand.icon className="h-12 w-12 text-teal-800" strokeWidth={1.5} />
                   </motion.div>
                   <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
                     {brand.origin}
@@ -176,7 +176,7 @@ export default function BrandsShowcase() {
 
                 {/* Brand Info */}
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-gray-900 transition-colors group-hover:text-teal-600">
+                  <h3 className="text-2xl font-bold text-gray-900 transition-colors group-hover:text-teal-800">
                     {brand.name}
                   </h3>
                   <p className="text-sm leading-relaxed text-gray-600">
@@ -260,7 +260,7 @@ export default function BrandsShowcase() {
                           z: 50,
                         }}
                         onClick={() => setSelectedImage(image.id)}
-                        className="group relative h-72 w-[420px] shrink-0 cursor-pointer overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-teal-500/20"
+                        className="group relative h-72 w-[420px] shrink-0 cursor-pointer overflow-hidden rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-teal-700/20"
                         style={{ perspective: "1000px" }}
                       >
                         {/* Image */}
@@ -288,7 +288,7 @@ export default function BrandsShowcase() {
                             whileHover={{ scale: 1, opacity: 1 }}
                             className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm opacity-0 transition-all duration-300 group-hover:opacity-100"
                           >
-                            <svg className="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg className="h-6 w-6 text-teal-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                             </svg>
                           </motion.div>

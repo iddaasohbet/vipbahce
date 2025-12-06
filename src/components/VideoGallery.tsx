@@ -158,7 +158,7 @@ export default function VideoGallery() {
               opacity: [0.3, 0.5, 0.3]
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-gradient-to-r from-teal-500/20 to-cyan-500/20 blur-3xl" 
+            className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-gradient-to-r from-teal-700/20 to-cyan-500/20 blur-3xl" 
           />
           <motion.div 
             animate={{ 
@@ -166,7 +166,7 @@ export default function VideoGallery() {
               opacity: [0.3, 0.5, 0.3]
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-            className="absolute -right-40 bottom-20 h-[500px] w-[500px] rounded-full bg-gradient-to-l from-purple-500/20 to-teal-500/20 blur-3xl" 
+            className="absolute -right-40 bottom-20 h-[500px] w-[500px] rounded-full bg-gradient-to-l from-purple-500/20 to-teal-700/20 blur-3xl" 
           />
         </div>
 
@@ -190,21 +190,21 @@ export default function VideoGallery() {
                 whileInView={{ width: "40%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-                className="h-full rounded-full bg-gradient-to-r from-transparent via-teal-400 to-teal-500"
+                className="h-full rounded-full bg-gradient-to-r from-transparent via-teal-600 to-teal-700"
               />
               <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 1.2, type: "spring" }}
-                className="h-3 w-3 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50"
+                className="h-3 w-3 rounded-full bg-teal-600 shadow-lg shadow-teal-600/50"
               />
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: "40%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-                className="h-full rounded-full bg-gradient-to-l from-transparent via-teal-400 to-teal-500"
+                className="h-full rounded-full bg-gradient-to-l from-transparent via-teal-600 to-teal-700"
               />
             </div>
 
@@ -246,17 +246,17 @@ export default function VideoGallery() {
                     <motion.div
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-xl border border-white/30 shadow-2xl group-hover:bg-teal-500/80 transition-all duration-500"
+                      className="flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-xl border border-white/30 shadow-2xl group-hover:bg-teal-700/80 transition-all duration-500"
                     >
                       <Play className="h-10 w-10 text-white ml-1" fill="white" />
                     </motion.div>
                   </div>
 
 
-                  <div className="absolute top-3 left-3 w-10 h-10 border-l-2 border-t-2 border-teal-400/50 rounded-tl-xl" />
-                  <div className="absolute top-3 right-3 w-10 h-10 border-r-2 border-t-2 border-teal-400/50 rounded-tr-xl" />
-                  <div className="absolute bottom-3 left-3 w-10 h-10 border-l-2 border-b-2 border-teal-400/50 rounded-bl-xl" />
-                  <div className="absolute bottom-3 right-3 w-10 h-10 border-r-2 border-b-2 border-teal-400/50 rounded-br-xl" />
+                  <div className="absolute top-3 left-3 w-10 h-10 border-l-2 border-t-2 border-teal-600/50 rounded-tl-xl" />
+                  <div className="absolute top-3 right-3 w-10 h-10 border-r-2 border-t-2 border-teal-600/50 rounded-tr-xl" />
+                  <div className="absolute bottom-3 left-3 w-10 h-10 border-l-2 border-b-2 border-teal-600/50 rounded-bl-xl" />
+                  <div className="absolute bottom-3 right-3 w-10 h-10 border-r-2 border-b-2 border-teal-600/50 rounded-br-xl" />
                 </div>
               </motion.div>
 
@@ -283,7 +283,7 @@ export default function VideoGallery() {
                   <Watermark />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-700/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
@@ -313,7 +313,7 @@ export default function VideoGallery() {
                   <Watermark />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-700/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-7 w-7 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
@@ -343,7 +343,7 @@ export default function VideoGallery() {
                   <Watermark />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-700/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
@@ -373,7 +373,7 @@ export default function VideoGallery() {
                   <Watermark />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-700/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-7 w-7 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
@@ -403,7 +403,7 @@ export default function VideoGallery() {
                   <Watermark />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-700/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-7 w-7 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
@@ -452,7 +452,7 @@ export default function VideoGallery() {
 
                 {/* Video Counter */}
                 <div className="absolute bottom-6 left-6 z-20">
-                  <span className="inline-block px-3 py-1 rounded-full bg-teal-500/90 text-white text-xs font-semibold backdrop-blur-sm">
+                  <span className="inline-block px-3 py-1 rounded-full bg-teal-700/90 text-white text-xs font-semibold backdrop-blur-sm">
                     {activeIndex + 1} / {videos.length}
                   </span>
                 </div>
@@ -472,7 +472,7 @@ export default function VideoGallery() {
                   <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={() => openModal(videos[activeIndex].id)}
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm text-white shadow-lg shadow-teal-500/30"
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-700/90 backdrop-blur-sm text-white shadow-lg shadow-teal-700/30"
                   >
                     <Play className="h-6 w-6 ml-0.5" fill="white" />
                   </motion.button>
@@ -505,7 +505,7 @@ export default function VideoGallery() {
                     onClick={() => setActiveIndex(index)}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       activeIndex === index 
-                        ? 'w-8 bg-teal-400' 
+                        ? 'w-8 bg-teal-600' 
                         : 'w-2 bg-white/30 hover:bg-white/50'
                     }`}
                   />

@@ -27,7 +27,7 @@ export default function Footer() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className="relative flex h-11 w-11 items-center justify-center rounded-lg bg-teal-700"
+                className="relative flex h-11 w-11 items-center justify-center rounded-lg bg-teal-900"
                 aria-hidden="true"
               >
                 {/* Corporate Winter Garden Icon */}
@@ -75,7 +75,7 @@ export default function Footer() {
             </p>
             <Link
               href="/teklif-al"
-              className="group inline-flex items-center gap-2 rounded-full bg-teal-700 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-teal-800"
+              className="group inline-flex items-center gap-2 rounded-full bg-teal-900 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-teal-800"
             >
               Ücretsiz Teklif Alın
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -92,9 +92,9 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="group flex items-center text-sm text-gray-600 transition-colors hover:text-teal-700"
+                      className="group flex items-center text-sm text-gray-600 transition-colors hover:text-teal-900"
                     >
-                      <span className="mr-2 h-1 w-1 rounded-full bg-gray-400 transition-all group-hover:w-4 group-hover:bg-teal-700" />
+                      <span className="mr-2 h-1 w-1 rounded-full bg-gray-400 transition-all group-hover:w-4 group-hover:bg-teal-900" />
                       {link.name}
                     </Link>
                   </li>
@@ -108,14 +108,14 @@ export default function Footer() {
               <div className="space-y-4">
                 <a 
                   href="tel:+905333593466" 
-                  className="flex items-start gap-3 text-sm text-gray-600 transition-colors hover:text-teal-700"
+                  className="flex items-start gap-3 text-sm text-gray-600 transition-colors hover:text-teal-900"
                 >
                   <Phone className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <span>+90 533 359 34 66</span>
                 </a>
                 <a 
                   href="mailto:support@kisbahcesi.com" 
-                  className="flex items-start gap-3 text-sm text-gray-600 transition-colors hover:text-teal-700"
+                  className="flex items-start gap-3 text-sm text-gray-600 transition-colors hover:text-teal-900"
                 >
                   <Mail className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <span>support@kisbahcesi.com</span>

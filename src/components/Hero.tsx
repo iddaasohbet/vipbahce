@@ -118,7 +118,7 @@ export default function Hero() {
           <h1 className="mb-4 max-w-5xl text-3xl leading-tight tracking-tight text-gray-900 md:text-7xl lg:text-8xl">
             <span className="font-normal">Hayalinizdeki</span>{" "}
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-teal-700 via-teal-600 to-teal-700 bg-clip-text text-transparent font-semibold italic">
+              <span className="bg-gradient-to-r from-teal-900 via-teal-800 to-teal-900 bg-clip-text text-transparent font-semibold italic">
                 Kış Bahçesi
               </span>
             </span>{" "}
@@ -133,7 +133,7 @@ export default function Hero() {
           >
             <span className="font-normal">Hayalinizdeki</span>{" "}
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-teal-700 via-teal-600 to-teal-700 bg-clip-text text-transparent font-semibold italic">
+              <span className="bg-gradient-to-r from-teal-900 via-teal-800 to-teal-900 bg-clip-text text-transparent font-semibold italic">
                 Kış Bahçesi
               </span>
               {!shouldReduceMotion && (
@@ -141,7 +141,7 @@ export default function Hero() {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="absolute -bottom-2 left-0 h-1 w-full origin-left bg-gradient-to-r from-teal-700 to-transparent"
+                  className="absolute -bottom-2 left-0 h-1 w-full origin-left bg-gradient-to-r from-teal-900 to-transparent"
                 />
               )}
             </span>{" "}
@@ -152,7 +152,7 @@ export default function Hero() {
         {isMobile ? (
           <p className="mb-8 max-w-3xl text-lg font-bold leading-relaxed text-gray-900 px-4 drop-shadow-sm">
             Modern tasarım, kaliteli malzeme ve uzman ekip ile{" "}
-            <span className="text-teal-700">
+            <span className="text-teal-900">
               bioklimatik kış bahçesi
             </span>{" "}
             sistemleri. Evinize değer katın, yaşam alanınızı genişletin.
@@ -165,7 +165,7 @@ export default function Hero() {
             className="mb-12 max-w-3xl text-xl font-bold leading-relaxed text-gray-900 md:text-2xl drop-shadow-sm"
           >
             Modern tasarım, kaliteli malzeme ve uzman ekip ile{" "}
-            <span className="text-teal-700">
+            <span className="text-teal-900">
               bioklimatik kış bahçesi
             </span>{" "}
             sistemleri. Evinize değer katın, yaşam alanınızı genişletin.
@@ -173,59 +173,28 @@ export default function Hero() {
         )}
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0">
-          <motion.div
-            animate={{ 
-              scale: [1, 1.05, 1],
-            }}
-            transition={{ 
-              duration: 1.5, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="relative"
+          <a
+            href="https://wa.me/905333593466?text=Merhaba,%20ücretsiz%20keşif%20hizmeti%20almak%20istiyorum."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-lg shadow-teal-800/30 transition-all duration-300 hover:shadow-xl hover:shadow-teal-800/40 hover:scale-[1.02] min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"
+            aria-label="Ücretsiz keşif için WhatsApp'tan ulaşın"
           >
-            {/* Outer glow rings */}
+            {/* Subtle shimmer effect */}
             <motion.span
-              animate={{ 
-                scale: [1, 1.5, 1.8],
-                opacity: [0.6, 0.3, 0]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-              className="absolute inset-0 rounded-full bg-teal-500"
-            />
-            <motion.span
-              animate={{ 
-                scale: [1, 1.3, 1.5],
-                opacity: [0.4, 0.2, 0]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
-              className="absolute inset-0 rounded-full bg-teal-400"
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
             />
             
-            <Link
-              href="/teklif-al"
-              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-bold text-white shadow-2xl shadow-teal-500/50 transition-all hover:scale-110 hover:shadow-teal-500/70 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto border-2 border-white/30"
-              aria-label="Ücretsiz keşif için tıklayın"
-            >
-              {/* Shimmer effect */}
-              <motion.span
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 0.5 }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
-              />
-              
-              {/* Inner glow */}
-              <span className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-white/10 to-white/20" />
-              
-              <span className="relative z-10 flex items-center gap-1.5">
-                Ücretsiz Keşif
-                <ArrowRight className="h-4 md:h-5 w-4 md:w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </span>
-            </Link>
-          </motion.div>
+            <span className="relative z-10 flex items-center gap-1.5">
+              Ücretsiz Keşif
+              <ArrowRight className="h-4 md:h-5 w-4 md:w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </span>
+          </a>
           <Link
             href="#galeri"
-            className="group rounded-full border-2 border-teal-700 bg-white px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-teal-700 transition-all hover:bg-teal-50 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"
+            className="group rounded-full border-2 border-teal-900 bg-white px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-teal-900 transition-all hover:bg-teal-50 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"
             aria-label="Projelerimizi incelemek için tıklayın"
           >
             <span className="flex items-center gap-1.5">
@@ -343,9 +312,9 @@ export default function Hero() {
                 className="flex flex-col items-center gap-3"
               >
                 <div className="relative">
-                  <div className="absolute inset-0 animate-ping rounded-full bg-teal-600/30" />
-                  <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-700 bg-white shadow-lg">
-                    <svg className="h-5 w-5 text-teal-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="absolute inset-0 animate-ping rounded-full bg-teal-800/30" />
+                  <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-900 bg-white shadow-lg">
+                    <svg className="h-5 w-5 text-teal-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                     </svg>
                   </div>
@@ -354,8 +323,8 @@ export default function Hero() {
               </motion.div>
             ) : (
               <div className="flex flex-col items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-700 bg-white shadow-lg">
-                  <svg className="h-5 w-5 text-teal-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-900 bg-white shadow-lg">
+                  <svg className="h-5 w-5 text-teal-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </div>

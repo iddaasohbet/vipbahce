@@ -103,13 +103,13 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center overflow-hidden"
         >
-          {/* Animated gradient background */}
+          {/* Animated gradient background - Dark Teal */}
           <motion.div
             animate={{
               background: [
-                "linear-gradient(135deg, #0f766e 0%, #115e59 25%, #134e4a 50%, #0d9488 75%, #0f766e 100%)",
-                "linear-gradient(135deg, #134e4a 0%, #0d9488 25%, #0f766e 50%, #115e59 75%, #134e4a 100%)",
-                "linear-gradient(135deg, #0f766e 0%, #115e59 25%, #134e4a 50%, #0d9488 75%, #0f766e 100%)",
+                "linear-gradient(135deg, #115e59 0%, #134e4a 25%, #0c4a4a 50%, #115e59 75%, #134e4a 100%)",
+                "linear-gradient(135deg, #134e4a 0%, #0c4a4a 25%, #115e59 50%, #134e4a 75%, #0c4a4a 100%)",
+                "linear-gradient(135deg, #115e59 0%, #134e4a 25%, #0c4a4a 50%, #115e59 75%, #134e4a 100%)",
               ],
             }}
             transition={{
@@ -121,7 +121,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
           />
 
           {/* Mesh gradient overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(20,184,166,0.3)_0%,_transparent_50%),radial-gradient(ellipse_at_bottom_right,_rgba(6,182,212,0.3)_0%,_transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(17,94,89,0.4)_0%,_transparent_50%),radial-gradient(ellipse_at_bottom_right,_rgba(19,78,74,0.4)_0%,_transparent_50%)]" />
           
           {/* Grid pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -139,7 +139,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-r from-cyan-400/30 to-teal-400/20 blur-[80px]"
+            className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-r from-cyan-400/30 to-teal-600/20 blur-[80px]"
           />
           <motion.div
             animate={{
@@ -154,7 +154,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
               ease: "easeInOut",
               delay: 1,
             }}
-            className="absolute -right-32 bottom-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-l from-emerald-400/25 to-teal-500/15 blur-[100px]"
+            className="absolute -right-32 bottom-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-l from-emerald-400/25 to-teal-700/15 blur-[100px]"
           />
 
           {/* Animated rings */}
@@ -255,7 +255,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
               >
                 <motion.path
                   d="M20 4L34 12V28L20 36L6 28V12L20 4Z"
-                  stroke="#0d9488"
+                  stroke="#115e59"
                   strokeWidth="2.5"
                   fill="none"
                   initial={{ pathLength: 0, opacity: 0 }}
@@ -264,7 +264,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
                 />
                 <motion.path
                   d="M13 18L20 13L27 18"
-                  stroke="#0d9488"
+                  stroke="#115e59"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -274,7 +274,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
                 />
                 <motion.path
                   d="M14 18V26H26V18"
-                  stroke="#0d9488"
+                  stroke="#115e59"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -287,9 +287,9 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
                   animate={{ opacity: 1 }}
                   transition={{ delay: 2, duration: 0.5 }}
                 >
-                  <line x1="18" y1="18" x2="18" y2="26" stroke="#14b8a6" strokeWidth="1.5" />
-                  <line x1="22" y1="18" x2="22" y2="26" stroke="#14b8a6" strokeWidth="1.5" />
-                  <line x1="14" y1="22" x2="26" y2="22" stroke="#14b8a6" strokeWidth="1.5" />
+                  <line x1="18" y1="18" x2="18" y2="26" stroke="#0f766e" strokeWidth="1.5" />
+                  <line x1="22" y1="18" x2="22" y2="26" stroke="#0f766e" strokeWidth="1.5" />
+                  <line x1="14" y1="22" x2="26" y2="22" stroke="#0f766e" strokeWidth="1.5" />
                 </motion.g>
               </svg>
             </motion.div>
