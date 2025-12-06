@@ -51,7 +51,7 @@ export default function Hero() {
   return (
     <section
       id="anasayfa"
-      className="relative isolate min-h-[50vh] md:min-h-[70vh] overflow-hidden bg-white pt-24 md:pt-4"
+      className="relative isolate overflow-hidden bg-white pt-24 md:pt-4 pb-6 md:min-h-[70vh]"
     >
       {/* Background Images Slider */}
       <div className="absolute inset-0 -z-10">
@@ -113,7 +113,7 @@ export default function Hero() {
 
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#0d4c4a08_1px,transparent_1px),linear-gradient(to_bottom,#0d4c4a08_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-      <div className="mx-auto flex min-h-[50vh] md:min-h-[70vh] max-w-7xl flex-col items-center justify-start md:justify-center px-4 md:px-6 pt-8 pb-4 md:py-12 text-center">
+      <div className="mx-auto flex md:min-h-[70vh] max-w-7xl flex-col items-center justify-start md:justify-center px-4 md:px-6 pt-8 pb-4 md:py-12 text-center">
         {isMobile ? (
           <h1 className="mb-4 max-w-5xl text-3xl leading-tight tracking-tight text-gray-900 md:text-7xl lg:text-8xl">
             <span className="font-normal">Hayalinizdeki</span>{" "}
@@ -244,7 +244,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="absolute bottom-4 left-0 right-0"
+            className="mt-8 w-full"
           >
             <div className="overflow-hidden">
               <motion.div
