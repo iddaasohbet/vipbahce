@@ -11,7 +11,6 @@ import NewsSection from "@/components/NewsSection";
 import SEOArticle from "@/components/SEOArticle";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
-import PremiumComingSoon from "@/components/PremiumComingSoon";
 
 export default function HomeContent() {
   const [showSplash, setShowSplash] = useState(true);
@@ -21,8 +20,6 @@ export default function HomeContent() {
       {showSplash && (
         <SplashScreen onComplete={() => setShowSplash(false)} />
       )}
-      
-      <PremiumComingSoon />
       
       <div className={`bg-white ${showSplash ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
         <Header />
