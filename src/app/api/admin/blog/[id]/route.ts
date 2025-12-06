@@ -65,6 +65,13 @@ export async function PUT(
       );
     }
 
+    if (!connection) {
+      return NextResponse.json(
+        { success: false, message: "Veritabanı bağlantısı kurulamadı" },
+        { status: 500 }
+      );
+    }
+
     await connection.query(
       "UPDATE blog_posts SET title = ?, excerpt = ?, content = ?, image_url = ?, category = ?, author = ?, is_published = ?, is_featured = ? WHERE id = ?",
       [
@@ -81,6 +88,7 @@ export async function PUT(
     );
 
     await connection.end();
+    connection = null;
 
     return NextResponse.json({
       success: true,
@@ -88,15 +96,18 @@ export async function PUT(
     });
   } catch (error: any) {
     console.error("Update blog post error:", error);
-    if (connection) {
-      try {
-        await connection.end();
-      } catch {}
-    }
     return NextResponse.json(
       { success: false, message: error.message },
       { status: 500 }
     );
+  } finally {
+    if (connection) {
+      try {
+        await connection.end();
+      } catch (closeError) {
+        console.error("Connection close error:", closeError);
+      }
+    }
   }
 }
 
@@ -137,12 +148,20 @@ export async function DELETE(
       );
     }
 
+    if (!connection) {
+      return NextResponse.json(
+        { success: false, message: "Veritabanı bağlantısı kurulamadı" },
+        { status: 500 }
+      );
+    }
+
     await connection.query(
       "DELETE FROM blog_posts WHERE id = ?",
       [id]
     );
 
     await connection.end();
+    connection = null;
 
     return NextResponse.json({
       success: true,
@@ -150,15 +169,18 @@ export async function DELETE(
     });
   } catch (error: any) {
     console.error("Delete blog post error:", error);
-    if (connection) {
-      try {
-        await connection.end();
-      } catch {}
-    }
     return NextResponse.json(
       { success: false, message: error.message },
       { status: 500 }
     );
+  } finally {
+    if (connection) {
+      try {
+        await connection.end();
+      } catch (closeError) {
+        console.error("Connection close error:", closeError);
+      }
+    }
   }
 }
 

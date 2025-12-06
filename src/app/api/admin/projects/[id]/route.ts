@@ -53,12 +53,20 @@ export async function DELETE(
       );
     }
 
+    if (!connection) {
+      return NextResponse.json(
+        { success: false, message: "Veritabanı bağlantısı kurulamadı" },
+        { status: 500 }
+      );
+    }
+
     await connection.query(
       "UPDATE projects SET is_active = 0 WHERE id = ?",
       [id]
     );
 
     await connection.end();
+    connection = null;
 
     return NextResponse.json({
       success: true,
@@ -66,15 +74,18 @@ export async function DELETE(
     });
   } catch (error: any) {
     console.error("Delete project error:", error);
-    if (connection) {
-      try {
-        await connection.end();
-      } catch {}
-    }
     return NextResponse.json(
       { success: false, message: error.message },
       { status: 500 }
     );
+  } finally {
+    if (connection) {
+      try {
+        await connection.end();
+      } catch (closeError) {
+        console.error("Connection close error:", closeError);
+      }
+    }
   }
 }
 
@@ -121,6 +132,13 @@ export async function PUT(
       );
     }
 
+    if (!connection) {
+      return NextResponse.json(
+        { success: false, message: "Veritabanı bağlantısı kurulamadı" },
+        { status: 500 }
+      );
+    }
+
     // Sadece resim URL'sini güncelle, diğer alanları koru
     await connection.query(
       "UPDATE projects SET image_url = ? WHERE id = ?",
@@ -128,6 +146,7 @@ export async function PUT(
     );
 
     await connection.end();
+    connection = null;
 
     return NextResponse.json({
       success: true,
@@ -135,15 +154,18 @@ export async function PUT(
     });
   } catch (error: any) {
     console.error("Update project error:", error);
-    if (connection) {
-      try {
-        await connection.end();
-      } catch {}
-    }
     return NextResponse.json(
       { success: false, message: error.message },
       { status: 500 }
     );
+  } finally {
+    if (connection) {
+      try {
+        await connection.end();
+      } catch (closeError) {
+        console.error("Connection close error:", closeError);
+      }
+    }
   }
 }
 
