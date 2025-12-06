@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -113,21 +114,35 @@ export default function NewsSection() {
     setCurrentIndex((prev) => (prev + 1) % newsItems.length);
   };
 
-  // Touch/Swipe handling
+  // Touch/Swipe handling - sadece belirgin swipe'larda çalışır
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const isSwiping = useRef(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
+    touchStartY.current = e.targetTouches[0].clientY;
+    touchEndX.current = e.targetTouches[0].clientX;
+    isSwiping.current = false;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.targetTouches[0].clientX;
+    const diffX = Math.abs(touchStartX.current - touchEndX.current);
+    const diffY = Math.abs(touchStartY.current - e.targetTouches[0].clientY);
+    
+    // Yatay hareket dikeyden fazlaysa swipe olarak kabul et
+    if (diffX > 10 && diffX > diffY) {
+      isSwiping.current = true;
+    }
   };
 
   const handleTouchEnd = () => {
+    if (!isSwiping.current) return; // Swipe değilse hiçbir şey yapma (tıklama için)
+    
     const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 50) {
+    if (Math.abs(diff) > 80) { // Daha yüksek threshold
       if (diff > 0) {
         goToNext();
       } else {
@@ -213,8 +228,8 @@ export default function NewsSection() {
               {/* Desktop Grid */}
               <div className="hidden md:grid md:grid-cols-3 md:gap-8">
                 {newsItems.map((item, index) => (
+              <Link href={`/blog/${item.id}`} key={item.id}>
               <motion.article
-                key={item.id}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -280,6 +295,7 @@ export default function NewsSection() {
                   </p>
                 </div>
               </motion.article>
+              </Link>
             ))}
           </div>
 
@@ -298,44 +314,46 @@ export default function NewsSection() {
               >
                 {newsItems.map((item) => (
                   <div key={item.id} className="w-full flex-shrink-0 px-2">
-                    <div className="group cursor-pointer">
-                      {/* Image Container */}
-                      <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-2xl">
-                        <Image
-                          src={item.image_url}
-                          alt={item.title}
-                          fill
-                          className="object-cover"
-                        />
-                        
-                        {/* Category Badge */}
-                        {item.category && (
-                          <div className="absolute left-3 top-3">
-                            <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-900 shadow-lg">
-                              {item.category}
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                    <Link href={`/blog/${item.id}`}>
+                      <div className="group cursor-pointer">
+                        {/* Image Container */}
+                        <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-2xl">
+                          <Image
+                            src={item.image_url}
+                            alt={item.title}
+                            fill
+                            className="object-cover"
+                          />
+                          
+                          {/* Category Badge */}
+                          {item.category && (
+                            <div className="absolute left-3 top-3">
+                              <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-900 shadow-lg">
+                                {item.category}
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                      {/* Content */}
-                      <div className="space-y-2">
-                        <span className="text-xs text-gray-400">
-                          {new Date(item.created_at).toLocaleDateString("tr-TR", {
-                            day: "numeric",
-                            month: "short",
-                          })}
-                        </span>
-                        
-                        <h3 className="text-lg font-bold text-gray-900 line-clamp-2">
-                          {item.title}
-                        </h3>
-                        
-                        <p className="text-sm text-gray-500 line-clamp-2">
-                          {item.excerpt}
-                        </p>
+                        {/* Content */}
+                        <div className="space-y-2">
+                          <span className="text-xs text-gray-400">
+                            {new Date(item.created_at).toLocaleDateString("tr-TR", {
+                              day: "numeric",
+                              month: "short",
+                            })}
+                          </span>
+                          
+                          <h3 className="text-lg font-bold text-gray-900 line-clamp-2">
+                            {item.title}
+                          </h3>
+                          
+                          <p className="text-sm text-gray-500 line-clamp-2">
+                            {item.excerpt}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </motion.div>
