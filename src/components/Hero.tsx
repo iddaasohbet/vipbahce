@@ -175,11 +175,19 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0">
           <Link
             href="/teklif-al"
-            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-700 to-teal-800 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-lg shadow-teal-700/40 transition-all hover:scale-105 hover:shadow-xl hover:shadow-teal-700/60 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"
+            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-700 to-teal-800 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-lg shadow-teal-700/40 transition-all hover:scale-105 hover:shadow-xl hover:shadow-teal-700/60 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto animate-pulse-glow"
             aria-label="Ücretsiz teklif almak için tıklayın"
           >
+            {/* Shimmer effect */}
+            <motion.span
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+            />
+            {/* Pulse ring */}
+            <span className="absolute inset-0 rounded-full animate-ping bg-teal-400/30" style={{ animationDuration: "2s" }} />
             <span className="relative z-10 flex items-center gap-1.5">
-              Ücretsiz Teklif Alın
+              Ücretsiz Keşif
               <ArrowRight className="h-4 md:h-5 w-4 md:w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </span>
           </Link>

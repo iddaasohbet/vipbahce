@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, MessageCircle, Instagram, Mail, X, Sparkles } from "lucide-react";
+import { Phone, MessageCircle, Instagram, Mail, X, Sparkles, Headset } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function FloatingContactBar() {
@@ -78,7 +78,7 @@ export default function FloatingContactBar() {
               {/* Shine effect */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/30 via-transparent to-transparent" />
               
-              <Phone className="h-7 w-7 text-white" strokeWidth={2.5} />
+              <Headset className="h-7 w-7 text-white" strokeWidth={2.5} />
               
               {/* Badge */}
               <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow-lg">

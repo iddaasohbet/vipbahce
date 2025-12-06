@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
 // Malzeme resimleri
 const materials = [
@@ -19,6 +19,7 @@ const materials = [
 
 export default function Services() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const currentIndex = selectedImage ? materials.findIndex(m => m.id === selectedImage) : -1;
 
@@ -41,9 +42,11 @@ export default function Services() {
   };
 
   return (
-    <section id="malzemeler" className="relative overflow-hidden bg-gray-50 py-20 md:py-28">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0d4c4a08_1px,transparent_1px),linear-gradient(to_bottom,#0d4c4a08_1px,transparent_1px)] bg-[size:40px_40px]" />
+    <section id="malzemeler" className="relative overflow-hidden bg-white py-20 md:py-28">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0d4c4a08_1px,transparent_1px),linear-gradient(to_bottom,#0d4c4a08_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
       
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         {/* Section Header */}
@@ -53,76 +56,192 @@ export default function Services() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="mb-4 inline-block rounded-full border border-teal-600/30 bg-teal-50 px-4 py-2 text-sm font-medium text-teal-700"
+          >
+            Premium Kalite
+          </motion.span>
+          
+          <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
             Kullandığımız <span className="text-teal-700">Malzemeler</span>
           </h2>
           
-          {/* Animated Lines */}
-          <div className="relative mx-auto mb-6 flex h-[3px] w-full max-w-xl items-center justify-center gap-3">
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "45%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="h-full rounded-full bg-gradient-to-r from-transparent via-teal-600 to-teal-600"
-            />
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 1.5 }}
-              className="h-2 w-2 rounded-full bg-teal-600"
-            />
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "45%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="h-full rounded-full bg-gradient-to-l from-transparent via-teal-600 to-teal-600"
-            />
-          </div>
-          
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            Projelerimizde yalnızca uluslararası standartlara uygun, TSE ve CE belgeli, 
-            garantili malzemeler kullanıyoruz.
+            Projelerimizde yalnızca uluslararası standartlara uygun, TSE ve CE belgeli malzemeler kullanıyoruz.
           </p>
         </motion.div>
 
-        {/* Materials Grid - Only Images */}
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 md:gap-6">
-          {materials.map((material, index) => (
+        {/* Bento Grid - Desktop */}
+        <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-5 h-[600px] lg:h-[700px]">
+          {/* Large Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onClick={() => setSelectedImage(materials[0].id)}
+            onMouseEnter={() => setHoveredId(materials[0].id)}
+            onMouseLeave={() => setHoveredId(null)}
+            className="group relative col-span-2 row-span-2 cursor-pointer overflow-hidden rounded-3xl"
+          >
+            <Image
+              src={materials[0].src}
+              alt="Malzeme 1"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={hoveredId === materials[0].id ? { scale: 1 } : { scale: 0 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-2xl backdrop-blur-sm">
+                <ZoomIn className="h-7 w-7 text-teal-700" />
+              </div>
+            </motion.div>
+            <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
+          </motion.div>
+
+          {/* Top Right 2 */}
+          {materials.slice(1, 3).map((material, index) => (
+            <motion.div
+              key={material.id}
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+              onClick={() => setSelectedImage(material.id)}
+              onMouseEnter={() => setHoveredId(material.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              className="group relative cursor-pointer overflow-hidden rounded-3xl"
+            >
+              <Image
+                src={material.src}
+                alt={`Malzeme ${index + 2}`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={hoveredId === material.id ? { scale: 1 } : { scale: 0 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
+                  <ZoomIn className="h-5 w-5 text-teal-700" />
+                </div>
+              </motion.div>
+              <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
+            </motion.div>
+          ))}
+
+          {/* Bottom Right 2 */}
+          {materials.slice(3, 5).map((material, index) => (
+            <motion.div
+              key={material.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 * (index + 3) }}
+              onClick={() => setSelectedImage(material.id)}
+              onMouseEnter={() => setHoveredId(material.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              className="group relative cursor-pointer overflow-hidden rounded-3xl"
+            >
+              <Image
+                src={material.src}
+                alt={`Malzeme ${index + 4}`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={hoveredId === material.id ? { scale: 1 } : { scale: 0 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
+                  <ZoomIn className="h-5 w-5 text-teal-700" />
+                </div>
+              </motion.div>
+              <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Second Row - Desktop */}
+        <div className="hidden md:grid md:grid-cols-3 gap-4 md:gap-5 mt-4 md:mt-5 h-[250px] lg:h-[300px]">
+          {materials.slice(5, 8).map((material, index) => (
             <motion.div
               key={material.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
               onClick={() => setSelectedImage(material.id)}
-              className="group cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
+              onMouseEnter={() => setHoveredId(material.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              className="group relative cursor-pointer overflow-hidden rounded-3xl"
             >
-              <div className="relative aspect-square overflow-hidden">
+              <Image
+                src={material.src}
+                alt={`Malzeme ${index + 6}`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={hoveredId === material.id ? { scale: 1 } : { scale: 0 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
+                  <ZoomIn className="h-5 w-5 text-teal-700" />
+                </div>
+              </motion.div>
+              <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile Grid - Swipeable Cards */}
+        <div className="md:hidden">
+          <div className="grid grid-cols-2 gap-3">
+            {materials.map((material, index) => (
+              <motion.div
+                key={material.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                onClick={() => setSelectedImage(material.id)}
+                className={`group relative cursor-pointer overflow-hidden rounded-2xl ${
+                  index === 0 ? 'col-span-2 h-48' : 'h-40'
+                }`}
+              >
                 <Image
                   src={material.src}
                   alt={`Malzeme ${index + 1}`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 50vw, 25vw"
+                  sizes={index === 0 ? "100vw" : "50vw"}
                 />
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-teal-900/0 transition-all duration-300 group-hover:bg-teal-900/20" />
-                
-                {/* Zoom Icon on Hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm">
-                    <svg className="h-5 w-5 text-teal-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                    </svg>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm">
+                  <ZoomIn className="h-4 w-4 text-teal-700" />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <div className="absolute inset-0 rounded-2xl border-2 border-white/0 transition-all group-active:border-teal-400/50" />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -191,7 +310,7 @@ export default function Services() {
 
             {/* Dots Indicator */}
             <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
-              {materials.map((material, index) => (
+              {materials.map((material) => (
                 <button
                   key={material.id}
                   onClick={(e) => {

@@ -127,3 +127,17 @@ main {
 .snake-delay-5::before { animation-delay: 2s; }
 .snake-delay-6::before { animation-delay: 2.5s; }
 
+/* Pulse glow animation for CTA button */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(13, 148, 136, 0.4), 0 0 40px rgba(13, 148, 136, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(13, 148, 136, 0.6), 0 0 60px rgba(13, 148, 136, 0.4);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
