@@ -13,15 +13,19 @@ export default function Header() {
       label: 'Hizmetler',
       dropdown: [
         { label: 'Kış Bahçesi', href: "/kis-bahcesi" },
-        { label: 'Kış Bahçesi Fiyatları', href: "/kis-bahcesi-fiyatlari" },
-        { label: 'Kış Bahçesi Modelleri', href: "/kis-bahcesi-modelleri" },
-        { label: 'Model Fiyatları', href: "/kis-bahcesi-modelleri-fiyatlari" },
+        { label: 'Teras Kapama', href: "/teras-kapama" },
+        { label: 'Otomatik Pergola', href: "/otomatik-pergola" },
+        { label: 'Rolling Roof', href: "/rolling-roof" },
         { label: 'Bioklimatik', href: "/bioklimatik" },
+        { label: 'Giyotin Cam', href: "/giyotin-cam" },
+        { label: 'Sürgülü Cam', href: "/surgulu-cam" },
+        { label: 'Katlanır Cam', href: "/katlanir-cam" },
+        { label: 'Hebeshiebe', href: "/hebeshiebe" },
       ]
     },
-    { href: "#hakkimizda", label: 'Hakkımızda' },
+    { href: "/hakkimizda", label: 'Hakkımızda' },
     { href: "/galeri", label: 'Galeri' },
-    { href: "#iletisim", label: 'İletişim' },
+    { href: "/teklif-al", label: 'İletişim' },
   ];
 
   const [open, setOpen] = useState(false);

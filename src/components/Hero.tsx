@@ -150,22 +150,22 @@ export default function Hero() {
         )}
 
         {isMobile ? (
-          <p className="mb-8 max-w-3xl text-sm font-medium leading-relaxed text-gray-800 md:text-xl px-2">
+          <p className="mb-8 max-w-3xl text-lg font-bold leading-relaxed text-gray-900 px-4 drop-shadow-sm">
             Modern tasarım, kaliteli malzeme ve uzman ekip ile{" "}
-            <span className="font-bold text-teal-700">
+            <span className="text-teal-700">
               bioklimatik kış bahçesi
             </span>{" "}
-            sistemleri.
+            sistemleri. Evinize değer katın, yaşam alanınızı genişletin.
           </p>
         ) : (
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-12 max-w-3xl text-lg font-medium leading-relaxed text-gray-800 md:text-xl"
+            className="mb-12 max-w-3xl text-xl font-bold leading-relaxed text-gray-900 md:text-2xl drop-shadow-sm"
           >
             Modern tasarım, kaliteli malzeme ve uzman ekip ile{" "}
-            <span className="font-bold text-teal-700">
+            <span className="text-teal-700">
               bioklimatik kış bahçesi
             </span>{" "}
             sistemleri. Evinize değer katın, yaşam alanınızı genişletin.

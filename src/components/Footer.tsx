@@ -11,7 +11,7 @@ export default function Footer() {
     { name: 'Bioklimatik', href: "/bioklimatik" },
     { name: 'Fiyatlar', href: "/kis-bahcesi-fiyatlari" },
     { name: 'Modeller', href: "/kis-bahcesi-modelleri" },
-    { name: 'Hakkımızda', href: "#hakkimizda" },
+    { name: 'Hakkımızda', href: "/hakkimizda" },
   ];
 
   return (

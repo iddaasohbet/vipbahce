@@ -233,11 +233,6 @@ export default function BrandsShowcase() {
 
           {/* Premium Slider Container */}
           <div className="relative">
-            {/* Left Fade Gradient */}
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-white via-white/80 to-transparent" />
-            {/* Right Fade Gradient */}
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-white via-white/80 to-transparent" />
-
             {/* Top Slider - Moving Right */}
             <div className="relative mb-6">
               <motion.div
