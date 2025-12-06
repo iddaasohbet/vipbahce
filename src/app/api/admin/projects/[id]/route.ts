@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import mysql, { Connection } from "mysql2/promise";
+import mysql from "mysql2/promise";
 
 // Admin kontrolü
 async function checkAdmin() {
@@ -19,73 +19,57 @@ async function checkAdmin() {
   }
 }
 
+// Veritabanı bağlantısı oluştur
+async function getConnection() {
+  return mysql.createConnection({
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "vipkisba_vip",
+    password: process.env.DB_PASSWORD || "Ciko5744**",
+    database: process.env.DB_NAME || "vipkisba_bahce",
+    connectTimeout: 5000,
+  });
+}
+
 // Proje sil
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  let connection: Connection | null = null;
-  
-  try {
-    const admin = await checkAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { success: false, message: "Yetkisiz erişim" },
-        { status: 401 }
-      );
-    }
-
-    const { id } = await params;
-
-    // Veritabanı bağlantısı
-    try {
-      connection = await mysql.createConnection({
-        host: process.env.DB_HOST || "localhost",
-        user: process.env.DB_USER || "vipkisba_vip",
-        password: process.env.DB_PASSWORD || "Ciko5744**",
-        database: process.env.DB_NAME || "vipkisba_bahce",
-        connectTimeout: 5000,
-      });
-    } catch (dbError: any) {
-      return NextResponse.json(
-        { success: false, message: "Veritabanı bağlantı hatası" },
-        { status: 500 }
-      );
-    }
-
-    if (!connection) {
-      return NextResponse.json(
-        { success: false, message: "Veritabanı bağlantısı kurulamadı" },
-        { status: 500 }
-      );
-    }
-
-    await connection.query(
-      "UPDATE projects SET is_active = 0 WHERE id = ?",
-      [id]
+  const admin = await checkAdmin();
+  if (!admin) {
+    return NextResponse.json(
+      { success: false, message: "Yetkisiz erişim" },
+      { status: 401 }
     );
+  }
 
-    await connection.end();
-    connection = null;
-
-    return NextResponse.json({
-      success: true,
-      message: "Proje başarıyla silindi",
-    });
+  try {
+    const { id } = await params;
+    
+    const connection = await getConnection();
+    
+    try {
+      await connection.query(
+        "UPDATE projects SET is_active = 0 WHERE id = ?",
+        [id]
+      );
+      
+      await connection.end();
+      
+      return NextResponse.json({
+        success: true,
+        message: "Proje başarıyla silindi",
+      });
+    } catch (queryError) {
+      await connection.end();
+      throw queryError;
+    }
   } catch (error: any) {
     console.error("Delete project error:", error);
     return NextResponse.json(
-      { success: false, message: error.message },
+      { success: false, message: error.message || "Bir hata oluştu" },
       { status: 500 }
     );
-  } finally {
-    if (connection) {
-      try {
-        await connection.end();
-      } catch (closeError) {
-        console.error("Connection close error:", closeError);
-      }
-    }
   }
 }
 
@@ -94,17 +78,15 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  let connection: Connection | null = null;
-  
-  try {
-    const admin = await checkAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { success: false, message: "Yetkisiz erişim" },
-        { status: 401 }
-      );
-    }
+  const admin = await checkAdmin();
+  if (!admin) {
+    return NextResponse.json(
+      { success: false, message: "Yetkisiz erişim" },
+      { status: 401 }
+    );
+  }
 
+  try {
     const { id } = await params;
     const body = await request.json();
     const { image_url } = body;
@@ -116,56 +98,29 @@ export async function PUT(
       );
     }
 
-    // Veritabanı bağlantısı
+    const connection = await getConnection();
+    
     try {
-      connection = await mysql.createConnection({
-        host: process.env.DB_HOST || "localhost",
-        user: process.env.DB_USER || "vipkisba_vip",
-        password: process.env.DB_PASSWORD || "Ciko5744**",
-        database: process.env.DB_NAME || "vipkisba_bahce",
-        connectTimeout: 5000,
+      await connection.query(
+        "UPDATE projects SET image_url = ? WHERE id = ?",
+        [image_url, id]
+      );
+      
+      await connection.end();
+      
+      return NextResponse.json({
+        success: true,
+        message: "Proje başarıyla güncellendi",
       });
-    } catch (dbError: any) {
-      return NextResponse.json(
-        { success: false, message: "Veritabanı bağlantı hatası" },
-        { status: 500 }
-      );
+    } catch (queryError) {
+      await connection.end();
+      throw queryError;
     }
-
-    if (!connection) {
-      return NextResponse.json(
-        { success: false, message: "Veritabanı bağlantısı kurulamadı" },
-        { status: 500 }
-      );
-    }
-
-    // Sadece resim URL'sini güncelle, diğer alanları koru
-    await connection.query(
-      "UPDATE projects SET image_url = ? WHERE id = ?",
-      [image_url, id]
-    );
-
-    await connection.end();
-    connection = null;
-
-    return NextResponse.json({
-      success: true,
-      message: "Proje başarıyla güncellendi",
-    });
   } catch (error: any) {
     console.error("Update project error:", error);
     return NextResponse.json(
-      { success: false, message: error.message },
+      { success: false, message: error.message || "Bir hata oluştu" },
       { status: 500 }
     );
-  } finally {
-    if (connection) {
-      try {
-        await connection.end();
-      } catch (closeError) {
-        console.error("Connection close error:", closeError);
-      }
-    }
   }
 }
-

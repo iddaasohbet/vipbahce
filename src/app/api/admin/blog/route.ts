@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import mysql, { Connection } from "mysql2/promise";
+import mysql from "mysql2/promise";
 
 // Admin kontrolü
 async function checkAdmin() {
@@ -19,76 +19,68 @@ async function checkAdmin() {
   }
 }
 
+// Veritabanı bağlantısı oluştur
+async function getConnection() {
+  const dbConfig = {
+    host: process.env.DB_HOST || "5.39.8.160",
+    user: process.env.DB_USER || "vipkisba_vip",
+    password: process.env.DB_PASSWORD || "Ciko5744**",
+    database: process.env.DB_NAME || "vipkisba_bahce",
+    connectTimeout: 10000,
+    port: 3306,
+  };
+  return mysql.createConnection(dbConfig);
+}
+
 // Tüm blog yazılarını getir
 export async function GET() {
-  let connection: Connection | null = null;
-  
+  const admin = await checkAdmin();
+  if (!admin) {
+    return NextResponse.json(
+      { success: false, message: "Yetkisiz erişim" },
+      { status: 401 }
+    );
+  }
+
   try {
-    const admin = await checkAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { success: false, message: "Yetkisiz erişim" },
-        { status: 401 }
-      );
-    }
-
-    // Veritabanı bağlantısı
-    const dbConfig = {
-      host: process.env.DB_HOST || "5.39.8.160",
-      user: process.env.DB_USER || "vipkisba_vip",
-      password: process.env.DB_PASSWORD || "Ciko5744**",
-      database: process.env.DB_NAME || "vipkisba_bahce",
-      connectTimeout: 10000,
-      port: 3306,
-    };
-
+    const connection = await getConnection();
+    
     try {
-      connection = await mysql.createConnection(dbConfig);
-    } catch (dbError: any) {
+      const [rows] = await connection.query(
+        "SELECT * FROM blog_posts ORDER BY created_at DESC"
+      );
+      
+      await connection.end();
+      
       return NextResponse.json({
         success: true,
-        posts: [],
-        message: "Veritabanı bağlantı hatası",
+        posts: Array.isArray(rows) ? rows : [],
       });
+    } catch (queryError) {
+      await connection.end();
+      throw queryError;
     }
-
-    const [rows] = await connection.query(
-      "SELECT * FROM blog_posts ORDER BY created_at DESC"
-    );
-
-    await connection.end();
-
-    return NextResponse.json({
-      success: true,
-      posts: Array.isArray(rows) ? rows : [],
-    });
   } catch (error: any) {
     console.error("Get blog posts error:", error);
-    if (connection) {
-      try {
-        await connection.end();
-      } catch {}
-    }
     return NextResponse.json({
       success: true,
       posts: [],
+      message: "Veritabanı hatası",
     });
   }
 }
 
 // Yeni blog yazısı ekle
 export async function POST(request: NextRequest) {
-  let connection: Connection | null = null;
-  
-  try {
-    const admin = await checkAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { success: false, message: "Yetkisiz erişim" },
-        { status: 401 }
-      );
-    }
+  const admin = await checkAdmin();
+  if (!admin) {
+    return NextResponse.json(
+      { success: false, message: "Yetkisiz erişim" },
+      { status: 401 }
+    );
+  }
 
+  try {
     const body = await request.json();
     const { title, excerpt, content, image_url, category, author, is_published, is_featured } = body;
 
@@ -99,56 +91,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Veritabanı bağlantısı
-    const dbConfig = {
-      host: process.env.DB_HOST || "5.39.8.160",
-      user: process.env.DB_USER || "vipkisba_vip",
-      password: process.env.DB_PASSWORD || "Ciko5744**",
-      database: process.env.DB_NAME || "vipkisba_bahce",
-      connectTimeout: 10000,
-      port: 3306,
-    };
-
+    const connection = await getConnection();
+    
     try {
-      connection = await mysql.createConnection(dbConfig);
-    } catch (dbError: any) {
-      return NextResponse.json(
-        { success: false, message: "Veritabanı bağlantı hatası" },
-        { status: 500 }
+      await connection.query(
+        "INSERT INTO blog_posts (title, excerpt, content, image_url, category, author, is_published, is_featured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+          title,
+          excerpt,
+          content || null,
+          image_url,
+          category || null,
+          author || null,
+          is_published !== undefined ? is_published : 1,
+          is_featured !== undefined ? is_featured : 0,
+        ]
       );
+      
+      await connection.end();
+      
+      return NextResponse.json({
+        success: true,
+        message: "Blog yazısı başarıyla eklendi",
+      });
+    } catch (queryError) {
+      await connection.end();
+      throw queryError;
     }
-
-    await connection.query(
-      "INSERT INTO blog_posts (title, excerpt, content, image_url, category, author, is_published, is_featured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-      [
-        title,
-        excerpt,
-        content || null,
-        image_url,
-        category || null,
-        author || null,
-        is_published !== undefined ? is_published : 1,
-        is_featured !== undefined ? is_featured : 0,
-      ]
-    );
-
-    await connection.end();
-
-    return NextResponse.json({
-      success: true,
-      message: "Blog yazısı başarıyla eklendi",
-    });
   } catch (error: any) {
     console.error("Add blog post error:", error);
-    if (connection) {
-      try {
-        await connection.end();
-      } catch {}
-    }
     return NextResponse.json(
-      { success: false, message: error.message },
+      { success: false, message: error.message || "Bir hata oluştu" },
       { status: 500 }
     );
   }
 }
-
