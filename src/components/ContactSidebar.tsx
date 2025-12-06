@@ -278,7 +278,7 @@ export default function ContactSidebar() {
 
                   {/* Email */}
                   <motion.a
-                    href="mailto:support@kisbahcesi.com"
+                    href="mailto:info@vipkisbahcesi.com"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className="group relative flex flex-col items-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 shadow-lg shadow-blue-100 transition-all"

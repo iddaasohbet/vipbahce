@@ -40,7 +40,7 @@ export default function FloatingContactBar() {
     {
       name: "Mail",
       icon: Mail,
-      href: "mailto:support@kisbahcesi.com",
+      href: "mailto:info@vipkisbahcesi.com",
       bgColor: "from-blue-500 to-blue-600",
       shadowColor: "shadow-blue-500/40",
     },

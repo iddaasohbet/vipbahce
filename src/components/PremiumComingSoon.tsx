@@ -189,7 +189,7 @@ export default function PremiumComingSoon() {
                   <motion.a
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    href="mailto:support@kisbahcesi.com"
+                    href="mailto:info@vipkisbahcesi.com"
                     className="group flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all hover:border-cyan-400/50 hover:bg-white/10"
                   >
                     <Mail className="h-4 w-4 text-cyan-300" />

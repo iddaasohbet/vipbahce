@@ -120,11 +120,11 @@ export default function Footer() {
                   <span>+90 533 359 34 66</span>
                 </a>
                 <a 
-                  href="mailto:support@kisbahcesi.com" 
+                  href="mailto:info@vipkisbahcesi.com" 
                   className="flex items-start gap-3 text-sm text-gray-600 transition-colors hover:text-teal-900"
                 >
                   <Mail className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  <span>support@kisbahcesi.com</span>
+                  <span>info@vipkisbahcesi.com</span>
                 </a>
                 <div className="flex items-start gap-3 text-sm text-gray-600">
                   <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />

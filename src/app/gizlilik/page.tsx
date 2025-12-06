@@ -78,7 +78,7 @@ export default function GizlilikPage() {
                   <div className="rounded-lg bg-gray-50 p-4 border-l-4 border-teal-900">
                     <p className="text-gray-700 font-semibold mb-2">Kış Bahçesi</p>
                     <p className="text-gray-600 text-sm">İstanbul, Türkiye</p>
-                    <p className="text-gray-600 text-sm">E-posta: support@kisbahcesi.com</p>
+                    <p className="text-gray-600 text-sm">E-posta: info@vipkisbahcesi.com</p>
                     <p className="text-gray-600 text-sm">Telefon: +90 533 359 34 66</p>
                   </div>
                 </div>
@@ -288,7 +288,7 @@ export default function GizlilikPage() {
                   </p>
                   <div className="rounded-lg bg-gray-50 p-4 border-l-4 border-teal-900">
                     <p className="text-gray-700 font-semibold mb-2">Kış Bahçesi</p>
-                    <p className="text-gray-600 text-sm mb-1">E-posta: support@kisbahcesi.com</p>
+                    <p className="text-gray-600 text-sm mb-1">E-posta: info@vipkisbahcesi.com</p>
                     <p className="text-gray-600 text-sm mb-1">Telefon: +90 533 359 34 66</p>
                     <p className="text-gray-600 text-sm">Adres: İstanbul, Türkiye</p>
                   </div>

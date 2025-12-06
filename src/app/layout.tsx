@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     "kış bahçesi sistemleri",
     "pergola sistemleri",
   ],
-  metadataBase: new URL("https://kisbahcesi.com"),
+  metadataBase: new URL("https://www.vipkisbahcesi.com"),
   robots: {
     index: true,
     follow: true,

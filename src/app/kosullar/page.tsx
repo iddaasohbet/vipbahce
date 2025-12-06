@@ -73,7 +73,7 @@ export default function KosullarPage() {
                     <h2 className="text-2xl font-bold text-gray-900">1. Genel Hükümler</h2>
                   </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Bu kullanım koşulları, Kış Bahçesi web sitesinin (kisbahcesi.com) kullanımına ilişkin tüm şartları ve koşulları kapsar. 
+                    Bu kullanım koşulları, Kış Bahçesi web sitesinin (vipkisbahcesi.com) kullanımına ilişkin tüm şartları ve koşulları kapsar. 
                     Web sitemizi ziyaret ederek ve kullanarak, bu koşulları kabul etmiş sayılırsınız.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
@@ -275,7 +275,7 @@ export default function KosullarPage() {
                   </p>
                   <div className="rounded-lg bg-gray-50 p-4 border-l-4 border-teal-900">
                     <p className="text-gray-700 font-semibold mb-2">Kış Bahçesi</p>
-                    <p className="text-gray-600 text-sm mb-1">E-posta: support@kisbahcesi.com</p>
+                    <p className="text-gray-600 text-sm mb-1">E-posta: info@vipkisbahcesi.com</p>
                     <p className="text-gray-600 text-sm mb-1">Telefon: +90 533 359 34 66</p>
                     <p className="text-gray-600 text-sm">Adres: İstanbul, Türkiye</p>
                   </div>

@@ -83,7 +83,7 @@ export default function KVKKPage() {
                   <div className="rounded-lg bg-gray-50 p-4 border-l-4 border-teal-900">
                     <p className="text-gray-700 font-semibold mb-2">Kış Bahçesi</p>
                     <p className="text-gray-600 text-sm mb-1">Adres: İstanbul, Türkiye</p>
-                    <p className="text-gray-600 text-sm mb-1">E-posta: support@kisbahcesi.com</p>
+                    <p className="text-gray-600 text-sm mb-1">E-posta: info@vipkisbahcesi.com</p>
                     <p className="text-gray-600 text-sm">Telefon: +90 533 359 34 66</p>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export default function KVKKPage() {
                   <div className="rounded-lg bg-gray-50 p-6 border-l-4 border-teal-900 space-y-4">
                     <div>
                       <p className="text-gray-700 font-semibold mb-2">1. E-posta ile:</p>
-                      <p className="text-gray-600 text-sm">support@kisbahcesi.com adresine kimliğinizi tespit edici belgelerle birlikte talebinizi gönderebilirsiniz.</p>
+                      <p className="text-gray-600 text-sm">info@vipkisbahcesi.com adresine kimliğinizi tespit edici belgelerle birlikte talebinizi gönderebilirsiniz.</p>
                     </div>
                     <div>
                       <p className="text-gray-700 font-semibold mb-2">2. Yazılı başvuru ile:</p>
@@ -334,7 +334,7 @@ export default function KVKKPage() {
                   </p>
                   <div className="rounded-lg bg-gray-50 p-4 border-l-4 border-teal-900">
                     <p className="text-gray-700 font-semibold mb-2">Kış Bahçesi</p>
-                    <p className="text-gray-600 text-sm mb-1">E-posta: support@kisbahcesi.com</p>
+                    <p className="text-gray-600 text-sm mb-1">E-posta: info@vipkisbahcesi.com</p>
                     <p className="text-gray-600 text-sm mb-1">Telefon: +90 533 359 34 66</p>
                     <p className="text-gray-600 text-sm">Adres: İstanbul, Türkiye</p>
                   </div>

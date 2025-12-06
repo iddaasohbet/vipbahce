@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     locale: "tr_TR",
   },
   alternates: {
-    canonical: "https://kisbahcesi.com/otomatik-pergola",
+    canonical: "https://www.vipkisbahcesi.com/otomatik-pergola",
   },
 };
 

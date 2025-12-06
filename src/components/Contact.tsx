@@ -13,7 +13,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "E-posta",
-    details: "support@kisbahcesi.com",
+    details: "info@vipkisbahcesi.com",
     subtext: "7/24 destek",
   },
   {
