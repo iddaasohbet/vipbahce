@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import mysql from "mysql2/promise";
+import mysql, { Connection } from "mysql2/promise";
 
 // Public API - Yayınlanmış blog yazılarını getir (anasayfa için)
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
-  let connection;
+  let connection: Connection | null = null;
   
   try {
     // Veritabanı bağlantısı

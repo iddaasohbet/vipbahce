@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import mysql from "mysql2/promise";
+import mysql, { Connection } from "mysql2/promise";
 
 // Admin kontrolü
 async function checkAdmin() {
@@ -24,7 +24,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  let connection;
+  let connection: Connection | null = null;
   
   try {
     const admin = await checkAdmin();
@@ -83,7 +83,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  let connection;
+  let connection: Connection | null = null;
   
   try {
     const admin = await checkAdmin();

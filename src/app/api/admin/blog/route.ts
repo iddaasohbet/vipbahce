@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import mysql from "mysql2/promise";
+import mysql, { Connection } from "mysql2/promise";
 
 // Admin kontrolü
 async function checkAdmin() {
@@ -21,7 +21,7 @@ async function checkAdmin() {
 
 // Tüm blog yazılarını getir
 export async function GET() {
-  let connection;
+  let connection: Connection | null = null;
   
   try {
     const admin = await checkAdmin();
@@ -78,7 +78,7 @@ export async function GET() {
 
 // Yeni blog yazısı ekle
 export async function POST(request: NextRequest) {
-  let connection;
+  let connection: Connection | null = null;
   
   try {
     const admin = await checkAdmin();
