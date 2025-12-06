@@ -153,7 +153,7 @@ export default function Hero() {
           <p className="mb-8 max-w-3xl text-lg font-bold leading-relaxed text-gray-900 px-4 drop-shadow-sm">
             Modern tasarım, kaliteli malzeme ve uzman ekip ile{" "}
             <span className="text-teal-900">
-              bioklimatik kış bahçesi
+              butik kış bahçesi
             </span>{" "}
             sistemleri. Evinize değer katın, yaşam alanınızı genişletin.
           </p>
@@ -166,7 +166,7 @@ export default function Hero() {
           >
             Modern tasarım, kaliteli malzeme ve uzman ekip ile{" "}
             <span className="text-teal-900">
-              bioklimatik kış bahçesi
+              butik kış bahçesi
             </span>{" "}
             sistemleri. Evinize değer katın, yaşam alanınızı genişletin.
           </motion.p>
