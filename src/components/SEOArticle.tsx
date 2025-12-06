@@ -21,13 +21,13 @@ export default function SEOArticle() {
             <p className="text-lg leading-relaxed">
               <strong>Kış bahçesi</strong>, modern mimaride yaşam alanlarını genişleten ve dört mevsim kullanılabilen özel tasarım yapılardır. 
               <strong> Kış bahçesi fiyatları</strong>, projenin büyüklüğü, kullanılan malzemeler ve tasarım özelliklerine göre değişiklik gösterir. 
-              Kaliteli bir kış bahçesi sistemi, evinize değer katar ve yaşam kalitenizi artırır.
+              Kaliteli bir <strong>kış bahçesi sistemi</strong>, evinize değer katar ve yaşam kalitenizi artırır. İstanbul'un Sarıyer, Bahçeşehir, Beykoz, Şile, Büyükçekmece, Florya, Silivri, Tuzla, Çekmeköy ve Kurtköy gibi bölgelerinde profesyonel <strong>kış bahçesi firmaları</strong> arasında yer alıyoruz.
             </p>
 
             <p className="leading-relaxed">
-              <strong>Kış bahçesi modelleri</strong> arasında klasik, modern, bioklimatik ve panoramik tasarımlar yer alır. 
+              <strong>Kış bahçesi modelleri</strong> arasında klasik, modern, <strong>bioklimatik</strong> ve panoramik tasarımlar yer alır. 
               Her model, farklı ihtiyaçlara ve zevklere hitap eder. <strong>Kış bahçesi modelleri fiyatları</strong> ise 
-              seçtiğiniz modelin özelliklerine, boyutlarına ve ekstra donanımlarına göre belirlenir.
+              seçtiğiniz modelin özelliklerine, boyutlarına ve ekstra donanımlarına göre belirlenir. <strong>Teras kapama</strong> ve <strong>teras kapatma</strong> sistemleri de kış bahçesi çözümlerimiz arasında yer alır. <strong>Cam tavan kış bahçesi</strong> modellerimiz ile modern ve şık bir yaşam alanı yaratabilirsiniz.
             </p>
           </div>
 
@@ -47,9 +47,9 @@ export default function SEOArticle() {
                   </h3>
                   
                   <p className="leading-relaxed">
-                    Kış bahçesi, evinizin veya işyerinizin bahçe, teras ya da balkon alanını cam ve alüminyum yapılarla kapatarak 
-                    dört mevsim kullanılabilir hale getiren modern bir çözümdür. Özellikle İstanbul, Ankara, İzmir gibi büyük şehirlerde 
-                    <strong> kış bahçesi</strong> sistemleri, hem konut hem de ticari alanlarda yaygın olarak tercih edilmektedir.
+                    <strong>Kış bahçesi</strong>, evinizin veya işyerinizin bahçe, teras ya da balkon alanını cam ve alüminyum yapılarla kapatarak 
+                    dört mevsim kullanılabilir hale getiren modern bir çözümdür. Özellikle İstanbul'un Sarıyer, Bahçeşehir, Beykoz, Şile, Büyükçekmece, Florya, Silivri, Tuzla, Çekmeköy, Kurtköy gibi bölgelerinde ve Tekirdağ, Kayseri, Kocaeli, Bodrum gibi şehirlerde 
+                    <strong> kış bahçesi sistemleri</strong>, hem konut hem de ticari alanlarda yaygın olarak tercih edilmektedir. <strong>Sarıyer kış bahçesi</strong>, <strong>Bahçeşehir kış bahçesi</strong>, <strong>Beykoz kış bahçesi</strong>, <strong>Şile kış bahçesi</strong>, <strong>Büyükçekmece kış bahçesi</strong>, <strong>Florya kış bahçesi</strong>, <strong>Silivri kış bahçesi</strong>, <strong>Tuzla kış bahçesi</strong>, <strong>Çekmeköy kış bahçesi</strong>, <strong>Kurtköy kış bahçesi</strong>, <strong>Tekirdağ kış bahçesi</strong>, <strong>Kayseri kış bahçesi</strong>, <strong>Kocaeli kış bahçesi</strong> ve <strong>Bodrum kış bahçesi</strong> projelerimizle hizmetinizdeyiz.
                   </p>
 
                   <h3 className="text-2xl font-bold text-gray-900">
@@ -115,7 +115,7 @@ export default function SEOArticle() {
                     <strong>Bioklimatik</strong> sistemler, modern teknoloji ve doğal havalandırmanın bir araya geldiği en gelişmiş 
                     kış bahçesi çözümüdür. Açılır kapanır alüminyum lameller sayesinde hava sirkülasyonu, ışık geçirgenliği ve 
                     sıcaklık kontrolü otomatik olarak ayarlanabilir. Bu sistemler, yaz aylarında gölgelendirme, kış aylarında ise 
-                    ısı yalıtımı sağlayarak dört mevsim konfor sunar.
+                    ısı yalıtımı sağlayarak dört mevsim konfor sunar. <strong>Otomatik pergola</strong> ve <strong>Rolling Roof</strong> sistemleri de modern kış bahçesi çözümlerimiz arasında yer alır. <strong>Teras kapama</strong> ve <strong>teras kış bahçesi</strong> projelerimiz ile terasınızı yıl boyu kullanılabilir bir alana dönüştürebilirsiniz.
                   </p>
 
                   <p className="leading-relaxed">

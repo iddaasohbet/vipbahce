@@ -151,7 +151,7 @@ export default function VideoGallery() {
       <section className="relative overflow-hidden bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 py-16 md:py-24">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:40px_40px]" />
           <motion.div 
             animate={{ 
               scale: [1, 1.2, 1],

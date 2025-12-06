@@ -8,10 +8,17 @@ export default function Footer() {
   const links = [
     { name: 'Ana Sayfa', href: "/" },
     { name: 'Kış Bahçesi', href: "/kis-bahcesi" },
+    { name: 'Teras Kapama', href: "/teras-kapama" },
+    { name: 'Otomatik Pergola', href: "/otomatik-pergola" },
+    { name: 'Rolling Roof', href: "/rolling-roof" },
     { name: 'Bioklimatik', href: "/bioklimatik" },
-    { name: 'Fiyatlar', href: "/kis-bahcesi-fiyatlari" },
-    { name: 'Modeller', href: "/kis-bahcesi-modelleri" },
+    { name: 'Giyotin Cam', href: "/giyotin-cam" },
+    { name: 'Sürgülü Cam', href: "/surgulu-cam" },
+    { name: 'Katlanır Cam', href: "/katlanir-cam" },
+    { name: 'Hebeshiebe', href: "/hebeshiebe" },
     { name: 'Hakkımızda', href: "/hakkimizda" },
+    { name: 'Galeri', href: "/galeri" },
+    { name: 'İletişim', href: "/teklif-al" },
   ];
 
   return (
@@ -67,7 +74,7 @@ export default function Footer() {
               </motion.div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900">Kış Bahçesi</h3>
-                <p className="text-[10px] uppercase tracking-widest font-semibold text-gray-900">Premium Sistemler</p>
+                <p className="text-[10px] uppercase tracking-widest font-semibold text-gray-900">Kış bahçesi fiyatları</p>
               </div>
             </Link>
             <p className="mb-6 max-w-md text-sm leading-relaxed text-gray-600">
@@ -87,19 +94,18 @@ export default function Footer() {
             {/* Quick Links */}
             <div>
               <h4 className="mb-4 text-sm font-bold text-gray-900">Sayfalar</h4>
-              <ul className="space-y-3">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-3">
                 {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="group flex items-center text-sm text-gray-600 transition-colors hover:text-teal-900"
-                    >
-                      <span className="mr-2 h-1 w-1 rounded-full bg-gray-400 transition-all group-hover:w-4 group-hover:bg-teal-900" />
-                      {link.name}
-                    </Link>
-                  </li>
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="group flex items-center text-sm text-gray-600 transition-colors hover:text-teal-900"
+                  >
+                    <span className="mr-2 h-1 w-1 rounded-full bg-gray-400 transition-all group-hover:w-4 group-hover:bg-teal-900" />
+                    {link.name}
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* Contact Info */}
@@ -190,11 +196,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Kış Bahçesi. Tüm hakları saklıdır.
           </p>
           <div className="flex items-center gap-4 text-xs text-gray-500">
-            <Link href="#" className="transition-colors hover:text-gray-900">Gizlilik</Link>
+            <Link href="/gizlilik" className="transition-colors hover:text-gray-900">Gizlilik</Link>
             <span>•</span>
-            <Link href="#" className="transition-colors hover:text-gray-900">Koşullar</Link>
+            <Link href="/kosullar" className="transition-colors hover:text-gray-900">Koşullar</Link>
             <span>•</span>
-            <Link href="#" className="transition-colors hover:text-gray-900">KVKK</Link>
+            <Link href="/kvkk" className="transition-colors hover:text-gray-900">KVKK</Link>
           </div>
         </div>
       </div>

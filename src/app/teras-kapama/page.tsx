@@ -8,99 +8,99 @@ import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Dro
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Kış bahçesi kategorisindeki proje görselleri
-const kisBahcesiProjects = [
+// Teras kapama kategorisindeki proje görselleri
+const terasKapamaProjects = [
   { 
-    src: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg", 
-    title: "Modern Kış Bahçesi",
-    alt: "Modern tasarım kış bahçesi projesi"
+    src: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg", 
+    title: "Modern Teras Kapama",
+    alt: "Modern tasarım teras kapama projesi"
   },
   { 
-    src: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg", 
-    title: "Panoramik Kış Bahçesi",
-    alt: "Panoramik görünümlü kış bahçesi"
+    src: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg", 
+    title: "Panoramik Teras Kapama",
+    alt: "Panoramik görünümlü teras kapama"
   },
   { 
-    src: "/images/projects/24929279-47c0-4aad-b65f-f7ba24e86f5d.jpg", 
-    title: "Villa Kış Bahçesi",
-    alt: "Villa için özel tasarım kış bahçesi"
+    src: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg", 
+    title: "Villa Teras Kapama",
+    alt: "Villa için özel tasarım teras kapama"
   },
   { 
-    src: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg", 
-    title: "Lüks Kış Bahçesi",
-    alt: "Lüks kış bahçesi projesi"
+    src: "/images/projects/6f262068-8523-46bb-8db4-89d9a2cfb385.jpg", 
+    title: "Lüks Teras Kapama",
+    alt: "Lüks teras kapama projesi"
   },
   { 
-    src: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg", 
-    title: "Bahçe Entegrasyonlu Kış Bahçesi",
-    alt: "Bahçe ile entegre kış bahçesi"
+    src: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg", 
+    title: "Bahçe Entegrasyonlu Teras Kapama",
+    alt: "Bahçe ile entegre teras kapama"
   },
   { 
-    src: "/images/projects/72d1c386-41de-4199-8b88-d1e92457f134.jpg", 
-    title: "Premium Kış Bahçesi",
-    alt: "Premium kalite kış bahçesi sistemi"
+    src: "/images/projects/8e0ee8dd-3e22-4322-95c7-17a507f0ed28.jpg", 
+    title: "Premium Teras Kapama",
+    alt: "Premium kalite teras kapama sistemi"
   },
 ];
 
 const advantages = [
   {
-    image: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg",
-    imageAlt: "Modern kış bahçesi tasarımı",
+    image: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg",
+    imageAlt: "Modern teras kapama tasarımı",
     title: "Modern ve Estetik Tasarım",
-    content: "Kış bahçeniz, evinizin mimarisine uyumlu, modern ve estetik bir tasarıma sahip olur. Geniş cam yüzeyler sayesinde doğal ışıktan maksimum faydalanırsınız. İstediğiniz renk ve stil seçenekleriyle hayalinizdeki kış bahçesine kavuşursunuz. Profesyonel tasarım ekibimiz, projenizi baştan sona planlar ve size özel çözümler sunar. Kış bahçesi modelleri arasından size en uygun olanını seçebilirsiniz.",
-    keywords: ["kış bahçesi", "kış bahçesi modelleri"]
+    content: "Teras kapama sisteminiz, evinizin mimarisine uyumlu, modern ve estetik bir tasarıma sahip olur. Geniş cam yüzeyler sayesinde doğal ışıktan maksimum faydalanırsınız. İstediğiniz renk ve stil seçenekleriyle hayalinizdeki teras kapatma sistemine kavuşursunuz. Profesyonel tasarım ekibimiz, projenizi baştan sona planlar ve size özel çözümler sunar. Teras kış bahçesi modellerimiz ile modern bir yaşam alanı yaratabilirsiniz.",
+    keywords: ["teras kapama", "teras kapatma", "teras kış bahçesi"]
   },
   {
-    image: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg",
-    imageAlt: "Panoramik kış bahçesi görünümü",
+    image: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg",
+    imageAlt: "Panoramik teras kapama görünümü",
     title: "Yıl Boyu Kullanılabilir Yaşam Alanı",
-    content: "Kış bahçeniz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında soğuktan korunurken, yaz aylarında doğayla iç içe vakit geçirebilirsiniz. Isı yalıtımlı cam sistemleri sayesinde enerji tasarrufu sağlarsınız. Açılır-kapanır tavan sistemleriyle istediğiniz zaman açık havada olabilirsiniz. Kış bahçesi sistemleri ile evinize değer katın.",
-    keywords: ["kış bahçesi", "kış bahçesi sistemleri"]
+    content: "Teras kapama sisteminiz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında soğuktan ve yağmurdan korunurken, yaz aylarında doğayla iç içe vakit geçirebilirsiniz. Isı yalıtımlı cam sistemleri sayesinde enerji tasarrufu sağlarsınız. Açılır-kapanır sistemlerle istediğiniz zaman açık havada olabilirsiniz. Kış bahçesi sistemleri ile aynı teknolojiyi kullanır.",
+    keywords: ["teras kapama", "kış bahçesi sistemleri"]
   },
   {
-    image: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg",
-    imageAlt: "Lüks kış bahçesi iç mekan",
+    image: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg",
+    imageAlt: "Lüks teras kapama iç mekan",
     title: "Evinizin Değerini Artırır",
-    content: "Profesyonel olarak tasarlanmış ve montaj edilmiş bir kış bahçesi, evinizin değerini önemli ölçüde artırır. Emlak değeri artışı yanında, yaşam kalitenizi de yükseltir. Yatırım olarak düşünüldüğünde, kış bahçesi uzun vadede size kazanç sağlar. Modern ve bakımlı görünümüyle evinizin çekiciliğini artırır. Kış bahçesi firmaları arasında kaliteli hizmet sunuyoruz.",
-    keywords: ["kış bahçesi", "kış bahçesi firmaları"]
+    content: "Profesyonel olarak tasarlanmış ve montaj edilmiş bir teras kapama sistemi, evinizin değerini önemli ölçüde artırır. Emlak değeri artışı yanında, yaşam kalitenizi de yükseltir. Yatırım olarak düşünüldüğünde, teras kapatma uzun vadede size kazanç sağlar. Modern ve bakımlı görünümüyle evinizin çekiciliğini artırır. Kış bahçesi firmaları arasında kaliteli hizmet sunuyoruz.",
+    keywords: ["teras kapama", "teras kapatma", "kış bahçesi firmaları"]
   },
   {
-    image: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg",
-    imageAlt: "Bahçe entegrasyonlu kış bahçesi",
+    image: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg",
+    imageAlt: "Bahçe entegrasyonlu teras kapama",
     title: "Doğayla İç İçe Yaşam",
-    content: "Kış bahçeniz, evinizle bahçeniz arasında köprü görevi görür. Doğayı içeriye taşıyarak, her mevsim yeşilliklerle çevrili bir ortam yaratır. Bitkilerinizi kış soğuğundan korurken, kendinizi de doğanın güzelliklerinden mahrum bırakmazsınız. Panoramik cam yüzeyler sayesinde bahçenizin her köşesini net bir şekilde görebilirsiniz. Cam tavan kış bahçesi modellerimiz ile gökyüzünü izleyebilirsiniz.",
-    keywords: ["kış bahçesi", "cam tavan kış bahçesi"]
+    content: "Teras kapama sisteminiz, evinizle bahçeniz arasında köprü görevi görür. Doğayı içeriye taşıyarak, her mevsim yeşilliklerle çevrili bir ortam yaratır. Terasınızı kış soğuğundan ve yaz sıcağından korurken, kendinizi de doğanın güzelliklerinden mahrum bırakmazsınız. Panoramik cam yüzeyler sayesinde manzaranın her köşesini net bir şekilde görebilirsiniz. Cam tavan kış bahçesi modellerimiz ile gökyüzünü izleyebilirsiniz.",
+    keywords: ["teras kapama", "cam tavan kış bahçesi"]
   },
 ];
 
 const faqData = [
   {
-    question: "Kış bahçesi fiyatları ne kadar?",
-    answer: "Kış bahçesi fiyatları, projenin büyüklüğüne, kullanılan malzemeye, cam tipine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir kış bahçesi için fiyat aralığı 50.000 TL ile 200.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
+    question: "Teras kapama fiyatları ne kadar?",
+    answer: "Teras kapama fiyatları, projenin büyüklüğüne, kullanılan malzemeye, cam tipine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir teras kapama için fiyat aralığı 40.000 TL ile 180.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
   },
   {
-    question: "Kış bahçesi montajı ne kadar sürer?",
-    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-3 hafta arasında değişir. Standart bir kış bahçesi montajı genellikle 1-2 hafta içinde tamamlanır. Özel tasarım projelerde bu süre biraz daha uzayabilir.",
+    question: "Teras kapama montajı ne kadar sürer?",
+    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-3 hafta arasında değişir. Standart bir teras kapama montajı genellikle 1-2 hafta içinde tamamlanır. Özel tasarım projelerde bu süre biraz daha uzayabilir.",
   },
   {
-    question: "Kış bahçesi hangi malzemelerden yapılır?",
-    answer: "Kış bahçelerimiz, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak çift cam (izolasyonlu) veya temperli cam kullanılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
+    question: "Teras kapama hangi malzemelerden yapılır?",
+    answer: "Teras kapama sistemlerimiz, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak çift cam (izolasyonlu) veya temperli cam kullanılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
   },
   {
-    question: "Kış bahçesi izolasyonlu mu?",
-    answer: "Evet, tüm kış bahçelerimiz ısı yalıtımlı cam sistemleri ve alüminyum profillerle üretilir. Bu sayede kış aylarında ısı kaybı minimuma iner ve enerji tasarrufu sağlanır.",
+    question: "Teras kapama izolasyonlu mu?",
+    answer: "Evet, tüm teras kapama sistemlerimiz ısı yalıtımlı cam sistemleri ve alüminyum profillerle üretilir. Bu sayede kış aylarında ısı kaybı minimuma iner ve enerji tasarrufu sağlanır.",
   },
   {
-    question: "Kış bahçesi için ruhsat gerekir mi?",
-    answer: "Kış bahçesi için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
+    question: "Teras kapama için ruhsat gerekir mi?",
+    answer: "Teras kapama için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
   },
   {
-    question: "Kış bahçesi bakımı nasıl yapılır?",
+    question: "Teras kapama bakımı nasıl yapılır?",
     answer: "Alüminyum profillerin bakımı çok kolaydır. Düzenli olarak su ve sabunlu bezle temizlenmesi yeterlidir. Cam yüzeyler için cam temizleyici kullanabilirsiniz. Yılda bir kez profesyonel bakım önerilir.",
   },
 ];
 
-export default function KisBahcesiPage() {
+export default function TerasKapamaPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
@@ -138,7 +138,7 @@ export default function KisBahcesiPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Kış Bahçesi Sistemleri",
+    "serviceType": "Teras Kapama Sistemleri",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Kış Bahçesi",
@@ -153,7 +153,7 @@ export default function KisBahcesiPage() {
       "@type": "City",
       "name": "İstanbul"
     },
-    "description": "İstanbul'da profesyonel kış bahçesi sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
+    "description": "İstanbul'da profesyonel teras kapama sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
   };
 
   const faqJsonLd = {
@@ -227,7 +227,7 @@ export default function KisBahcesiPage() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="mb-6 inline-block rounded-full bg-teal-100 px-4 py-1.5 text-sm font-medium text-teal-800"
                   >
-                    Premium Kış Bahçesi Sistemleri
+                    Premium Teras Kapama Sistemleri
                   </motion.div>
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
@@ -237,7 +237,7 @@ export default function KisBahcesiPage() {
                   >
                     Hayalinizdeki{" "}
                     <span className="bg-gradient-to-r from-teal-900 via-teal-800 to-teal-900 bg-clip-text text-transparent">
-                      Kış Bahçesi
+                      Teras Kapama
                     </span>{" "}
                     Burada
                   </motion.h1>
@@ -247,7 +247,7 @@ export default function KisBahcesiPage() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mb-8 text-lg leading-relaxed text-gray-700 md:text-xl"
                   >
-                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, evinize değer katacak modern kış bahçesi sistemleri sunuyoruz. Profesyonel tasarım, kaliteli malzeme ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
+                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, evinize değer katacak modern teras kapama sistemleri sunuyoruz. Profesyonel tasarım, kaliteli malzeme ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -256,7 +256,7 @@ export default function KisBahcesiPage() {
                     className="flex flex-col sm:flex-row gap-4"
                   >
                     <Link
-                      href="https://wa.me/905333593466?text=Kış%20bahçesi%20hakkında%20bilgi%20almak%20istiyorum"
+                      href="https://wa.me/905333593466?text=Teras%20kapama%20hakkında%20bilgi%20almak%20istiyorum"
                       target="_blank"
                       className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
                     >
@@ -282,8 +282,8 @@ export default function KisBahcesiPage() {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl">
                     <Image
-                      src="/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg"
-                      alt="Modern Kış Bahçesi"
+                      src="/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg"
+                      alt="Modern Teras Kapama"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -328,17 +328,17 @@ export default function KisBahcesiPage() {
                   Özellikler
                 </span>
                 <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
-                  Neden Kış Bahçesi?
+                  Neden Teras Kapama?
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                  Kış bahçeniz, evinize değer katan ve yaşam kalitenizi artıran özel bir alan
+                  Teras kapama sisteminiz, evinize değer katan ve yaşam kalitenizi artıran özel bir alan
                 </p>
               </motion.div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {[
                   { icon: Sun, title: "Yıl Boyu Kullanım", desc: "12 ay boyunca kullanabileceğiniz ekstra yaşam alanı" },
-                  { icon: Leaf, title: "Doğayla İç İçe", desc: "Bahçenizle eviniz arasında köprü görevi görür" },
+                  { icon: Leaf, title: "Doğayla İç İçe", desc: "Terasınızla bahçeniz arasında köprü görevi görür" },
                   { icon: Droplets, title: "Enerji Tasarrufu", desc: "Isı yalıtımlı sistemlerle enerji maliyetlerinizi düşürün" },
                   { icon: Sparkles, title: "Değer Artışı", desc: "Evinizin değerini önemli ölçüde artırır" },
                 ].map((feature, index) => (
@@ -438,28 +438,28 @@ export default function KisBahcesiPage() {
                 className="prose prose-lg max-w-none"
               >
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 md:text-4xl">
-                  Kış Bahçesi: Modern Yaşam Alanlarının Vazgeçilmezi
+                  Teras Kapama: Yıl Boyu Kullanılabilir Yaşam Alanı
                 </h2>
                 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p className="text-lg">
-                    <strong>Kış bahçesi</strong>, modern mimaride yaşam alanlarını genişleten ve dört mevsim kullanılabilen özel tasarım yapılardır. 
-                    <strong> Kış bahçesi fiyatları</strong>, projenin büyüklüğü, kullanılan malzemeler ve tasarım özelliklerine göre değişiklik gösterir. 
-                    Kaliteli bir <strong>kış bahçesi sistemi</strong>, evinize değer katar ve yaşam kalitenizi artırır. İstanbul'un Sarıyer, Bahçeşehir, Beykoz, Şile, Büyükçekmece, Florya, Silivri, Tuzla, Çekmeköy ve Kurtköy gibi bölgelerinde profesyonel <strong>kış bahçesi firmaları</strong> arasında yer alıyoruz.
+                    <strong>Teras kapama</strong> ve <strong>teras kapatma</strong> sistemleri, terasınızı yılın 12 ayı kullanılabilir bir yaşam alanına dönüştürür. 
+                    Modern <strong>teras kapama</strong> çözümlerimiz ile terasınızı kış soğuğundan ve yaz sıcağından korurken, doğayla iç içe vakit geçirebilirsiniz. 
+                    <strong>Teras kış bahçesi</strong> modellerimiz ile terasınızı modern bir yaşam alanına dönüştürebilirsiniz.
                   </p>
 
                   <p>
-                    <strong>Kış bahçesi modelleri</strong> arasında klasik, modern, <strong>bioklimatik</strong> ve panoramik tasarımlar yer alır. 
-                    Her model, farklı ihtiyaçlara ve zevklere hitap eder. <strong>Kış bahçesi modelleri fiyatları</strong> ise 
-                    seçtiğiniz modelin özelliklerine, boyutlarına ve ekstra donanımlarına göre belirlenir. <strong>Teras kapama</strong> ve <strong>teras kapatma</strong> sistemleri de kış bahçesi çözümlerimiz arasında yer alır. <strong>Cam tavan kış bahçesi</strong> modellerimiz ile modern ve şık bir yaşam alanı yaratabilirsiniz.
+                    İstanbul'un Sarıyer, Bahçeşehir, Beykoz, Şile, Büyükçekmece, Florya, Silivri, Tuzla, Çekmeköy ve Kurtköy gibi bölgelerinde 
+                    <strong> teras kapama</strong> projelerimizle hizmet veriyoruz. <strong>Sarıyer kış bahçesi</strong>, <strong>Bahçeşehir kış bahçesi</strong>, 
+                    <strong>Beykoz kış bahçesi</strong>, <strong>Şile kış bahçesi</strong>, <strong>Büyükçekmece kış bahçesi</strong>, <strong>Florya kış bahçesi</strong>, 
+                    <strong>Silivri kış bahçesi</strong>, <strong>Tuzla kış bahçesi</strong>, <strong>Çekmeköy kış bahçesi</strong>, <strong>Kurtköy kış bahçesi</strong> 
+                    projelerimizle teras kapama sistemleri sunuyoruz.
                   </p>
 
                   <p>
-                    <strong>Sarıyer kış bahçesi</strong>, <strong>Bahçeşehir kış bahçesi</strong>, <strong>Beykoz kış bahçesi</strong>, <strong>Şile kış bahçesi</strong>, <strong>Büyükçekmece kış bahçesi</strong>, <strong>Florya kış bahçesi</strong>, <strong>Silivri kış bahçesi</strong>, <strong>Tuzla kış bahçesi</strong>, <strong>Çekmeköy kış bahçesi</strong>, <strong>Kurtköy kış bahçesi</strong> projelerimizle İstanbul genelinde hizmet veriyoruz. Ayrıca <strong>Tekirdağ kış bahçesi</strong>, <strong>Kayseri kış bahçesi</strong>, <strong>Kocaeli kış bahçesi</strong> ve <strong>Bodrum kış bahçesi</strong> projelerimizle Türkiye'nin farklı şehirlerinde de hizmetinizdeyiz.
-                  </p>
-
-                  <p>
-                    <strong>Otomatik pergola</strong> ve <strong>Rolling Roof</strong> sistemleri de modern kış bahçesi çözümlerimiz arasında yer alır. <strong>Bioklimatik</strong> sistemler ile doğal havalandırma ve akıllı kontrol imkanı sunuyoruz. <strong>Teras kapama</strong> ve <strong>teras kış bahçesi</strong> projelerimiz ile terasınızı yıl boyu kullanılabilir bir alana dönüştürebilirsiniz.
+                    <strong>Teras kapama</strong> sistemlerimiz, <strong>kış bahçesi</strong> teknolojisi ile üretilir ve aynı kalite standartlarını taşır. 
+                    <strong>Kış bahçesi fiyatları</strong> ve <strong>kış bahçesi modelleri</strong> ile uyumlu olan teras kapama sistemlerimiz, 
+                    evinize değer katar ve yaşam kalitenizi artırır. <strong>Cam tavan kış bahçesi</strong> modellerimiz ile terasınızı gökyüzüne açabilirsiniz.
                   </p>
                 </div>
               </motion.div>
@@ -482,12 +482,12 @@ export default function KisBahcesiPage() {
                   Tamamlanan Projelerimiz
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  15+ yıllık tecrübemizle tamamladığımız başarılı kış bahçesi projelerinden örnekler
+                  15+ yıllık tecrübemizle tamamladığımız başarılı teras kapama projelerinden örnekler
                 </p>
               </motion.div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {kisBahcesiProjects.map((project, index) => (
+                {terasKapamaProjects.map((project, index) => (
                   <motion.div
                     key={project.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -560,8 +560,8 @@ export default function KisBahcesiPage() {
                   {/* Image */}
                   <div className="relative w-full h-[90vh] bg-gray-100">
                     <Image
-                      src={kisBahcesiProjects[selectedProject].src}
-                      alt={kisBahcesiProjects[selectedProject].alt}
+                      src={terasKapamaProjects[selectedProject].src}
+                      alt={terasKapamaProjects[selectedProject].alt}
                       fill
                       className="object-contain"
                       sizes="100vw"
@@ -589,7 +589,7 @@ export default function KisBahcesiPage() {
                   Sıkça Sorulan Sorular
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  Kış bahçesi hakkında merak ettikleriniz ve cevapları
+                  Teras kapama hakkında merak ettikleriniz ve cevapları
                 </p>
               </motion.div>
 
@@ -674,7 +674,7 @@ export default function KisBahcesiPage() {
                     Aradığınız cevabı bulamadınız mı? Bizimle iletişime geçin, size yardımcı olalım.
                   </p>
                   <Link
-                    href="https://wa.me/905333593466?text=Kış%20bahçesi%20hakkında%20soru%20sormak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Teras%20kapama%20hakkında%20soru%20sormak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-900 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                   >
@@ -737,7 +737,7 @@ export default function KisBahcesiPage() {
                   Hayalinizdeki Yaşam Alanı
                 </motion.div>
                 <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                  Hayalinizdeki Kış Bahçesine{" "}
+                  Hayalinizdeki Teras Kapamaya{" "}
                   <span className="bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent">
                     Kavuşun
                   </span>
@@ -748,7 +748,7 @@ export default function KisBahcesiPage() {
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
-                    href="https://wa.me/905333593466?text=Kış%20bahçesi%20hakkında%20bilgi%20almak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Teras%20kapama%20hakkında%20bilgi%20almak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-800 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
                   >
@@ -774,3 +774,4 @@ export default function KisBahcesiPage() {
     </>
   );
 }
+

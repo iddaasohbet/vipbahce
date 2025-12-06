@@ -143,7 +143,7 @@ export default function Header() {
               Kış Bahçesi
             </motion.span>
             <span className="block text-[8px] sm:text-[10px] uppercase tracking-widest font-semibold text-gray-900">
-              Premium Sistemler
+              Kış bahçesi fiyatları
             </span>
           </div>
         </Link>

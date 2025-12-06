@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Play, Maximize2, Grid3X3, LayoutGrid, Camera, Film } from "lucide-react";
@@ -34,16 +34,16 @@ const projectImages = [
   { id: 23, src: "/images/projects/e672ed00-ee93-49eb-8ff6-5f95772ae59e.jpg", title: "Teras Entegrasyonu", category: "teras" },
 ];
 
-// Videolar
+// Videolar - Sırasıyla ekleniyor
 const projectVideos = [
-  { id: 1, src: "/videos/WhatsApp Video 2025-12-05 at 19.18.36.mp4", title: "Kış Bahçesi Montajı", thumbnail: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg" },
-  { id: 2, src: "/videos/WhatsApp Video 2025-12-05 at 19.19.07.mp4", title: "Bioklimatik Sistem", thumbnail: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg" },
-  { id: 3, src: "/videos/WhatsApp Video 2025-12-05 at 19.23.52.mp4", title: "Proje Detayları", thumbnail: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg" },
-  { id: 4, src: "/videos/WhatsApp Video 2025-12-05 at 19.24.49.mp4", title: "Montaj Süreci", thumbnail: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg" },
-  { id: 5, src: "/videos/WhatsApp Video 2025-12-05 at 19.24.50.mp4", title: "Tamamlanmış Proje", thumbnail: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg" },
-  { id: 6, src: "/videos/WhatsApp Video 2025-12-05 at 19.50.22.mp4", title: "Modern Tasarım", thumbnail: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg" },
-  { id: 7, src: "/videos/WhatsApp Video 2025-12-05 at 19.52.01.mp4", title: "Villa Projesi", thumbnail: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg" },
-  { id: 8, src: "/videos/WhatsApp Video 2025-12-05 at 20.00.21.mp4", title: "Premium Kış Bahçesi", thumbnail: "/images/projects/6f262068-8523-46bb-8db4-89d9a2cfb385.jpg" },
+  { id: 1, src: "/videos/WhatsApp Video 2025-12-05 at 19.18.36.mp4", title: "Kış Bahçesi Montajı" },
+  { id: 2, src: "/videos/WhatsApp Video 2025-12-05 at 19.19.07.mp4", title: "Bioklimatik Sistem" },
+  { id: 3, src: "/videos/WhatsApp Video 2025-12-05 at 19.23.52.mp4", title: "Proje Detayları" },
+  { id: 4, src: "/videos/WhatsApp Video 2025-12-05 at 19.24.49.mp4", title: "Montaj Süreci" },
+  { id: 5, src: "/videos/WhatsApp Video 2025-12-05 at 19.24.50.mp4", title: "Tamamlanmış Proje" },
+  { id: 6, src: "/videos/WhatsApp Video 2025-12-05 at 19.50.22.mp4", title: "Modern Tasarım" },
+  { id: 7, src: "/videos/WhatsApp Video 2025-12-05 at 19.52.01.mp4", title: "Villa Projesi" },
+  { id: 8, src: "/videos/WhatsApp Video 2025-12-05 at 20.00.21.mp4", title: "Premium Kış Bahçesi" },
 ];
 
 const categories = [
@@ -60,6 +60,29 @@ export default function Galeri() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [gridSize, setGridSize] = useState<"small" | "large">("large");
   const [activeTab, setActiveTab] = useState<"photos" | "videos">("photos");
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
+  const thumbnailVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+
+  const openVideoModal = (videoId: number) => {
+    setSelectedVideo(videoId);
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideo(null);
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+    }
+  };
+
+  const navigateVideo = (direction: 'prev' | 'next') => {
+    if (selectedVideo === null) return;
+    const currentIndex = projectVideos.findIndex(v => v.id === selectedVideo);
+    if (direction === 'prev' && currentIndex > 0) {
+      setSelectedVideo(projectVideos[currentIndex - 1].id);
+    } else if (direction === 'next' && currentIndex < projectVideos.length - 1) {
+      setSelectedVideo(projectVideos[currentIndex + 1].id);
+    }
+  };
 
   const filteredImages = activeCategory === "all" 
     ? projectImages 
@@ -83,8 +106,16 @@ export default function Galeri() {
           }
         }
       }
-      if (selectedVideo !== null && e.key === "Escape") {
-        setSelectedVideo(null);
+      if (selectedVideo !== null) {
+        if (e.key === "Escape") {
+          closeVideoModal();
+        }
+        if (e.key === "ArrowRight") {
+          navigateVideo('next');
+        }
+        if (e.key === "ArrowLeft") {
+          navigateVideo('prev');
+        }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -100,6 +131,13 @@ export default function Galeri() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [selectedImage, selectedVideo]);
+
+  // Modal video control
+  useEffect(() => {
+    if (selectedVideo !== null && modalVideoRef.current) {
+      modalVideoRef.current.play().catch(() => {});
+    }
+  }, [selectedVideo]);
 
   const navigateImage = (direction: "prev" | "next") => {
     if (selectedImage === null) return;
@@ -323,16 +361,19 @@ export default function Galeri() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
                       whileHover={{ y: -5 }}
-                      onClick={() => setSelectedVideo(video.id)}
+                      onClick={() => openVideoModal(video.id)}
                       className="group relative cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-md transition-shadow hover:shadow-xl"
                     >
-                      {/* Thumbnail */}
-                      <div className="relative aspect-video">
-                        <Image
-                          src={video.thumbnail}
-                          alt={video.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      {/* Video Thumbnail */}
+                      <div className="relative aspect-video overflow-hidden">
+                        <video
+                          ref={(el) => { thumbnailVideoRefs.current[video.id] = el; }}
+                          src={video.src}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          playsInline
+                          loop
+                          muted
+                          autoPlay
                         />
                         
                         {/* Play Button Overlay */}
@@ -345,7 +386,6 @@ export default function Galeri() {
                             <Play className="h-7 w-7 text-teal-600 ml-1" fill="currentColor" />
                           </motion.div>
                         </div>
-
                       </div>
                     </motion.div>
                   ))}
@@ -431,25 +471,60 @@ export default function Galeri() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
-              onClick={() => setSelectedVideo(null)}
+              onClick={closeVideoModal}
             >
               {/* Close Button */}
-              <button
-                onClick={() => setSelectedVideo(null)}
+              <motion.button
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                onClick={closeVideoModal}
                 className="absolute right-4 top-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
               >
                 <X className="h-6 w-6" />
-              </button>
+              </motion.button>
+
+              {/* Navigation */}
+              {projectVideos.findIndex(v => v.id === selectedVideo) > 0 && (
+                <motion.button
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    navigateVideo('prev');
+                  }}
+                  className="absolute left-4 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                >
+                  <ChevronLeft className="h-8 w-8" />
+                </motion.button>
+              )}
+              {projectVideos.findIndex(v => v.id === selectedVideo) < projectVideos.length - 1 && (
+                <motion.button
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    navigateVideo('next');
+                  }}
+                  className="absolute right-4 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                >
+                  <ChevronRight className="h-8 w-8" />
+                </motion.button>
+              )}
 
               {/* Video Player */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                key={selectedVideo}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", damping: 25 }}
                 className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black"
                 onClick={(e) => e.stopPropagation()}
               >
                 <video
+                  ref={modalVideoRef}
+                  key={`video-${selectedVideo}`}
                   src={projectVideos.find(v => v.id === selectedVideo)?.src}
                   controls
                   autoPlay

@@ -4,103 +4,99 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X } from "lucide-react";
+import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, Folder } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Kış bahçesi kategorisindeki proje görselleri
-const kisBahcesiProjects = [
+// Katlanır cam kategorisindeki proje görselleri
+const katlanirCamProjects = [
   { 
-    src: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg", 
-    title: "Modern Kış Bahçesi",
-    alt: "Modern tasarım kış bahçesi projesi"
+    src: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg", 
+    title: "Modern Katlanır Cam",
+    alt: "Modern tasarım katlanır cam projesi"
   },
   { 
-    src: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg", 
-    title: "Panoramik Kış Bahçesi",
-    alt: "Panoramik görünümlü kış bahçesi"
+    src: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg", 
+    title: "Panoramik Katlanır Cam",
+    alt: "Panoramik görünümlü katlanır cam"
   },
   { 
-    src: "/images/projects/24929279-47c0-4aad-b65f-f7ba24e86f5d.jpg", 
-    title: "Villa Kış Bahçesi",
-    alt: "Villa için özel tasarım kış bahçesi"
+    src: "/images/projects/a77c368b-8476-4a92-a01c-6c08f705b980.jpg", 
+    title: "Villa Katlanır Cam",
+    alt: "Villa için özel tasarım katlanır cam"
   },
   { 
-    src: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg", 
-    title: "Lüks Kış Bahçesi",
-    alt: "Lüks kış bahçesi projesi"
+    src: "/images/projects/cf3777cd-a53c-44d5-aa2b-f0562621a607.jpg", 
+    title: "Lüks Katlanır Cam",
+    alt: "Lüks katlanır cam projesi"
   },
   { 
-    src: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg", 
-    title: "Bahçe Entegrasyonlu Kış Bahçesi",
-    alt: "Bahçe ile entegre kış bahçesi"
+    src: "/images/projects/df5971d9-c105-4b7e-bbe5-17f182ae8bc8.jpg", 
+    title: "Bahçe Entegrasyonlu Katlanır Cam",
+    alt: "Bahçe ile entegre katlanır cam"
   },
   { 
-    src: "/images/projects/72d1c386-41de-4199-8b88-d1e92457f134.jpg", 
-    title: "Premium Kış Bahçesi",
-    alt: "Premium kalite kış bahçesi sistemi"
+    src: "/images/projects/e327a0bb-698e-448b-94e1-126291cb38be.jpg", 
+    title: "Premium Katlanır Cam",
+    alt: "Premium kalite katlanır cam sistemi"
   },
 ];
 
 const advantages = [
   {
-    image: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg",
-    imageAlt: "Modern kış bahçesi tasarımı",
-    title: "Modern ve Estetik Tasarım",
-    content: "Kış bahçeniz, evinizin mimarisine uyumlu, modern ve estetik bir tasarıma sahip olur. Geniş cam yüzeyler sayesinde doğal ışıktan maksimum faydalanırsınız. İstediğiniz renk ve stil seçenekleriyle hayalinizdeki kış bahçesine kavuşursunuz. Profesyonel tasarım ekibimiz, projenizi baştan sona planlar ve size özel çözümler sunar. Kış bahçesi modelleri arasından size en uygun olanını seçebilirsiniz.",
-    keywords: ["kış bahçesi", "kış bahçesi modelleri"]
+    image: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg",
+    imageAlt: "Modern katlanır cam tasarımı",
+    title: "Katlanarak Açılan Sistem",
+    content: "Katlanır cam sisteminiz, cam panellerin katlanarak yan tarafa toplanması ile çalışır. Bu sayede tamamen açık bir alan yaratabilir veya istediğiniz kadar açık bırakabilirsiniz. Motorlu sistem sayesinde tek dokunuşla kontrol edebilirsiniz. Modern teknoloji ile maksimum açıklık sağlayan esnek yaşam alanları yaratın.",
   },
   {
-    image: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg",
-    imageAlt: "Panoramik kış bahçesi görünümü",
+    image: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg",
+    imageAlt: "Panoramik katlanır cam görünümü",
     title: "Yıl Boyu Kullanılabilir Yaşam Alanı",
-    content: "Kış bahçeniz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında soğuktan korunurken, yaz aylarında doğayla iç içe vakit geçirebilirsiniz. Isı yalıtımlı cam sistemleri sayesinde enerji tasarrufu sağlarsınız. Açılır-kapanır tavan sistemleriyle istediğiniz zaman açık havada olabilirsiniz. Kış bahçesi sistemleri ile evinize değer katın.",
-    keywords: ["kış bahçesi", "kış bahçesi sistemleri"]
+    content: "Katlanır cam sisteminiz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında kapalı konumda korunaklı bir alan oluştururken, yaz aylarında tamamen açık konumda doğayla iç içe vakit geçirebilirsiniz. Katlanarak açıldığı için maksimum açıklık sağlar ve alan kazandırır.",
   },
   {
-    image: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg",
-    imageAlt: "Lüks kış bahçesi iç mekan",
+    image: "/images/projects/a77c368b-8476-4a92-a01c-6c08f705b980.jpg",
+    imageAlt: "Lüks katlanır cam iç mekan",
     title: "Evinizin Değerini Artırır",
-    content: "Profesyonel olarak tasarlanmış ve montaj edilmiş bir kış bahçesi, evinizin değerini önemli ölçüde artırır. Emlak değeri artışı yanında, yaşam kalitenizi de yükseltir. Yatırım olarak düşünüldüğünde, kış bahçesi uzun vadede size kazanç sağlar. Modern ve bakımlı görünümüyle evinizin çekiciliğini artırır. Kış bahçesi firmaları arasında kaliteli hizmet sunuyoruz.",
-    keywords: ["kış bahçesi", "kış bahçesi firmaları"]
+    content: "Profesyonel olarak tasarlanmış ve montaj edilmiş bir katlanır cam sistemi, evinizin değerini önemli ölçüde artırır. Emlak değeri artışı yanında, yaşam kalitenizi de yükseltir. Yatırım olarak düşünüldüğünde, katlanır cam uzun vadede size kazanç sağlar. Modern ve teknolojik görünümüyle evinizin çekiciliğini artırır.",
   },
   {
-    image: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg",
-    imageAlt: "Bahçe entegrasyonlu kış bahçesi",
+    image: "/images/projects/df5971d9-c105-4b7e-bbe5-17f182ae8bc8.jpg",
+    imageAlt: "Bahçe entegrasyonlu katlanır cam",
     title: "Doğayla İç İçe Yaşam",
-    content: "Kış bahçeniz, evinizle bahçeniz arasında köprü görevi görür. Doğayı içeriye taşıyarak, her mevsim yeşilliklerle çevrili bir ortam yaratır. Bitkilerinizi kış soğuğundan korurken, kendinizi de doğanın güzelliklerinden mahrum bırakmazsınız. Panoramik cam yüzeyler sayesinde bahçenizin her köşesini net bir şekilde görebilirsiniz. Cam tavan kış bahçesi modellerimiz ile gökyüzünü izleyebilirsiniz.",
-    keywords: ["kış bahçesi", "cam tavan kış bahçesi"]
+    content: "Katlanır cam sisteminiz, evinizle bahçeniz arasında köprü görevi görür. Tamamen açık konumda doğayla iç içe olabilir, kapalı konumda korunaklı bir alan oluşturabilirsiniz. Katlanarak açıldığı için maksimum açıklık sağlar ve alan kazandırır. Panoramik görünüm sayesinde manzaranın her köşesini net bir şekilde görebilirsiniz.",
   },
 ];
 
 const faqData = [
   {
-    question: "Kış bahçesi fiyatları ne kadar?",
-    answer: "Kış bahçesi fiyatları, projenin büyüklüğüne, kullanılan malzemeye, cam tipine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir kış bahçesi için fiyat aralığı 50.000 TL ile 200.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
+    question: "Katlanır cam fiyatları ne kadar?",
+    answer: "Katlanır cam fiyatları, projenin büyüklüğüne, kullanılan malzemeye, cam tipine, motor tipine ve özel tasarım gereksinimlerine göre değişiklik gösterir. Standart bir katlanır cam için fiyat aralığı 60.000 TL ile 250.000 TL arasında değişebilir. Detaylı fiyat teklifi için ücretsiz keşif hizmetimizden yararlanabilirsiniz.",
   },
   {
-    question: "Kış bahçesi montajı ne kadar sürer?",
-    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-3 hafta arasında değişir. Standart bir kış bahçesi montajı genellikle 1-2 hafta içinde tamamlanır. Özel tasarım projelerde bu süre biraz daha uzayabilir.",
+    question: "Katlanır cam montajı ne kadar sürer?",
+    answer: "Montaj süresi, projenin büyüklüğüne ve karmaşıklığına bağlı olarak 1-3 hafta arasında değişir. Standart bir katlanır cam montajı genellikle 1-2 hafta içinde tamamlanır. Özel tasarım ve teknoloji entegrasyonu gerektiren projelerde bu süre biraz daha uzayabilir.",
   },
   {
-    question: "Kış bahçesi hangi malzemelerden yapılır?",
-    answer: "Kış bahçelerimiz, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak çift cam (izolasyonlu) veya temperli cam kullanılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
+    question: "Katlanır cam hangi malzemelerden yapılır?",
+    answer: "Katlanır cam sistemlerimiz, 6063-T6 alaşımlı özel ekstrüzyon alüminyum profillerden üretilir. Cam olarak temperli cam veya çift cam (izolasyonlu) kullanılır. Motorlar Avrupa standartlarında, sessiz ve güvenilir sistemlerdir. Menteşe sistemleri paslanmaz çelikten yapılır. Tüm malzemelerimiz TSE ve CE belgeli, 25 yıl garanti kapsamındadır.",
   },
   {
-    question: "Kış bahçesi izolasyonlu mu?",
-    answer: "Evet, tüm kış bahçelerimiz ısı yalıtımlı cam sistemleri ve alüminyum profillerle üretilir. Bu sayede kış aylarında ısı kaybı minimuma iner ve enerji tasarrufu sağlanır.",
+    question: "Katlanır cam nasıl çalışır?",
+    answer: "Katlanır cam sistemleri, cam panellerin katlanarak yan tarafa toplanması ile çalışır. Elektrikli motorlar ile uzaktan kumanda, akıllı telefon uygulaması veya duvar anahtarı ile kontrol edilebilir. Sistem tamamen açılabilir veya kapanabilir. İstediğiniz kadar açık bırakabilirsiniz. Menteşe sistemleri sayesinde sorunsuz katlanma sağlanır.",
   },
   {
-    question: "Kış bahçesi için ruhsat gerekir mi?",
-    answer: "Kış bahçesi için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
+    question: "Katlanır cam için ruhsat gerekir mi?",
+    answer: "Katlanır cam için genellikle ruhsat gerekmez, ancak belediyenizin düzenlemelerine göre değişiklik gösterebilir. Projeniz için gerekli tüm izin ve ruhsat işlemlerinde size yardımcı oluyoruz.",
   },
   {
-    question: "Kış bahçesi bakımı nasıl yapılır?",
-    answer: "Alüminyum profillerin bakımı çok kolaydır. Düzenli olarak su ve sabunlu bezle temizlenmesi yeterlidir. Cam yüzeyler için cam temizleyici kullanabilirsiniz. Yılda bir kez profesyonel bakım önerilir.",
+    question: "Katlanır cam bakımı nasıl yapılır?",
+    answer: "Alüminyum profillerin bakımı çok kolaydır. Düzenli olarak su ve sabunlu bezle temizlenmesi yeterlidir. Cam yüzeyler için cam temizleyici kullanabilirsiniz. Menteşe sistemlerinin temiz tutulması ve yağlanması önemlidir. Motor sistemleri yılda bir kez profesyonel kontrol ve bakım gerektirir. Tüm bakım işlemleri için teknik destek ekibimiz hizmetinizdedir.",
   },
 ];
 
-export default function KisBahcesiPage() {
+export default function KatlanirCamPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
@@ -138,7 +134,7 @@ export default function KisBahcesiPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Kış Bahçesi Sistemleri",
+    "serviceType": "Katlanır Cam Sistemleri",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Kış Bahçesi",
@@ -153,7 +149,7 @@ export default function KisBahcesiPage() {
       "@type": "City",
       "name": "İstanbul"
     },
-    "description": "İstanbul'da profesyonel kış bahçesi sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
+    "description": "İstanbul'da profesyonel katlanır cam sistemleri. Modern tasarım, kaliteli malzeme, uzman montaj ekibi.",
   };
 
   const faqJsonLd = {
@@ -227,7 +223,7 @@ export default function KisBahcesiPage() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="mb-6 inline-block rounded-full bg-teal-100 px-4 py-1.5 text-sm font-medium text-teal-800"
                   >
-                    Premium Kış Bahçesi Sistemleri
+                    Premium Katlanır Cam Sistemleri
                   </motion.div>
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
@@ -237,7 +233,7 @@ export default function KisBahcesiPage() {
                   >
                     Hayalinizdeki{" "}
                     <span className="bg-gradient-to-r from-teal-900 via-teal-800 to-teal-900 bg-clip-text text-transparent">
-                      Kış Bahçesi
+                      Katlanır Cam
                     </span>{" "}
                     Burada
                   </motion.h1>
@@ -247,7 +243,7 @@ export default function KisBahcesiPage() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mb-8 text-lg leading-relaxed text-gray-700 md:text-xl"
                   >
-                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, evinize değer katacak modern kış bahçesi sistemleri sunuyoruz. Profesyonel tasarım, kaliteli malzeme ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
+                    15+ yıllık tecrübemiz ve 2500+ tamamlanan projemizle, evinize değer katacak modern katlanır cam sistemleri sunuyoruz. Katlanarak açılan sistem, motorlu kontrol ve uzman montaj ekibimizle hayalinizdeki yaşam alanını gerçeğe dönüştürüyoruz.
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -256,7 +252,7 @@ export default function KisBahcesiPage() {
                     className="flex flex-col sm:flex-row gap-4"
                   >
                     <Link
-                      href="https://wa.me/905333593466?text=Kış%20bahçesi%20hakkında%20bilgi%20almak%20istiyorum"
+                      href="https://wa.me/905333593466?text=Katlanır%20cam%20hakkında%20bilgi%20almak%20istiyorum"
                       target="_blank"
                       className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
                     >
@@ -282,8 +278,8 @@ export default function KisBahcesiPage() {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl">
                     <Image
-                      src="/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg"
-                      alt="Modern Kış Bahçesi"
+                      src="/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg"
+                      alt="Modern Katlanır Cam"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -307,7 +303,7 @@ export default function KisBahcesiPage() {
                     className="absolute -bottom-6 -left-6 hidden lg:block"
                   >
                     <div className="rounded-2xl bg-white p-4 shadow-xl border border-teal-100">
-                      <Shield className="h-8 w-8 text-teal-900" />
+                      <Folder className="h-8 w-8 text-teal-900" />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -328,18 +324,18 @@ export default function KisBahcesiPage() {
                   Özellikler
                 </span>
                 <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
-                  Neden Kış Bahçesi?
+                  Neden Katlanır Cam?
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                  Kış bahçeniz, evinize değer katan ve yaşam kalitenizi artıran özel bir alan
+                  Katlanır cam sisteminiz, evinize değer katan ve yaşam kalitenizi artıran özel bir alan
                 </p>
               </motion.div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {[
-                  { icon: Sun, title: "Yıl Boyu Kullanım", desc: "12 ay boyunca kullanabileceğiniz ekstra yaşam alanı" },
-                  { icon: Leaf, title: "Doğayla İç İçe", desc: "Bahçenizle eviniz arasında köprü görevi görür" },
-                  { icon: Droplets, title: "Enerji Tasarrufu", desc: "Isı yalıtımlı sistemlerle enerji maliyetlerinizi düşürün" },
+                  { icon: Folder, title: "Katlanarak Açılım", desc: "Cam panellerin katlanarak yan tarafa toplanması" },
+                  { icon: Sun, title: "Maksimum Açıklık", desc: "Tamamen açıldığında maksimum açıklık sağlar" },
+                  { icon: Droplets, title: "Enerji Tasarrufu", desc: "Kapalı konumda ısı yalıtımı ile enerji tasarrufu" },
                   { icon: Sparkles, title: "Değer Artışı", desc: "Evinizin değerini önemli ölçüde artırır" },
                 ].map((feature, index) => (
                   <motion.div
@@ -406,10 +402,7 @@ export default function KisBahcesiPage() {
                       {advantage.title}
                     </h2>
                     <p className="text-lg leading-relaxed text-gray-700 md:text-xl">
-                      {advantage.keywords ? advantage.content.split(new RegExp(`(${advantage.keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi')).map((part, i) => {
-                        const isKeyword = advantage.keywords?.some(k => part.toLowerCase() === k.toLowerCase());
-                        return isKeyword ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>;
-                      }) : advantage.content}
+                      {advantage.content}
                     </p>
                     {index === advantages.length - 1 && (
                       <div className="mt-8">
@@ -428,44 +421,6 @@ export default function KisBahcesiPage() {
             </section>
           ))}
 
-          {/* SEO Content Section */}
-          <section className="py-16 md:py-24 bg-white">
-            <div className="mx-auto max-w-7xl px-4 md:px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="prose prose-lg max-w-none"
-              >
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 md:text-4xl">
-                  Kış Bahçesi: Modern Yaşam Alanlarının Vazgeçilmezi
-                </h2>
-                
-                <div className="space-y-4 text-gray-700 leading-relaxed">
-                  <p className="text-lg">
-                    <strong>Kış bahçesi</strong>, modern mimaride yaşam alanlarını genişleten ve dört mevsim kullanılabilen özel tasarım yapılardır. 
-                    <strong> Kış bahçesi fiyatları</strong>, projenin büyüklüğü, kullanılan malzemeler ve tasarım özelliklerine göre değişiklik gösterir. 
-                    Kaliteli bir <strong>kış bahçesi sistemi</strong>, evinize değer katar ve yaşam kalitenizi artırır. İstanbul'un Sarıyer, Bahçeşehir, Beykoz, Şile, Büyükçekmece, Florya, Silivri, Tuzla, Çekmeköy ve Kurtköy gibi bölgelerinde profesyonel <strong>kış bahçesi firmaları</strong> arasında yer alıyoruz.
-                  </p>
-
-                  <p>
-                    <strong>Kış bahçesi modelleri</strong> arasında klasik, modern, <strong>bioklimatik</strong> ve panoramik tasarımlar yer alır. 
-                    Her model, farklı ihtiyaçlara ve zevklere hitap eder. <strong>Kış bahçesi modelleri fiyatları</strong> ise 
-                    seçtiğiniz modelin özelliklerine, boyutlarına ve ekstra donanımlarına göre belirlenir. <strong>Teras kapama</strong> ve <strong>teras kapatma</strong> sistemleri de kış bahçesi çözümlerimiz arasında yer alır. <strong>Cam tavan kış bahçesi</strong> modellerimiz ile modern ve şık bir yaşam alanı yaratabilirsiniz.
-                  </p>
-
-                  <p>
-                    <strong>Sarıyer kış bahçesi</strong>, <strong>Bahçeşehir kış bahçesi</strong>, <strong>Beykoz kış bahçesi</strong>, <strong>Şile kış bahçesi</strong>, <strong>Büyükçekmece kış bahçesi</strong>, <strong>Florya kış bahçesi</strong>, <strong>Silivri kış bahçesi</strong>, <strong>Tuzla kış bahçesi</strong>, <strong>Çekmeköy kış bahçesi</strong>, <strong>Kurtköy kış bahçesi</strong> projelerimizle İstanbul genelinde hizmet veriyoruz. Ayrıca <strong>Tekirdağ kış bahçesi</strong>, <strong>Kayseri kış bahçesi</strong>, <strong>Kocaeli kış bahçesi</strong> ve <strong>Bodrum kış bahçesi</strong> projelerimizle Türkiye'nin farklı şehirlerinde de hizmetinizdeyiz.
-                  </p>
-
-                  <p>
-                    <strong>Otomatik pergola</strong> ve <strong>Rolling Roof</strong> sistemleri de modern kış bahçesi çözümlerimiz arasında yer alır. <strong>Bioklimatik</strong> sistemler ile doğal havalandırma ve akıllı kontrol imkanı sunuyoruz. <strong>Teras kapama</strong> ve <strong>teras kış bahçesi</strong> projelerimiz ile terasınızı yıl boyu kullanılabilir bir alana dönüştürebilirsiniz.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
           {/* Projects Gallery */}
           <section className="py-16 md:py-24 bg-gradient-to-b from-white via-gray-50 to-white">
             <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -482,12 +437,12 @@ export default function KisBahcesiPage() {
                   Tamamlanan Projelerimiz
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  15+ yıllık tecrübemizle tamamladığımız başarılı kış bahçesi projelerinden örnekler
+                  15+ yıllık tecrübemizle tamamladığımız başarılı katlanır cam projelerinden örnekler
                 </p>
               </motion.div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {kisBahcesiProjects.map((project, index) => (
+                {katlanirCamProjects.map((project, index) => (
                   <motion.div
                     key={project.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -560,8 +515,8 @@ export default function KisBahcesiPage() {
                   {/* Image */}
                   <div className="relative w-full h-[90vh] bg-gray-100">
                     <Image
-                      src={kisBahcesiProjects[selectedProject].src}
-                      alt={kisBahcesiProjects[selectedProject].alt}
+                      src={katlanirCamProjects[selectedProject].src}
+                      alt={katlanirCamProjects[selectedProject].alt}
                       fill
                       className="object-contain"
                       sizes="100vw"
@@ -589,7 +544,7 @@ export default function KisBahcesiPage() {
                   Sıkça Sorulan Sorular
                 </h2>
                 <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
-                  Kış bahçesi hakkında merak ettikleriniz ve cevapları
+                  Katlanır cam hakkında merak ettikleriniz ve cevapları
                 </p>
               </motion.div>
 
@@ -674,7 +629,7 @@ export default function KisBahcesiPage() {
                     Aradığınız cevabı bulamadınız mı? Bizimle iletişime geçin, size yardımcı olalım.
                   </p>
                   <Link
-                    href="https://wa.me/905333593466?text=Kış%20bahçesi%20hakkında%20soru%20sormak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Katlanır%20cam%20hakkında%20soru%20sormak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-900 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                   >
@@ -737,7 +692,7 @@ export default function KisBahcesiPage() {
                   Hayalinizdeki Yaşam Alanı
                 </motion.div>
                 <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                  Hayalinizdeki Kış Bahçesine{" "}
+                  Hayalinizdeki Katlanır Cama{" "}
                   <span className="bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent">
                     Kavuşun
                   </span>
@@ -748,7 +703,7 @@ export default function KisBahcesiPage() {
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
-                    href="https://wa.me/905333593466?text=Kış%20bahçesi%20hakkında%20bilgi%20almak%20istiyorum"
+                    href="https://wa.me/905333593466?text=Katlanır%20cam%20hakkında%20bilgi%20almak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-800 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
                   >
@@ -774,3 +729,4 @@ export default function KisBahcesiPage() {
     </>
   );
 }
+

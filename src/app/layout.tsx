@@ -4,6 +4,7 @@ import "./globals.css";
 import FloatingContactBar from "@/components/FloatingContactBar";
 import ContactSidebar from "@/components/ContactSidebar";
 import PageTransition from "@/components/PageTransition";
+import CookieConsent from "@/components/CookieConsent";
 
 const poppins = Poppins({
   variable: "--font-sans",
@@ -24,8 +25,8 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kış Bahçesi Sistemleri | Modern Bioklimatik Çözümler",
-    template: "%s | Kış Bahçesi Sistemleri",
+    default: "Kış Bahçesi | Modern Bioklimatik Çözümler",
+    template: "%s | Kış Bahçesi",
   },
   description:
     "Modern kış bahçesi ve bioklimatik tavan sistemleri. Profesyonel montaj, uygun fiyatlar ve kaliteli hizmet. Kış bahçesi modelleri ve fiyatları için bizi arayın.",
@@ -43,6 +44,10 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
 };
 
@@ -74,6 +79,7 @@ export default function RootLayout({
         </PageTransition>
         <FloatingContactBar />
         <ContactSidebar />
+        <CookieConsent />
       </body>
     </html>
   );

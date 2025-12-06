@@ -5,13 +5,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CheckCircle2, Target, Eye, Heart, Award, Users, Clock, Wrench } from "lucide-react";
 
-const stats = [
-  { number: "15+", label: "Yıllık Tecrübe", icon: Clock },
-  { number: "2500+", label: "Tamamlanan Proje", icon: Award },
-  { number: "50+", label: "Uzman Ekip", icon: Users },
-  { number: "98%", label: "Müşteri Memnuniyeti", icon: Heart },
-];
-
 const values = [
   {
     title: "Kalite",
@@ -60,30 +53,6 @@ export default function HakkimizdaPage() {
               </p>
             </motion.div>
           </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="relative -mt-12 z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="rounded-2xl bg-white p-6 text-center shadow-xl border border-gray-100"
-              >
-                <stat.icon className="mx-auto mb-3 h-8 w-8 text-teal-800" />
-                <p className="text-3xl font-bold text-gray-900 md:text-4xl">{stat.number}</p>
-                <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
         </section>
 
         {/* About Content */}
