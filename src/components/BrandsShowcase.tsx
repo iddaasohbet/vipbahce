@@ -101,9 +101,9 @@ export default function BrandsShowcase() {
               className="group relative"
             >
               <Link href={service.href}>
-                <div className="relative h-full overflow-hidden rounded-2xl border-2 border-gray-200 bg-white transition-all duration-300 hover:border-teal-300 hover:shadow-xl active:border-teal-300">
-                  {/* Image */}
-                  <div className="relative h-48 md:h-64 overflow-hidden">
+                <div className="relative h-full overflow-hidden rounded-2xl p-[12px] bg-teal-800 transition-all duration-300 hover:bg-teal-600 hover:shadow-2xl active:bg-teal-600 shadow-xl outline outline-[3px] outline-teal-800 outline-offset-[-3px]">
+                  {/* Image Container */}
+                  <div className="relative h-48 md:h-64 overflow-hidden rounded-xl w-full">
                     <Image
                       src={service.image}
                       alt={service.name}
@@ -115,7 +115,7 @@ export default function BrandsShowcase() {
                     
                     {/* Title - Centered on Image */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <h3 className="text-lg md:text-xl font-bold text-white drop-shadow-lg transition-all group-hover:scale-105 text-center px-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] transition-all group-hover:scale-105 text-center px-3 leading-tight tracking-tight">
                         {service.name}
                       </h3>
                     </div>
