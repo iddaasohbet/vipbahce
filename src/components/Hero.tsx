@@ -173,24 +173,56 @@ export default function Hero() {
         )}
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0">
-          <Link
-            href="/teklif-al"
-            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-700 to-teal-800 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-lg shadow-teal-700/40 transition-all hover:scale-105 hover:shadow-xl hover:shadow-teal-700/60 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto animate-pulse-glow"
-            aria-label="Ücretsiz teklif almak için tıklayın"
+          <motion.div
+            animate={{ 
+              scale: [1, 1.05, 1],
+            }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative"
           >
-            {/* Shimmer effect */}
+            {/* Outer glow rings */}
             <motion.span
-              animate={{ x: ["-100%", "200%"] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+              animate={{ 
+                scale: [1, 1.5, 1.8],
+                opacity: [0.6, 0.3, 0]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+              className="absolute inset-0 rounded-full bg-teal-500"
             />
-            {/* Pulse ring */}
-            <span className="absolute inset-0 rounded-full animate-ping bg-teal-400/30" style={{ animationDuration: "2s" }} />
-            <span className="relative z-10 flex items-center gap-1.5">
-              Ücretsiz Keşif
-              <ArrowRight className="h-4 md:h-5 w-4 md:w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </span>
-          </Link>
+            <motion.span
+              animate={{ 
+                scale: [1, 1.3, 1.5],
+                opacity: [0.4, 0.2, 0]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+              className="absolute inset-0 rounded-full bg-teal-400"
+            />
+            
+            <Link
+              href="/teklif-al"
+              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-600 to-teal-700 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-bold text-white shadow-2xl shadow-teal-500/50 transition-all hover:scale-110 hover:shadow-teal-500/70 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto border-2 border-white/30"
+              aria-label="Ücretsiz keşif için tıklayın"
+            >
+              {/* Shimmer effect */}
+              <motion.span
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 0.5 }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+              />
+              
+              {/* Inner glow */}
+              <span className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-white/10 to-white/20" />
+              
+              <span className="relative z-10 flex items-center gap-1.5">
+                Ücretsiz Keşif
+                <ArrowRight className="h-4 md:h-5 w-4 md:w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </span>
+            </Link>
+          </motion.div>
           <Link
             href="#galeri"
             className="group rounded-full border-2 border-teal-700 bg-white px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-teal-700 transition-all hover:bg-teal-50 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"

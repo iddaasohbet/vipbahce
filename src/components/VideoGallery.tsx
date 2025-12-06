@@ -252,12 +252,6 @@ export default function VideoGallery() {
                     </motion.div>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="inline-block px-3 py-1 rounded-full bg-teal-500/90 text-white text-xs font-semibold mb-2 backdrop-blur-sm">
-                      Öne Çıkan
-                    </span>
-                    <h3 className="text-xl font-bold text-white">{videos[0].title}</h3>
-                  </div>
 
                   <div className="absolute top-3 left-3 w-10 h-10 border-l-2 border-t-2 border-teal-400/50 rounded-tl-xl" />
                   <div className="absolute top-3 right-3 w-10 h-10 border-r-2 border-t-2 border-teal-400/50 rounded-tr-xl" />
@@ -293,9 +287,6 @@ export default function VideoGallery() {
                       <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <p className="text-sm font-semibold text-white">{videos[1].title}</p>
-                  </div>
                 </div>
               </motion.div>
 
@@ -325,9 +316,6 @@ export default function VideoGallery() {
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-7 w-7 text-white ml-0.5" fill="white" />
                     </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-sm font-semibold text-white">{videos[2].title}</p>
                   </div>
                 </div>
               </motion.div>
@@ -359,9 +347,6 @@ export default function VideoGallery() {
                       <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <p className="text-sm font-semibold text-white">{videos[3].title}</p>
-                  </div>
                 </div>
               </motion.div>
 
@@ -392,9 +377,6 @@ export default function VideoGallery() {
                       <Play className="h-7 w-7 text-white ml-0.5" fill="white" />
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-sm font-semibold text-white">{videos[4].title}</p>
-                  </div>
                 </div>
               </motion.div>
 
@@ -424,9 +406,6 @@ export default function VideoGallery() {
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-500/90 backdrop-blur-sm shadow-xl">
                       <Play className="h-7 w-7 text-white ml-0.5" fill="white" />
                     </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-sm font-semibold text-white">{videos[5].title}</p>
                   </div>
                 </div>
               </motion.div>
@@ -471,20 +450,11 @@ export default function VideoGallery() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Video Info */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <span className="inline-block px-3 py-1 rounded-full bg-teal-500/90 text-white text-xs font-semibold mb-2">
-                      {activeIndex + 1} / {videos.length}
-                    </span>
-                    <h3 className="text-xl font-bold text-white mb-1">{videos[activeIndex].title}</h3>
-                    <p className="text-white/60 text-sm">Sola kaydırarak diğer videoları izleyin</p>
-                  </motion.div>
+                {/* Video Counter */}
+                <div className="absolute bottom-6 left-6 z-20">
+                  <span className="inline-block px-3 py-1 rounded-full bg-teal-500/90 text-white text-xs font-semibold backdrop-blur-sm">
+                    {activeIndex + 1} / {videos.length}
+                  </span>
                 </div>
 
                 {/* Side Controls */}
@@ -612,20 +582,6 @@ export default function VideoGallery() {
                 <Watermark />
               </div>
 
-              {/* Video Title */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="mt-4 text-center"
-              >
-                <h3 className="text-xl font-bold text-white">
-                  {videos.find(v => v.id === selectedVideo)?.title}
-                </h3>
-                <p className="text-white/50 text-sm mt-1">
-                  {videos.findIndex(v => v.id === selectedVideo) + 1} / {videos.length}
-                </p>
-              </motion.div>
             </motion.div>
           </motion.div>
         )}
