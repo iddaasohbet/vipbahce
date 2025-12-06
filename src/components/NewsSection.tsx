@@ -5,37 +5,83 @@ import Image from "next/image";
 import { ArrowUpRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-// Örnek haberler - Admin paneli yapıldığında dinamik olacak
-const newsItems = [
+interface NewsItem {
+  id: number;
+  title: string;
+  excerpt: string;
+  image_url: string;
+  category: string | null;
+  created_at: string;
+}
+
+// Fallback haberler (veritabanı yoksa)
+const fallbackNewsItems = [
   {
     id: 1,
     title: "Bioklimatik Pergola Sistemlerinde Yeni Teknolojiler",
     excerpt: "2024 yılında kış bahçesi sektöründe çığır açan yeni teknolojiler ve akıllı otomasyon sistemleri.",
-    image: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg",
+    image_url: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg",
     category: "Teknoloji",
-    date: "15 Ara",
+    created_at: new Date().toISOString(),
   },
   {
     id: 2,
     title: "Kış Bahçesi Bakım Rehberi",
     excerpt: "Kış aylarında kış bahçenizin bakımı için uzman önerileri ve ipuçları.",
-    image: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg",
+    image_url: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg",
     category: "Rehber",
-    date: "10 Ara",
+    created_at: new Date().toISOString(),
   },
   {
     id: 3,
     title: "Enerji Tasarruflu Cam Sistemleri",
     excerpt: "Isı yalıtımlı cam teknolojileri ile enerji maliyetlerinizi nasıl düşürebilirsiniz?",
-    image: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg",
+    image_url: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg",
     category: "Ürünler",
-    date: "5 Ara",
+    created_at: new Date().toISOString(),
   },
 ];
 
 export default function NewsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [newsItems, setNewsItems] = useState<NewsItem[]>(fallbackNewsItems);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadNews();
+  }, []);
+
+  const loadNews = async () => {
+    try {
+      const response = await fetch("/api/blog", {
+        cache: 'no-store',
+        next: { revalidate: 0 }
+      });
+      const data = await response.json();
+      if (data.success && data.posts && data.posts.length > 0) {
+        // Veritabanından gelen verileri formatla
+        const formattedNews = data.posts.map((post: any) => ({
+          id: post.id,
+          title: post.title,
+          excerpt: post.excerpt,
+          image_url: post.image_url,
+          category: post.category,
+          created_at: post.created_at,
+        }));
+        setNewsItems(formattedNews);
+      } else {
+        // Veritabanından veri gelmezse boş array göster (fallback kaldırıldı)
+        setNewsItems([]);
+      }
+    } catch (error) {
+      console.error("Load news error:", error);
+      // Hata durumunda boş array göster (fallback kaldırıldı)
+      setNewsItems([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -46,14 +92,14 @@ export default function NewsSection() {
 
   // Auto-slide for mobile
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile || newsItems.length === 0) return;
     
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % newsItems.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, [isMobile, newsItems.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -152,9 +198,21 @@ export default function NewsSection() {
 
         {/* News Cards */}
         <div className="relative">
-          {/* Desktop Grid */}
-          <div className="hidden md:grid md:grid-cols-3 md:gap-8">
-            {newsItems.map((item, index) => (
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="inline-block w-8 h-8 border-4 border-teal-600 border-t-transparent rounded-full animate-spin" />
+              <p className="mt-4 text-gray-600">Haberler yükleniyor...</p>
+            </div>
+          ) : newsItems.length === 0 ? (
+            <div className="text-center py-12">
+              <Sparkles className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600">Henüz haber bulunmamaktadır.</p>
+            </div>
+          ) : (
+            <>
+              {/* Desktop Grid */}
+              <div className="hidden md:grid md:grid-cols-3 md:gap-8">
+                {newsItems.map((item, index) => (
               <motion.article
                 key={item.id}
                 initial={{ opacity: 0, y: 40 }}
@@ -166,7 +224,7 @@ export default function NewsSection() {
                 {/* Image Container */}
                 <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-3xl">
                   <Image
-                    src={item.image}
+                    src={item.image_url}
                     alt={item.title}
                     fill
                     className="object-cover transition-all duration-700 group-hover:scale-110"
@@ -176,11 +234,13 @@ export default function NewsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   
                   {/* Category Badge */}
-                  <div className="absolute left-4 top-4">
-                    <span className="rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-gray-900 shadow-lg">
-                      {item.category}
-                    </span>
-                  </div>
+                  {item.category && (
+                    <div className="absolute left-4 top-4">
+                      <span className="rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-gray-900 shadow-lg">
+                        {item.category}
+                      </span>
+                    </div>
+                  )}
                   
                   {/* Read More - Appears on hover */}
                   <motion.div
@@ -197,9 +257,18 @@ export default function NewsSection() {
                 {/* Content */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm text-gray-400">{item.date}</span>
-                    <span className="h-1 w-1 rounded-full bg-gray-300" />
-                    <span className="text-sm text-teal-600 font-medium">{item.category}</span>
+                    <span className="text-sm text-gray-400">
+                      {new Date(item.created_at).toLocaleDateString("tr-TR", {
+                        day: "numeric",
+                        month: "short",
+                      })}
+                    </span>
+                    {item.category && (
+                      <>
+                        <span className="h-1 w-1 rounded-full bg-gray-300" />
+                        <span className="text-sm text-teal-600 font-medium">{item.category}</span>
+                      </>
+                    )}
                   </div>
                   
                   <h3 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-teal-700 line-clamp-2">
@@ -233,23 +302,30 @@ export default function NewsSection() {
                       {/* Image Container */}
                       <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-2xl">
                         <Image
-                          src={item.image}
+                          src={item.image_url}
                           alt={item.title}
                           fill
                           className="object-cover"
                         />
                         
                         {/* Category Badge */}
-                        <div className="absolute left-3 top-3">
-                          <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-900 shadow-lg">
-                            {item.category}
-                          </span>
-                        </div>
+                        {item.category && (
+                          <div className="absolute left-3 top-3">
+                            <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-900 shadow-lg">
+                              {item.category}
+                            </span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Content */}
                       <div className="space-y-2">
-                        <span className="text-xs text-gray-400">{item.date}</span>
+                        <span className="text-xs text-gray-400">
+                          {new Date(item.created_at).toLocaleDateString("tr-TR", {
+                            day: "numeric",
+                            month: "short",
+                          })}
+                        </span>
                         
                         <h3 className="text-lg font-bold text-gray-900 line-clamp-2">
                           {item.title}
@@ -297,6 +373,8 @@ export default function NewsSection() {
               </button>
             </div>
           </div>
+            </>
+          )}
         </div>
 
       </div>

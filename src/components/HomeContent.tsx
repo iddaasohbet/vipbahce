@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import BrandsShowcase from "@/components/BrandsShowcase";
 import Services from "@/components/Services";
+import ProjectsShowcase from "@/components/ProjectsShowcase";
 import VideoGallery from "@/components/VideoGallery";
 import Testimonials from "@/components/Testimonials";
 import NewsSection from "@/components/NewsSection";
@@ -28,6 +29,7 @@ export default function HomeContent() {
           <Hero />
           <BrandsShowcase />
           <Services />
+          <ProjectsShowcase />
           <VideoGallery />
           <Testimonials />
           <NewsSection />
@@ -50,6 +52,7 @@ export default function HomeContent() {
           <Hero />
           <BrandsShowcase />
           <Services />
+          <ProjectsShowcase />
           <VideoGallery />
           <Testimonials />
           <NewsSection />

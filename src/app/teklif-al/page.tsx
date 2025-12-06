@@ -27,11 +27,38 @@ export default function TeklifAl() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        // Formu temizle
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          city: "",
+          projectType: "",
+          area: "",
+          message: "",
+        });
+      } else {
+        alert(data.message || "Bir hata oluştu. Lütfen tekrar deneyin.");
+      }
+    } catch (error: any) {
+      console.error("Form submission error:", error);
+      alert("Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const projectTypes = [

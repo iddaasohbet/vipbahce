@@ -7,32 +7,39 @@ import { X, ChevronLeft, ChevronRight, Play, Maximize2, Grid3X3, LayoutGrid, Cam
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Proje görselleri
-const projectImages = [
-  { id: 1, src: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg", title: "Modern Kış Bahçesi", category: "kis-bahcesi" },
-  { id: 2, src: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg", title: "Bioklimatik Sistem", category: "bioklimatik" },
-  { id: 3, src: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg", title: "Panoramik Kış Bahçesi", category: "kis-bahcesi" },
-  { id: 4, src: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg", title: "Cam Balkon", category: "cam-balkon" },
-  { id: 5, src: "/images/projects/24929279-47c0-4aad-b65f-f7ba24e86f5d.jpg", title: "Villa Projesi", category: "kis-bahcesi" },
-  { id: 6, src: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg", title: "Lüks Kış Bahçesi", category: "kis-bahcesi" },
-  { id: 7, src: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg", title: "Minimal Tasarım", category: "bioklimatik" },
-  { id: 8, src: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg", title: "Bahçe Kış Bahçesi", category: "kis-bahcesi" },
-  { id: 9, src: "/images/projects/6f262068-8523-46bb-8db4-89d9a2cfb385.jpg", title: "Teras Sistemi", category: "teras" },
-  { id: 10, src: "/images/projects/72d1c386-41de-4199-8b88-d1e92457f134.jpg", title: "Premium Kış Bahçesi", category: "kis-bahcesi" },
-  { id: 11, src: "/images/projects/7920ba6f-b67e-47a0-9b09-5760f7bd139d.jpg", title: "Modern Villa", category: "kis-bahcesi" },
-  { id: 12, src: "/images/projects/7c30fee6-861f-4949-bd08-95dd9f9a16f2.jpg", title: "Cam Tavan Sistemi", category: "bioklimatik" },
-  { id: 13, src: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg", title: "Modern Tasarım", category: "kis-bahcesi" },
-  { id: 14, src: "/images/projects/8e0ee8dd-3e22-4322-95c7-17a507f0ed28.jpg", title: "Lüks Villa", category: "kis-bahcesi" },
-  { id: 15, src: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg", title: "Bioklimatik Tavan", category: "bioklimatik" },
-  { id: 16, src: "/images/projects/9ece48f1-4fd1-4573-8fb0-2a8684db1be0.jpg", title: "Teras Kapatma", category: "teras" },
-  { id: 17, src: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg", title: "Panoramik Görünüm", category: "cam-balkon" },
-  { id: 18, src: "/images/projects/a77c368b-8476-4a92-a01c-6c08f705b980.jpg", title: "Cam Sistem", category: "cam-balkon" },
-  { id: 19, src: "/images/projects/c84d2298-dd03-4a2f-80ab-4224e9e1b272.jpg", title: "Premium Proje", category: "kis-bahcesi" },
-  { id: 20, src: "/images/projects/cf3777cd-a53c-44d5-aa2b-f0562621a607.jpg", title: "Bahçe Entegrasyonu", category: "kis-bahcesi" },
-  { id: 21, src: "/images/projects/df5971d9-c105-4b7e-bbe5-17f182ae8bc8.jpg", title: "Modern Çözüm", category: "bioklimatik" },
-  { id: 22, src: "/images/projects/e327a0bb-698e-448b-94e1-126291cb38be.jpg", title: "Premium Sistem", category: "kis-bahcesi" },
-  { id: 23, src: "/images/projects/e672ed00-ee93-49eb-8ff6-5f95772ae59e.jpg", title: "Teras Entegrasyonu", category: "teras" },
+// Fallback projeler (veritabanı yoksa)
+const fallbackProjectImages = [
+  { id: 1, image_url: "/images/projects/110810ab-64f2-4728-a238-2a003508a302.jpg", title: "Modern Kış Bahçesi", category: "kis-bahcesi" },
+  { id: 2, image_url: "/images/projects/1cf74c9f-4258-4639-b8f8-028cfa3af530.jpg", title: "Bioklimatik Sistem", category: "bioklimatik" },
+  { id: 3, image_url: "/images/projects/23423c76-bf9b-4e4d-9d1a-c6be73a68a50.jpg", title: "Panoramik Kış Bahçesi", category: "kis-bahcesi" },
+  { id: 4, image_url: "/images/projects/23dd0ae8-c2ea-45ba-ad0e-272c0628a12d.jpg", title: "Cam Balkon", category: "cam-balkon" },
+  { id: 5, image_url: "/images/projects/24929279-47c0-4aad-b65f-f7ba24e86f5d.jpg", title: "Villa Projesi", category: "kis-bahcesi" },
+  { id: 6, image_url: "/images/projects/3ad4c9ba-779e-4b89-9442-42e1be96dfbf.jpg", title: "Lüks Kış Bahçesi", category: "kis-bahcesi" },
+  { id: 7, image_url: "/images/projects/54bf52db-878e-4d73-816a-61a561f97f15.jpg", title: "Minimal Tasarım", category: "bioklimatik" },
+  { id: 8, image_url: "/images/projects/615a9bb3-45f2-42e9-9a4f-dae84b4f64de.jpg", title: "Bahçe Kış Bahçesi", category: "kis-bahcesi" },
+  { id: 9, image_url: "/images/projects/6f262068-8523-46bb-8db4-89d9a2cfb385.jpg", title: "Teras Sistemi", category: "teras" },
+  { id: 10, image_url: "/images/projects/72d1c386-41de-4199-8b88-d1e92457f134.jpg", title: "Premium Kış Bahçesi", category: "kis-bahcesi" },
+  { id: 11, image_url: "/images/projects/7920ba6f-b67e-47a0-9b09-5760f7bd139d.jpg", title: "Modern Villa", category: "kis-bahcesi" },
+  { id: 12, image_url: "/images/projects/7c30fee6-861f-4949-bd08-95dd9f9a16f2.jpg", title: "Cam Tavan Sistemi", category: "bioklimatik" },
+  { id: 13, image_url: "/images/projects/86e1cccf-d01f-4c17-83a1-a89b14f60477.jpg", title: "Modern Tasarım", category: "kis-bahcesi" },
+  { id: 14, image_url: "/images/projects/8e0ee8dd-3e22-4322-95c7-17a507f0ed28.jpg", title: "Lüks Villa", category: "kis-bahcesi" },
+  { id: 15, image_url: "/images/projects/94ceb7d1-7e61-4612-bf9c-6a2623cd45fe.jpg", title: "Bioklimatik Tavan", category: "bioklimatik" },
+  { id: 16, image_url: "/images/projects/9ece48f1-4fd1-4573-8fb0-2a8684db1be0.jpg", title: "Teras Kapatma", category: "teras" },
+  { id: 17, image_url: "/images/projects/a2a54c7a-f684-47ad-861a-3b5c02a4fd94.jpg", title: "Panoramik Görünüm", category: "cam-balkon" },
+  { id: 18, image_url: "/images/projects/a77c368b-8476-4a92-a01c-6c08f705b980.jpg", title: "Cam Sistem", category: "cam-balkon" },
+  { id: 19, image_url: "/images/projects/c84d2298-dd03-4a2f-80ab-4224e9e1b272.jpg", title: "Premium Proje", category: "kis-bahcesi" },
+  { id: 20, image_url: "/images/projects/cf3777cd-a53c-44d5-aa2b-f0562621a607.jpg", title: "Bahçe Entegrasyonu", category: "kis-bahcesi" },
+  { id: 21, image_url: "/images/projects/df5971d9-c105-4b7e-bbe5-17f182ae8bc8.jpg", title: "Modern Çözüm", category: "bioklimatik" },
+  { id: 22, image_url: "/images/projects/e327a0bb-698e-448b-94e1-126291cb38be.jpg", title: "Premium Sistem", category: "kis-bahcesi" },
+  { id: 23, image_url: "/images/projects/e672ed00-ee93-49eb-8ff6-5f95772ae59e.jpg", title: "Teras Entegrasyonu", category: "teras" },
 ];
+
+interface ProjectImage {
+  id: number;
+  image_url: string;
+  title: string;
+  category: string | null;
+}
 
 // Videolar - Sırasıyla ekleniyor
 const projectVideos = [
@@ -60,8 +67,32 @@ export default function Galeri() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [gridSize, setGridSize] = useState<"small" | "large">("large");
   const [activeTab, setActiveTab] = useState<"photos" | "videos">("photos");
+  const [projectImages, setProjectImages] = useState<ProjectImage[]>(fallbackProjectImages);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const thumbnailVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+
+  useEffect(() => {
+    loadProjects();
+  }, []);
+
+  const loadProjects = async () => {
+    try {
+      const response = await fetch("/api/projects");
+      const data = await response.json();
+      if (data.success && data.projects && data.projects.length > 0) {
+        // Veritabanından gelen projeleri formatla
+        const formattedProjects = data.projects.map((p: any) => ({
+          id: p.id,
+          image_url: p.image_url,
+          title: p.title,
+          category: p.category ? p.category.toLowerCase().replace(/\s+/g, "-") : null,
+        }));
+        setProjectImages(formattedProjects);
+      }
+    } catch (error) {
+      console.error("Load projects error:", error);
+    }
+  };
 
   const openVideoModal = (videoId: number) => {
     setSelectedVideo(videoId);
@@ -312,7 +343,7 @@ export default function Galeri() {
                         }`}
                       >
                         <Image
-                          src={image.src}
+                          src={image.image_url}
                           alt={image.title}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -442,7 +473,7 @@ export default function Galeri() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <Image
-                  src={filteredImages.find(img => img.id === selectedImage)?.src || ""}
+                  src={filteredImages.find(img => img.id === selectedImage)?.image_url || ""}
                   alt={filteredImages.find(img => img.id === selectedImage)?.title || ""}
                   width={1200}
                   height={800}
