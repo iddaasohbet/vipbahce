@@ -125,12 +125,19 @@ export default function AdminContent() {
     e.preventDefault();
     
     if (formData.image_url && formData.image_url.startsWith('data:')) {
-      alert("Lütfen resmi yükleyin veya geçerli bir dosya yolu girin (örn: /images/projects/resim.jpg)\n\nBase64 resimler desteklenmiyor.");
+      alert("Base64 resimler desteklenmiyor. Lütfen resmi yükleyin.");
       return;
     }
 
-    if (!formData.image_url || !formData.image_url.startsWith('/')) {
-      alert("Lütfen geçerli bir resim yolu girin (örn: /images/projects/resim.jpg)");
+    // Geçerli URL kontrolü: /images/ ile başlayan veya https:// ile başlayan URL'ler kabul edilir
+    const isValidUrl = formData.image_url && (
+      formData.image_url.startsWith('/') || 
+      formData.image_url.startsWith('https://') ||
+      formData.image_url.startsWith('http://')
+    );
+
+    if (!isValidUrl) {
+      alert("Lütfen geçerli bir resim yükleyin veya URL girin");
       return;
     }
 
@@ -480,12 +487,13 @@ export default function AdminContent() {
                   </label>
                   {formData.image_url ? (
                     <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-gray-200 bg-gray-100">
-                      {formData.image_url.startsWith('/') ? (
+                      {(formData.image_url.startsWith('/') || formData.image_url.startsWith('https://') || formData.image_url.startsWith('http://')) ? (
                         <Image
                           src={formData.image_url}
                           alt="Preview"
                           fill
                           className="object-cover"
+                          unoptimized={formData.image_url.startsWith('http')}
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.style.display = 'none';
