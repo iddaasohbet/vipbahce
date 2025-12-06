@@ -101,9 +101,9 @@ export default function BrandsShowcase() {
               className="group relative"
             >
               <Link href={service.href}>
-                <div className="relative h-full overflow-hidden rounded-2xl p-[12px] bg-teal-800 transition-all duration-300 hover:bg-teal-600 hover:shadow-2xl active:bg-teal-600 shadow-xl outline outline-[3px] outline-teal-800 outline-offset-[-3px]">
+                <div className="relative h-full overflow-hidden rounded-2xl p-[3px] bg-teal-800 transition-all duration-300 hover:bg-teal-600 hover:shadow-2xl active:bg-teal-600 shadow-xl">
                   {/* Image Container */}
-                  <div className="relative h-48 md:h-64 overflow-hidden rounded-xl w-full">
+                  <div className="relative h-48 md:h-64 overflow-hidden rounded-xl w-full bg-white">
                     <Image
                       src={service.image}
                       alt={service.name}
