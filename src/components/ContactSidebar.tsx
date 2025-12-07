@@ -59,12 +59,15 @@ export default function ContactSidebar() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // WhatsApp mesajı oluştur
-    const whatsappMessage = `Merhaba, ben ${formData.name}.\n\nTelefon: ${formData.phone}\n\nMesajım: ${formData.message}`;
-    const whatsappUrl = `https://wa.me/905333593466?text=${encodeURIComponent(whatsappMessage)}`;
+    // Mail içeriği oluştur
+    const subject = `Yeni İletişim Talebi - ${formData.name}`;
+    const body = `Ad Soyad: ${formData.name}\n\nTelefon: ${formData.phone}\n\nMesaj:\n${formData.message}\n\n---\nBu mesaj vipkisbahcesi.com web sitesinden gönderilmiştir.`;
     
-    // WhatsApp'a yönlendir
-    window.open(whatsappUrl, '_blank');
+    // Mailto linki oluştur
+    const mailtoUrl = `mailto:vipkisbahcesi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Mail uygulamasını aç
+    window.location.href = mailtoUrl;
     
     // Formu temizle ve kapat
     setFormSubmitted(true);
