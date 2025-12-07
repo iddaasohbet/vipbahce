@@ -218,12 +218,8 @@ export default function Services() {
         <div className="md:hidden">
           <div className="grid grid-cols-2 gap-3">
             {materials.map((material, index) => (
-              <motion.div
+              <div
                 key={material.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
                 onClick={() => setSelectedImage(material.id)}
                 className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-gray-100"
               >
@@ -233,6 +229,10 @@ export default function Services() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="50vw"
+                  priority
+                  loading="eager"
+                  fetchPriority="high"
+                  quality={85}
                 />
                 <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm">
                   <ZoomIn className="h-4 w-4 text-teal-900" />
@@ -243,7 +243,7 @@ export default function Services() {
                 <div className="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-teal-500/60 rounded-tr-lg" />
                 <div className="absolute bottom-2 left-2 w-6 h-6 border-l-2 border-b-2 border-teal-500/60 rounded-bl-lg" />
                 <div className="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-teal-500/60 rounded-br-lg" />
-              </motion.div>
+              </div>
             ))}
           </div>
 

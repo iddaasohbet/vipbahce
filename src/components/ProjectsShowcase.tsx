@@ -44,7 +44,7 @@ export default function ProjectsShowcase() {
     loadProjects();
   }, []);
 
-  // Mobil için rastgele 8 resim seç
+  // Mobil için rastgele 8 resim seç ve hemen preload et
   useEffect(() => {
     if (typeof window !== 'undefined' && projects.length > 0) {
       const isMobile = window.innerWidth < 768;
@@ -52,13 +52,20 @@ export default function ProjectsShowcase() {
         const randomProjects = getRandomProjects(projects, 8);
         setMobileProjects(randomProjects);
         
-        // Seçilen resimleri preload et
-        randomProjects.forEach((project) => {
+        // Seçilen resimleri hemen preload et (agresif yükleme)
+        randomProjects.forEach((project, index) => {
+          // Hemen preload link ekle
           const link = document.createElement('link');
           link.rel = 'preload';
           link.as = 'image';
           link.href = project.image_url;
+          link.fetchPriority = 'high';
           document.head.appendChild(link);
+          
+          // Ayrıca Image preload için img elementi oluştur
+          const img = new window.Image();
+          img.src = project.image_url;
+          img.loading = 'eager';
         });
       }
     }
@@ -245,12 +252,8 @@ export default function ProjectsShowcase() {
           {mobileProjects.length > 0 ? (
             <div className="grid grid-cols-2 gap-4">
               {mobileProjects.map((project, index) => (
-                <motion.div
+                <div
                   key={`mobile-${project.id}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   className="group relative aspect-square overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all hover:shadow-xl cursor-pointer"
                   onClick={() => openProjectModal(project.id)}
                 >
@@ -263,6 +266,8 @@ export default function ProjectsShowcase() {
                     priority
                     quality={85}
                     fetchPriority="high"
+                    loading="eager"
+                    unoptimized={false}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -273,7 +278,7 @@ export default function ProjectsShowcase() {
                     )}
                     <h3 className="text-sm font-bold text-white">{project.title}</h3>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           ) : (
