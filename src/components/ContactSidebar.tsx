@@ -15,6 +15,11 @@ import {
 export default function ContactSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    message: ''
+  });
 
   // Body scroll lock when panel is open
   useEffect(() => {
@@ -51,13 +56,23 @@ export default function ContactSidebar() {
     };
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // WhatsApp mesajı oluştur
+    const whatsappMessage = `Merhaba, ben ${formData.name}.\n\nTelefon: ${formData.phone}\n\nMesajım: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/905333593466?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // WhatsApp'a yönlendir
+    window.open(whatsappUrl, '_blank');
+    
+    // Formu temizle ve kapat
     setFormSubmitted(true);
     setTimeout(() => {
       setFormSubmitted(false);
       setIsOpen(false);
-    }, 2000);
+      setFormData({ name: '', phone: '', message: '' });
+    }, 1500);
   };
 
   return (
@@ -359,24 +374,33 @@ export default function ContactSidebar() {
                       <div className="relative">
                         <input
                           type="text"
+                          name="name"
                           placeholder="Adınız Soyadınız"
                           required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-700/10"
                         />
                       </div>
                       <div className="relative">
                         <input
                           type="tel"
+                          name="phone"
                           placeholder="Telefon Numaranız"
                           required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-700/10"
                         />
                       </div>
                       <div className="relative">
                         <textarea
+                          name="message"
                           placeholder="Mesajınız..."
                           rows={3}
                           required
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           className="w-full resize-none rounded-xl border-2 border-gray-100 bg-gray-50/50 px-4 py-3 text-sm transition-all placeholder:text-gray-400 focus:border-teal-700 focus:bg-white focus:outline-none focus:ring-4 focus:ring-teal-700/10"
                         ></textarea>
                       </div>

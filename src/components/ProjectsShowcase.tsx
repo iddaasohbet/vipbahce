@@ -35,22 +35,43 @@ export default function ProjectsShowcase() {
 
   useEffect(() => {
     loadProjects();
-  }, []);
-
-  // Mobil için resimleri preload et
-  useEffect(() => {
-    if (typeof window !== 'undefined' && projects.length > 0) {
+    
+    // Mobilde fallback resimleri hemen preload et
+    if (typeof window !== 'undefined') {
       const isMobile = window.innerWidth < 768;
       if (isMobile) {
-        // İlk 6 resmi preload et (üst ve alt slider'ın görünen kısmı)
-        const imagesToPreload = projects.slice(0, 6);
-        imagesToPreload.forEach((project) => {
+        fallbackProjects.slice(0, 10).forEach((project) => {
           const link = document.createElement('link');
           link.rel = 'preload';
           link.as = 'image';
           link.href = project.image_url;
-          link.fetchPriority = 'high';
+          link.setAttribute('fetchpriority', 'high');
           document.head.appendChild(link);
+        });
+      }
+    }
+  }, []);
+
+  // Mobil için TÜM resimleri agresif şekilde preload et
+  useEffect(() => {
+    if (typeof window !== 'undefined' && projects.length > 0) {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        // TÜM resimleri preload et (slider'da hepsi görünecek)
+        projects.forEach((project) => {
+          // Link preload
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = project.image_url;
+          link.setAttribute('fetchpriority', 'high');
+          document.head.appendChild(link);
+          
+          // Image preload (daha agresif)
+          const img = new window.Image();
+          img.src = project.image_url;
+          img.loading = 'eager';
+          img.fetchPriority = 'high';
         });
       }
     }
@@ -242,7 +263,8 @@ export default function ProjectsShowcase() {
                 style={{ 
                   width: 'fit-content',
                   opacity: 1,
-                  visibility: 'visible'
+                  visibility: 'visible',
+                  willChange: 'transform'
                 }}
               >
                 {/* İki kez tekrarla smooth infinite scroll için */}
@@ -261,9 +283,10 @@ export default function ProjectsShowcase() {
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                           sizes="288px"
                           priority
-                          quality={85}
+                          quality={75}
                           fetchPriority="high"
                           loading="eager"
+                          unoptimized={false}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -293,7 +316,8 @@ export default function ProjectsShowcase() {
                 style={{ 
                   width: 'fit-content',
                   opacity: 1,
-                  visibility: 'visible'
+                  visibility: 'visible',
+                  willChange: 'transform'
                 }}
               >
                 {/* İki kez tekrarla smooth infinite scroll için */}
@@ -312,9 +336,10 @@ export default function ProjectsShowcase() {
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                           sizes="288px"
                           priority
-                          quality={85}
+                          quality={75}
                           fetchPriority="high"
                           loading="eager"
+                          unoptimized={false}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
