@@ -47,6 +47,13 @@ export default function Hero() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
   
   return (
     <section
@@ -193,7 +200,7 @@ export default function Hero() {
             </span>
           </a>
           <Link
-            href="#galeri"
+            href="/galeri"
             className="group rounded-full border-2 border-teal-900 bg-white px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-teal-900 transition-all hover:bg-teal-50 min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"
             aria-label="Projelerimizi incelemek için tıklayın"
           >
@@ -302,14 +309,16 @@ export default function Hero() {
             className="absolute bottom-4 left-1/2 -translate-x-1/2"
           >
             {!shouldReduceMotion ? (
-              <motion.div
+              <motion.button
+                onClick={handleScrollDown}
                 animate={{ y: [0, 8, 0] }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="flex flex-col items-center gap-3"
+                className="flex flex-col items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+                aria-label="Aşağı kaydır"
               >
                 <div className="relative">
                   <div className="absolute inset-0 animate-ping rounded-full bg-teal-800/30" />
@@ -320,16 +329,20 @@ export default function Hero() {
                   </div>
                 </div>
                 <span className="text-xs font-medium uppercase tracking-widest text-teal-800">Keşfet</span>
-              </motion.div>
+              </motion.button>
             ) : (
-              <div className="flex flex-col items-center gap-3">
+              <button
+                onClick={handleScrollDown}
+                className="flex flex-col items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+                aria-label="Aşağı kaydır"
+              >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-900 bg-white shadow-lg">
                   <svg className="h-5 w-5 text-teal-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </div>
                 <span className="text-xs font-medium uppercase tracking-widest text-teal-800">Keşfet</span>
-              </div>
+              </button>
             )}
           </motion.div>
         )}

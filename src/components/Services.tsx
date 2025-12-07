@@ -137,55 +137,21 @@ export default function Services() {
           </div>
         </motion.div>
 
-        {/* Desktop Grid - Kurumsal Tasarım */}
+        {/* Desktop Grid - Eşit Boyutlu */}
         <div className="hidden md:block">
-          {/* Ana Grid */}
+          {/* Ana Grid - 4 Sütun, 2 Satır */}
           <div className="grid grid-cols-4 gap-6 lg:gap-8">
-            {/* Sol Büyük Görsel */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="row-span-2"
-            >
-              <div
-                onClick={() => setSelectedImage(materials[0].id)}
-                className="group relative h-full min-h-[500px] cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all duration-500 hover:shadow-2xl"
-              >
-                <Image
-                  src={materials[0].src}
-                  alt={materials[0].title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="33vw"
-                />
-
-                {/* Zoom Icon */}
-                <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
-                  <ZoomIn className="h-5 w-5 text-white" />
-                </div>
-
-                {/* Corner Borders */}
-                <div className="absolute top-3 left-3 w-10 h-10 border-l-2 border-t-2 border-teal-500/60 rounded-tl-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
-                <div className="absolute top-3 right-3 w-10 h-10 border-r-2 border-t-2 border-teal-500/60 rounded-tr-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
-                <div className="absolute bottom-3 left-3 w-10 h-10 border-l-2 border-b-2 border-teal-500/60 rounded-bl-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
-                <div className="absolute bottom-3 right-3 w-10 h-10 border-r-2 border-b-2 border-teal-500/60 rounded-br-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
-              </div>
-            </motion.div>
-
-            {/* Sağ Üst 3'lü Grid */}
-            {materials.slice(1, 4).map((material, index) => (
+            {materials.map((material, index) => (
               <motion.div
                 key={material.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <div
                   onClick={() => setSelectedImage(material.id)}
-                  className="group relative h-[240px] cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                  className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
                 >
                   <Image
                     src={material.src}
@@ -195,37 +161,16 @@ export default function Services() {
                     sizes="25vw"
                   />
 
-                  {/* Corner Borders */}
-                  <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-teal-500/50 rounded-tl-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
-                  <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-teal-500/50 rounded-tr-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Sağ Alt 4'lü Grid */}
-            {materials.slice(4, 8).map((material, index) => (
-              <motion.div
-                key={material.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 * (index + 4) }}
-              >
-                <div
-                  onClick={() => setSelectedImage(material.id)}
-                  className="group relative h-[240px] cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
-                >
-                  <Image
-                    src={material.src}
-                    alt={material.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="25vw"
-                  />
+                  {/* Zoom Icon */}
+                  <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+                    <ZoomIn className="h-5 w-5 text-white" />
+                  </div>
 
                   {/* Corner Borders */}
-                  <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-teal-500/50 rounded-tl-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
-                  <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-teal-500/50 rounded-tr-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
+                  <div className="absolute top-3 left-3 w-10 h-10 border-l-2 border-t-2 border-teal-500/60 rounded-tl-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
+                  <div className="absolute top-3 right-3 w-10 h-10 border-r-2 border-t-2 border-teal-500/60 rounded-tr-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
+                  <div className="absolute bottom-3 left-3 w-10 h-10 border-l-2 border-b-2 border-teal-500/60 rounded-bl-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
+                  <div className="absolute bottom-3 right-3 w-10 h-10 border-r-2 border-b-2 border-teal-500/60 rounded-br-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
                 </div>
               </motion.div>
             ))}
