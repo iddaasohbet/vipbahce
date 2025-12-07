@@ -37,6 +37,24 @@ export default function ProjectsShowcase() {
     loadProjects();
   }, []);
 
+  // Mobil için resimleri preload et
+  useEffect(() => {
+    if (typeof window !== 'undefined' && projects.length > 0) {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        // İlk 6 resmi preload et (üst ve alt slider'ın görünen kısmı)
+        const imagesToPreload = projects.slice(0, 6);
+        imagesToPreload.forEach((project) => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = project.image_url;
+          document.head.appendChild(link);
+        });
+      }
+    }
+  }, [projects]);
+
   const loadProjects = async () => {
     try {
       const response = await fetch("/api/projects");
@@ -138,7 +156,9 @@ export default function ProjectsShowcase() {
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           sizes="320px"
-                          loading="eager"
+                          priority
+                          quality={85}
+                          fetchPriority="high"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -186,7 +206,9 @@ export default function ProjectsShowcase() {
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           sizes="320px"
-                          loading="eager"
+                          priority
+                          quality={85}
+                          fetchPriority="high"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -236,9 +258,10 @@ export default function ProjectsShowcase() {
                           alt={project.title}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="288px"
-                          loading="eager"
-                          priority={index < 4}
+                          sizes="(max-width: 768px) 288px, 320px"
+                          priority
+                          quality={85}
+                          fetchPriority="high"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -284,9 +307,10 @@ export default function ProjectsShowcase() {
                           alt={project.title}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="288px"
-                          loading="eager"
-                          priority={index < 4}
+                          sizes="(max-width: 768px) 288px, 320px"
+                          priority
+                          quality={85}
+                          fetchPriority="high"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
