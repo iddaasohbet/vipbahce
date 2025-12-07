@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import FloatingContactBar from "@/components/FloatingContactBar";
 import ContactSidebar from "@/components/ContactSidebar";
@@ -63,6 +64,20 @@ export default function RootLayout({
         <meta name="google-site-verification" content="OXMAGmfUFMYyJ5K72o8MBh4niW5g2YJxjMXy7ibOwKY" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-D93PGQ2WYL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D93PGQ2WYL');
+          `}
+        </Script>
         
         <style dangerouslySetInnerHTML={{ __html: `
           *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
