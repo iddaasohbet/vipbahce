@@ -136,8 +136,7 @@ export default function ProjectsShowcase() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="320px"
-                        priority={index < 4}
-                        loading={index < 4 ? "eager" : "lazy"}
+                        loading="eager"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -185,8 +184,7 @@ export default function ProjectsShowcase() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="320px"
-                        priority={index < 4}
-                        loading={index < 4 ? "eager" : "lazy"}
+                        loading="eager"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
