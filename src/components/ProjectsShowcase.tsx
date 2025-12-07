@@ -31,20 +31,29 @@ const fallbackProjects = [
 export default function ProjectsShowcase() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [projects, setProjects] = useState<Project[]>(fallbackProjects);
+  const [mobileProjects, setMobileProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Rastgele proje seçme fonksiyonu
+  const getRandomProjects = (allProjects: Project[], count: number): Project[] => {
+    const shuffled = [...allProjects].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, Math.min(count, allProjects.length));
+  };
 
   useEffect(() => {
     loadProjects();
   }, []);
 
-  // Mobil için resimleri preload et
+  // Mobil için rastgele 8 resim seç
   useEffect(() => {
     if (typeof window !== 'undefined' && projects.length > 0) {
       const isMobile = window.innerWidth < 768;
       if (isMobile) {
-        // İlk 6 resmi preload et (üst ve alt slider'ın görünen kısmı)
-        const imagesToPreload = projects.slice(0, 6);
-        imagesToPreload.forEach((project) => {
+        const randomProjects = getRandomProjects(projects, 8);
+        setMobileProjects(randomProjects);
+        
+        // Seçilen resimleri preload et
+        randomProjects.forEach((project) => {
           const link = document.createElement('link');
           link.rel = 'preload';
           link.as = 'image';
@@ -231,105 +240,45 @@ export default function ProjectsShowcase() {
           </div>
         </div>
 
-        {/* Mobile Sliders */}
+        {/* Mobile Grid - 2x2x2x2 */}
         <div className="md:hidden">
-          {/* Top Slider - Sağdan Sola */}
-          <div className="mb-6 overflow-hidden">
-            <div className="relative">
-              <div 
-                className="flex gap-4 animate-slide-left" 
-                style={{ 
-                  width: 'fit-content',
-                  opacity: 1,
-                  visibility: 'visible'
-                }}
-              >
-                {/* İki kez tekrarla smooth infinite scroll için */}
-                {topRowProjects.length > 0 ? (
-                  [...topRowProjects, ...topRowProjects].map((project, index) => (
-                    <div
-                      key={`mobile-top-${project.id}-${index}`}
-                      className="group relative flex-shrink-0 w-72 h-56 overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all hover:shadow-xl cursor-pointer"
-                      onClick={() => openProjectModal(project.id)}
-                    >
-                      <div className="relative w-full h-full overflow-hidden">
-                        <Image
-                          src={project.image_url}
-                          alt={project.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="(max-width: 768px) 288px, 320px"
-                          priority
-                          quality={85}
-                          fetchPriority="high"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                          {project.category && (
-                            <div className="mb-1 inline-block rounded-full bg-teal-500 px-2 py-0.5 text-xs font-medium text-white">
-                              {project.category}
-                            </div>
-                          )}
-                          <h3 className="text-sm font-bold text-white">{project.title}</h3>
-                        </div>
+          {mobileProjects.length > 0 ? (
+            <div className="grid grid-cols-2 gap-4">
+              {mobileProjects.map((project, index) => (
+                <motion.div
+                  key={`mobile-${project.id}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="group relative aspect-square overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all hover:shadow-xl cursor-pointer"
+                  onClick={() => openProjectModal(project.id)}
+                >
+                  <Image
+                    src={project.image_url}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="50vw"
+                    priority
+                    quality={85}
+                    fetchPriority="high"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    {project.category && (
+                      <div className="mb-1 inline-block rounded-full bg-teal-500 px-2 py-0.5 text-xs font-medium text-white">
+                        {project.category}
                       </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-center text-gray-500 py-8">Proje bulunamadı</div>
-                )}
-              </div>
+                    )}
+                    <h3 className="text-sm font-bold text-white">{project.title}</h3>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </div>
-
-          {/* Bottom Slider - Soldan Sağa */}
-          <div className="overflow-hidden">
-            <div className="relative">
-              <div 
-                className="flex gap-4 animate-slide-right" 
-                style={{ 
-                  width: 'fit-content',
-                  opacity: 1,
-                  visibility: 'visible'
-                }}
-              >
-                {/* İki kez tekrarla smooth infinite scroll için */}
-                {bottomRowProjects.length > 0 ? (
-                  [...bottomRowProjects, ...bottomRowProjects].map((project, index) => (
-                    <div
-                      key={`mobile-bottom-${project.id}-${index}`}
-                      className="group relative flex-shrink-0 w-72 h-56 overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all hover:shadow-xl cursor-pointer"
-                      onClick={() => openProjectModal(project.id)}
-                    >
-                      <div className="relative w-full h-full overflow-hidden">
-                        <Image
-                          src={project.image_url}
-                          alt={project.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="(max-width: 768px) 288px, 320px"
-                          priority
-                          quality={85}
-                          fetchPriority="high"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                          {project.category && (
-                            <div className="mb-1 inline-block rounded-full bg-teal-500 px-2 py-0.5 text-xs font-medium text-white">
-                              {project.category}
-                            </div>
-                          )}
-                          <h3 className="text-sm font-bold text-white">{project.title}</h3>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-center text-gray-500 py-8">Proje bulunamadı</div>
-                )}
-              </div>
-            </div>
-          </div>
+          ) : (
+            <div className="text-center text-gray-500 py-8">Proje bulunamadı</div>
+          )}
         </div>
 
         {/* View More Button */}
