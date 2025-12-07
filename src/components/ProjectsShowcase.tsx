@@ -32,15 +32,37 @@ export default function ProjectsShowcase() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [projects, setProjects] = useState<Project[]>(fallbackProjects);
   const [loading, setLoading] = useState(true);
+  const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    // iOS detection
+    if (typeof window !== 'undefined') {
+      const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      setIsIOS(iOS);
+    }
+  }, []);
 
   useEffect(() => {
     loadProjects();
-    
-    // Mobilde fallback resimleri hemen preload et
+  }, []);
+
+  // Mobilde ve iOS'ta fallback resimleri hemen preload et
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       const isMobile = window.innerWidth < 768;
-      if (isMobile) {
+      const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
+      if (isMobile || iOS) {
         fallbackProjects.slice(0, 10).forEach((project) => {
+          // iOS için Image() constructor daha güvenilir
+          const img = new window.Image();
+          img.src = project.image_url;
+          img.loading = 'eager';
+          img.decoding = 'sync';
+          
+          // Link preload (iOS'ta bazen çalışmaz)
           const link = document.createElement('link');
           link.rel = 'preload';
           link.as = 'image';
@@ -52,26 +74,45 @@ export default function ProjectsShowcase() {
     }
   }, []);
 
-  // Mobil için TÜM resimleri agresif şekilde preload et
+  // iOS ve mobil için TÜM resimleri agresif şekilde preload et
   useEffect(() => {
     if (typeof window !== 'undefined' && projects.length > 0) {
       const isMobile = window.innerWidth < 768;
-      if (isMobile) {
-        // TÜM resimleri preload et (slider'da hepsi görünecek)
-        projects.forEach((project) => {
-          // Link preload
-          const link = document.createElement('link');
-          link.rel = 'preload';
-          link.as = 'image';
-          link.href = project.image_url;
-          link.setAttribute('fetchpriority', 'high');
-          document.head.appendChild(link);
-          
-          // Image preload (daha agresif)
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
+      if (isMobile || isIOS) {
+        // iOS'ta daha agresif preload stratejisi
+        projects.forEach((project, index) => {
+          // iOS için Image() constructor ile preload (daha güvenilir)
           const img = new window.Image();
           img.src = project.image_url;
           img.loading = 'eager';
-          img.fetchPriority = 'high';
+          img.decoding = 'sync';
+          
+          // iOS'ta fetchPriority desteklenmeyebilir, try-catch ile
+          try {
+            (img as any).fetchPriority = 'high';
+          } catch (e) {
+            // iOS'ta desteklenmiyorsa devam et
+          }
+          
+          // Link preload (iOS'ta bazen çalışmaz ama denemeye değer)
+          if (!isIOS || index < 6) {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = project.image_url;
+            link.setAttribute('fetchpriority', 'high');
+            document.head.appendChild(link);
+          }
+          
+          // iOS için ekstra: resmi hemen yükle
+          if (isIOS) {
+            img.onload = () => {
+              // Resim yüklendiğinde cache'e alındığından emin ol
+            };
+          }
         });
       }
     }
@@ -286,6 +327,7 @@ export default function ProjectsShowcase() {
                           quality={75}
                           fetchPriority="high"
                           loading="eager"
+                          decoding="sync"
                           unoptimized={false}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -339,6 +381,7 @@ export default function ProjectsShowcase() {
                           quality={75}
                           fetchPriority="high"
                           loading="eager"
+                          decoding="sync"
                           unoptimized={false}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
