@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowRight, Phone, Sparkles } from "lucide-react";
 
 export default function Header() {
+  const pathname = usePathname();
+  
   const navItems = [
     { href: "/", label: 'Ana Sayfa' },
     { 
@@ -101,6 +104,12 @@ export default function Header() {
           href="/" 
           className="group relative flex items-center gap-3"
           aria-label="Kış Bahçesi Ana Sayfa"
+          onClick={(e) => {
+            if (pathname === "/") {
+              e.preventDefault();
+              window.location.reload();
+            }
+          }}
         >
           <motion.div
             whileHover={{ scale: 1.05, rotate: 5 }}
@@ -188,6 +197,12 @@ export default function Header() {
                     ? "text-gray-700 hover:text-teal-900" 
                     : "text-gray-700 hover:text-teal-900"
                 }`}
+                onClick={(e) => {
+                  if (item.href === "/" && pathname === "/") {
+                    e.preventDefault();
+                    window.location.reload();
+                  }
+                }}
               >
                 <span className="relative z-10">{item.label}</span>
                 {item.dropdown && (
@@ -470,7 +485,13 @@ export default function Header() {
                         <Link
                           href={item.href}
                           className="flex items-center rounded-xl px-4 py-3.5 text-[15px] font-medium text-gray-800 transition-all hover:bg-gray-50 hover:text-teal-900"
-                          onClick={() => setOpen(false)}
+                          onClick={(e) => {
+                            setOpen(false);
+                            if (item.href === "/" && pathname === "/") {
+                              e.preventDefault();
+                              window.location.reload();
+                            }
+                          }}
                         >
                           {item.label}
                         </Link>

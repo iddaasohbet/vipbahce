@@ -49,6 +49,12 @@ const materials = [
     title: "Montaj Elemanları",
     description: "A4 kalite paslanmaz çelik"
   },
+  { 
+    id: 8, 
+    src: "/images/projects/af1.jpeg",
+    title: "Premium Malzeme",
+    description: "Yüksek kalite standartları"
+  },
 ];
 
 // Sertifikalar
@@ -134,7 +140,7 @@ export default function Services() {
         {/* Desktop Grid - Kurumsal Tasarım */}
         <div className="hidden md:block">
           {/* Ana Grid */}
-          <div className="grid grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-4 gap-6 lg:gap-8">
             {/* Sol Büyük Görsel */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -154,15 +160,6 @@ export default function Services() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="33vw"
                 />
-                
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white/95 to-white/80 backdrop-blur-sm">
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-teal-600 px-3 py-1">
-                    <span className="text-xs font-semibold text-white uppercase tracking-wide">Premium</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{materials[0].title}</h3>
-                  <p className="text-gray-600 text-sm">{materials[0].description}</p>
-                </div>
 
                 {/* Zoom Icon */}
                 <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
@@ -197,14 +194,6 @@ export default function Services() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="25vw"
                   />
-                  
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white/95 to-white/80 backdrop-blur-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{material.title}</h3>
-                    <p className="text-gray-600 text-xs opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                      {material.description}
-                    </p>
-                  </div>
 
                   {/* Corner Borders */}
                   <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-teal-500/50 rounded-tl-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
@@ -213,8 +202,8 @@ export default function Services() {
               </motion.div>
             ))}
 
-            {/* Sağ Alt 3'lü Grid */}
-            {materials.slice(4, 7).map((material, index) => (
+            {/* Sağ Alt 4'lü Grid */}
+            {materials.slice(4, 8).map((material, index) => (
               <motion.div
                 key={material.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -233,14 +222,6 @@ export default function Services() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="25vw"
                   />
-                  
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white/95 to-white/80 backdrop-blur-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{material.title}</h3>
-                    <p className="text-gray-600 text-xs opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                      {material.description}
-                    </p>
-                  </div>
 
                   {/* Corner Borders */}
                   <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-teal-500/50 rounded-tl-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
@@ -288,7 +269,7 @@ export default function Services() {
           </motion.div>
         </div>
 
-        {/* Mobile Grid - Swipeable Cards */}
+        {/* Mobile Grid - 2x2 Layout */}
         <div className="md:hidden">
           <div className="grid grid-cols-2 gap-3">
             {materials.map((material, index) => (
@@ -299,20 +280,15 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 onClick={() => setSelectedImage(material.id)}
-                className={`group relative cursor-pointer overflow-hidden rounded-2xl ${
-                  index === 0 ? 'col-span-2 h-48' : 'h-40'
-                }`}
+                className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-gray-100"
               >
                 <Image
                   src={material.src}
                   alt={material.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes={index === 0 ? "100vw" : "50vw"}
+                  sizes="50vw"
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-sm">
-                  <h3 className="text-sm font-semibold text-gray-900">{material.title}</h3>
-                </div>
                 <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm">
                   <ZoomIn className="h-4 w-4 text-teal-900" />
                 </div>
@@ -320,6 +296,8 @@ export default function Services() {
                 {/* Corner Borders - Mobile */}
                 <div className="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-teal-500/60 rounded-tl-lg" />
                 <div className="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-teal-500/60 rounded-tr-lg" />
+                <div className="absolute bottom-2 left-2 w-6 h-6 border-l-2 border-b-2 border-teal-500/60 rounded-bl-lg" />
+                <div className="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-teal-500/60 rounded-br-lg" />
               </motion.div>
             ))}
           </div>
