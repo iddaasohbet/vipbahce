@@ -44,3 +44,5 @@ DB_NAME=vipkisba_bahce
 - `projects` - Projeler (opsiyonel)
 - `admin_sessions` - Admin oturumları (opsiyonel)
 
+
+

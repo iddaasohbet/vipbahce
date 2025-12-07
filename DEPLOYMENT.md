@@ -116,3 +116,5 @@ CREATE DATABASE vipkisba_bahce;
 - [ ] İlk girişten sonra varsayılan şifreyi değiştirin
 - [ ] Düzenli yedekleme yapın
 
+
+

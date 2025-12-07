@@ -54,3 +54,5 @@ npm run dev
 3. Konsolda (F12) hata mesajlarını kontrol edin
 4. Test endpoint'ini deneyin: `http://localhost:3000/api/admin/projects/test`
 
+
+

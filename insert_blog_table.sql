@@ -32,3 +32,5 @@ INSERT INTO `blog_posts` (`title`, `excerpt`, `image_url`, `category`, `is_publi
 -- Kontrol için blog sayısını göster
 SELECT COUNT(*) as total_posts FROM blog_posts WHERE is_published = 1;
 
+
+

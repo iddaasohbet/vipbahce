@@ -78,3 +78,5 @@ Konsolda (F12) şu bilgileri kontrol edin:
 Admin panelinde `/admin/projects` sayfasına gidin ve konsolu açın (F12). 
 API response'da detaylı hata mesajı göreceksiniz.
 
+
+

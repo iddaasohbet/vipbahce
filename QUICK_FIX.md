@@ -48,3 +48,5 @@ Site Vercel'de aktif olduğu için (`https://www.vipkisbahcesi.com`), Vercel das
 - Server'ı mutlaka yeniden başlatın (environment variables değişiklikleri için gerekli)
 - Konsoldaki hata mesajlarını paylaşın
 
+
+
