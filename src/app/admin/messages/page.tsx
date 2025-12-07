@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, Settings, FileText, BarChart3, Menu, X, CheckCircle2, Clock, Archive, Trash2, Eye, EyeOff } from "lucide-react";
+import { Mail, LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, Settings, FileText, BarChart3, Menu, X, CheckCircle2, Clock, Archive, Trash2, Eye, EyeOff, FileDown } from "lucide-react";
 
 interface Message {
   id: number;
@@ -34,6 +34,8 @@ export default function AdminMessages() {
     { icon: FileText, label: "İçerik Yönetimi", href: "/admin/content", active: pathname === "/admin/content" },
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports", active: pathname === "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings", active: pathname === "/admin/settings" },
+    { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif", active: pathname === "/admin/teklif" },
   ];
 
   useEffect(() => {

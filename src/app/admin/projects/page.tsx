@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, X, Edit2, Trash2, Image as ImageIcon, Upload, Loader2, Check, AlertCircle, LogOut, Shield, Home, LayoutDashboard, Mail, Settings, FileText, BarChart3, Menu } from "lucide-react";
+import { Plus, X, Edit2, Trash2, Image as ImageIcon, Upload, Loader2, Check, AlertCircle, LogOut, Shield, Home, LayoutDashboard, Mail, Settings, FileText, BarChart3, Menu, FileDown } from "lucide-react";
 import Image from "next/image";
 
 interface Project {
@@ -39,6 +39,8 @@ export default function AdminProjects() {
     { icon: FileText, label: "İçerik Yönetimi", href: "/admin/content", active: pathname === "/admin/content" },
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports", active: pathname === "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings", active: pathname === "/admin/settings" },
+    { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif", active: pathname === "/admin/teklif" },
   ];
 
   useEffect(() => {

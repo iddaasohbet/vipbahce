@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, Mail, Settings, BarChart3, Menu, X, Plus, Edit2, Trash2, Upload, Loader2, Check, Eye, EyeOff, Calendar } from "lucide-react";
+import { FileText, LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, Mail, Settings, BarChart3, Menu, X, Plus, Edit2, Trash2, Upload, Loader2, Check, Eye, EyeOff, Calendar, FileDown } from "lucide-react";
 import Image from "next/image";
 
 interface BlogPost {
@@ -48,6 +48,8 @@ export default function AdminContent() {
     { icon: FileText, label: "İçerik Yönetimi", href: "/admin/content", active: pathname === "/admin/content" },
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports", active: pathname === "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings", active: pathname === "/admin/settings" },
+    { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif", active: pathname === "/admin/teklif" },
   ];
 
   useEffect(() => {

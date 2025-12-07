@@ -32,7 +32,8 @@ import {
   Fingerprint,
   UserCheck,
   History,
-  Loader2
+  Loader2,
+  FileDown
 } from "lucide-react";
 
 interface LoginActivity {
@@ -88,6 +89,7 @@ export default function AdminSecurity() {
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports", active: pathname === "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings", active: pathname === "/admin/settings" },
     { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif", active: pathname === "/admin/teklif" },
   ];
 
   useEffect(() => {

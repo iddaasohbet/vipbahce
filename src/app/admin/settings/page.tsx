@@ -8,7 +8,7 @@ import {
   Settings, LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, 
   Mail, FileText, BarChart3, Menu, X, Save, Loader2, Check, Phone, 
   MapPin, Globe, Lock, Facebook, Instagram, Twitter, Youtube, Linkedin,
-  MessageCircle, Building, Clock
+  MessageCircle, Building, Clock, FileDown
 } from "lucide-react";
 
 interface SettingItem {
@@ -70,6 +70,8 @@ export default function AdminSettings() {
     { icon: FileText, label: "İçerik Yönetimi", href: "/admin/content", active: pathname === "/admin/content" },
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports", active: pathname === "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings", active: pathname === "/admin/settings" },
+    { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif", active: pathname === "/admin/teklif" },
   ];
 
   useEffect(() => {
@@ -656,6 +658,7 @@ export default function AdminSettings() {
     </div>
   );
 }
+
 
 
 

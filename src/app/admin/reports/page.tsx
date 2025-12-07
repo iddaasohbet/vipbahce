@@ -27,7 +27,8 @@ import {
   ArrowDownRight,
   Activity,
   PieChart,
-  Target
+  Target,
+  FileDown
 } from "lucide-react";
 
 interface Stats {
@@ -68,6 +69,8 @@ export default function AdminReports() {
     { icon: FileText, label: "İçerik Yönetimi", href: "/admin/content", active: pathname === "/admin/content" },
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports", active: pathname === "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings", active: pathname === "/admin/settings" },
+    { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif", active: pathname === "/admin/teklif" },
   ];
 
   // Simüle edilmiş aylık veriler

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, Mail, Settings, FileText, BarChart3, Menu, X } from "lucide-react";
+import { LogOut, Shield, Home, LayoutDashboard, Image as ImageIcon, Mail, Settings, FileText, BarChart3, Menu, X, FileDown } from "lucide-react";
 import Link from "next/link";
 
 export default function AdminDashboard() {
@@ -49,6 +49,8 @@ export default function AdminDashboard() {
     { icon: FileText, label: "İçerik Yönetimi", href: "/admin/content" },
     { icon: BarChart3, label: "Raporlar", href: "/admin/reports" },
     { icon: Settings, label: "Ayarlar", href: "/admin/settings" },
+    { icon: Shield, label: "Güvenlik", href: "/admin/security" },
+    { icon: FileDown, label: "Teklif Oluştur", href: "/admin/teklif" },
   ];
 
   if (loading) {
