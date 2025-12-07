@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -425,7 +425,7 @@ export default function AdminReports() {
                         );
                         acc.offset += percentage;
                         return acc;
-                      }, { elements: [] as JSX.Element[], offset: 0 }).elements}
+                      }, { elements: [] as React.ReactElement[], offset: 0 }).elements}
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
