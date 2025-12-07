@@ -25,8 +25,6 @@ import {
   CheckCircle2,
   XCircle,
   AlertTriangle,
-  Eye,
-  EyeOff,
   RefreshCw,
   Trash2,
   ShieldCheck,
@@ -39,22 +37,24 @@ import {
 
 interface LoginActivity {
   id: number;
-  date: string;
-  ip: string;
+  ip_address: string;
   device: string;
   browser: string;
   location: string;
   status: "success" | "failed";
+  failure_reason?: string;
+  created_at: string;
 }
 
 interface ActiveSession {
   id: number;
   device: string;
   browser: string;
-  ip: string;
+  ip_address: string;
   location: string;
-  lastActive: string;
-  current: boolean;
+  last_active: string;
+  created_at: string;
+  is_current: boolean;
 }
 
 export default function AdminSecurity() {
@@ -68,6 +68,11 @@ export default function AdminSecurity() {
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  
+  const [loginActivities, setLoginActivities] = useState<LoginActivity[]>([]);
+  const [activeSessions, setActiveSessions] = useState<ActiveSession[]>([]);
+  const [loadingSessions, setLoadingSessions] = useState(false);
+  const [loadingHistory, setLoadingHistory] = useState(false);
 
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: "",
@@ -85,24 +90,16 @@ export default function AdminSecurity() {
     { icon: Shield, label: "Güvenlik", href: "/admin/security", active: pathname === "/admin/security" },
   ];
 
-  // Simüle edilmiş giriş aktiviteleri
-  const loginActivities: LoginActivity[] = [
-    { id: 1, date: "2024-12-07 14:30", ip: "192.168.1.105", device: "Windows PC", browser: "Chrome 120", location: "İstanbul, TR", status: "success" },
-    { id: 2, date: "2024-12-07 10:15", ip: "192.168.1.105", device: "Windows PC", browser: "Chrome 120", location: "İstanbul, TR", status: "success" },
-    { id: 3, date: "2024-12-06 18:45", ip: "85.95.238.47", device: "iPhone 15", browser: "Safari Mobile", location: "Ankara, TR", status: "failed" },
-    { id: 4, date: "2024-12-06 09:20", ip: "192.168.1.105", device: "Windows PC", browser: "Chrome 120", location: "İstanbul, TR", status: "success" },
-    { id: 5, date: "2024-12-05 16:30", ip: "192.168.1.105", device: "MacBook Pro", browser: "Safari 17", location: "İstanbul, TR", status: "success" },
-  ];
-
-  // Simüle edilmiş aktif oturumlar
-  const activeSessions: ActiveSession[] = [
-    { id: 1, device: "Windows PC", browser: "Chrome 120", ip: "192.168.1.105", location: "İstanbul, TR", lastActive: "Şu an aktif", current: true },
-    { id: 2, device: "iPhone 15", browser: "Safari Mobile", ip: "85.95.238.100", location: "İstanbul, TR", lastActive: "2 saat önce", current: false },
-  ];
-
   useEffect(() => {
     checkAuth();
   }, []);
+
+  useEffect(() => {
+    if (admin) {
+      loadSessions();
+      loadLoginHistory();
+    }
+  }, [admin]);
 
   const checkAuth = async () => {
     try {
@@ -117,6 +114,36 @@ export default function AdminSecurity() {
       router.push("/admin/login");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadSessions = async () => {
+    setLoadingSessions(true);
+    try {
+      const response = await fetch("/api/admin/security/sessions");
+      const data = await response.json();
+      if (data.success) {
+        setActiveSessions(data.sessions || []);
+      }
+    } catch (error) {
+      console.error("Load sessions error:", error);
+    } finally {
+      setLoadingSessions(false);
+    }
+  };
+
+  const loadLoginHistory = async () => {
+    setLoadingHistory(true);
+    try {
+      const response = await fetch("/api/admin/security/login-history");
+      const data = await response.json();
+      if (data.success) {
+        setLoginActivities(data.history || []);
+      }
+    } catch (error) {
+      console.error("Load login history error:", error);
+    } finally {
+      setLoadingHistory(false);
     }
   };
 
@@ -166,16 +193,75 @@ export default function AdminSecurity() {
     }
   };
 
-  const terminateSession = (sessionId: number) => {
-    if (confirm("Bu oturumu sonlandırmak istediğinize emin misiniz?")) {
-      setMessage({ type: "success", text: "Oturum sonlandırıldı" });
+  const terminateSession = async (sessionId: number) => {
+    if (!confirm("Bu oturumu sonlandırmak istediğinize emin misiniz?")) return;
+
+    try {
+      const response = await fetch("/api/admin/security/sessions", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setMessage({ type: "success", text: "Oturum sonlandırıldı" });
+        loadSessions();
+      } else {
+        setMessage({ type: "error", text: data.message || "Bir hata oluştu" });
+      }
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.message || "Bir hata oluştu" });
     }
   };
 
-  const terminateAllSessions = () => {
-    if (confirm("Mevcut oturum hariç tüm oturumları sonlandırmak istediğinize emin misiniz?")) {
-      setMessage({ type: "success", text: "Tüm oturumlar sonlandırıldı" });
+  const terminateAllSessions = async () => {
+    if (!confirm("Mevcut oturum hariç tüm oturumları sonlandırmak istediğinize emin misiniz?")) return;
+
+    try {
+      const response = await fetch("/api/admin/security/sessions", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ terminateAll: true }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setMessage({ type: "success", text: "Tüm oturumlar sonlandırıldı" });
+        loadSessions();
+      } else {
+        setMessage({ type: "error", text: data.message || "Bir hata oluştu" });
+      }
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.message || "Bir hata oluştu" });
     }
+  };
+
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    return date.toLocaleString("tr-TR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  };
+
+  const getRelativeTime = (dateString: string) => {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return "Şu an aktif";
+    if (diffMins < 60) return `${diffMins} dakika önce`;
+    if (diffHours < 24) return `${diffHours} saat önce`;
+    return `${diffDays} gün önce`;
   };
 
   if (loading) {
@@ -410,7 +496,7 @@ export default function AdminSecurity() {
                         <div className="space-y-2 text-sm">
                           <p className="text-gray-600">Kullanıcı Adı: <span className="font-medium text-gray-900">{admin?.username}</span></p>
                           <p className="text-gray-600">Hesap Durumu: <span className="font-medium text-green-600">Aktif</span></p>
-                          <p className="text-gray-600">Son Şifre Değişikliği: <span className="font-medium text-gray-900">30 gün önce</span></p>
+                          <p className="text-gray-600">Aktif Oturum: <span className="font-medium text-gray-900">{activeSessions.length} cihaz</span></p>
                         </div>
                       </div>
 
@@ -420,9 +506,15 @@ export default function AdminSecurity() {
                           <h4 className="font-semibold text-gray-900">Son Giriş</h4>
                         </div>
                         <div className="space-y-2 text-sm">
-                          <p className="text-gray-600">Tarih: <span className="font-medium text-gray-900">{loginActivities[0]?.date}</span></p>
-                          <p className="text-gray-600">IP Adresi: <span className="font-medium text-gray-900">{loginActivities[0]?.ip}</span></p>
-                          <p className="text-gray-600">Konum: <span className="font-medium text-gray-900">{loginActivities[0]?.location}</span></p>
+                          {loginActivities.length > 0 ? (
+                            <>
+                              <p className="text-gray-600">Tarih: <span className="font-medium text-gray-900">{formatDate(loginActivities[0]?.created_at)}</span></p>
+                              <p className="text-gray-600">IP Adresi: <span className="font-medium text-gray-900">{loginActivities[0]?.ip_address || "-"}</span></p>
+                              <p className="text-gray-600">Konum: <span className="font-medium text-gray-900">{loginActivities[0]?.location || "-"}</span></p>
+                            </>
+                          ) : (
+                            <p className="text-gray-500">Henüz giriş kaydı yok</p>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -639,66 +731,89 @@ export default function AdminSecurity() {
                         <h4 className="font-semibold text-gray-900">Aktif Oturumlar</h4>
                         <p className="text-sm text-gray-500">Hesabınıza bağlı tüm cihazlar</p>
                       </div>
-                      <button
-                        onClick={terminateAllSessions}
-                        className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-all flex items-center gap-2"
-                      >
-                        <LogOut className="h-4 w-4" />
-                        Tümünü Sonlandır
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={loadSessions}
+                          disabled={loadingSessions}
+                          className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2"
+                        >
+                          <RefreshCw className={`h-4 w-4 ${loadingSessions ? 'animate-spin' : ''}`} />
+                          Yenile
+                        </button>
+                        {activeSessions.length > 1 && (
+                          <button
+                            onClick={terminateAllSessions}
+                            className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-all flex items-center gap-2"
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Tümünü Sonlandır
+                          </button>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="space-y-4">
-                      {activeSessions.map((session) => (
-                        <motion.div
-                          key={session.id}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className={`p-4 rounded-lg border-2 ${
-                            session.current 
-                              ? 'bg-teal-50 border-teal-200' 
-                              : 'bg-white border-gray-200'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                                session.current ? 'bg-teal-100' : 'bg-gray-100'
-                              }`}>
-                                <Monitor className={`h-6 w-6 ${
-                                  session.current ? 'text-teal-600' : 'text-gray-500'
-                                }`} />
-                              </div>
-                              <div>
-                                <div className="flex items-center gap-2">
-                                  <h5 className="font-semibold text-gray-900">{session.device}</h5>
-                                  {session.current && (
-                                    <span className="text-xs px-2 py-0.5 bg-teal-600 text-white rounded-full">
-                                      Bu Cihaz
-                                    </span>
-                                  )}
+                    {loadingSessions ? (
+                      <div className="flex items-center justify-center py-12">
+                        <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
+                      </div>
+                    ) : activeSessions.length === 0 ? (
+                      <div className="text-center py-12 text-gray-500">
+                        <Monitor className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                        <p>Aktif oturum bulunamadı</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {activeSessions.map((session) => (
+                          <motion.div
+                            key={session.id}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className={`p-4 rounded-lg border-2 ${
+                              session.is_current 
+                                ? 'bg-teal-50 border-teal-200' 
+                                : 'bg-white border-gray-200'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-4">
+                                <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                                  session.is_current ? 'bg-teal-100' : 'bg-gray-100'
+                                }`}>
+                                  <Monitor className={`h-6 w-6 ${
+                                    session.is_current ? 'text-teal-600' : 'text-gray-500'
+                                  }`} />
                                 </div>
-                                <p className="text-sm text-gray-500">{session.browser}</p>
-                                <div className="flex items-center gap-4 mt-1 text-xs text-gray-400">
-                                  <span>{session.ip}</span>
-                                  <span>{session.location}</span>
-                                  <span>{session.lastActive}</span>
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <h5 className="font-semibold text-gray-900">{session.device || "Bilinmeyen Cihaz"}</h5>
+                                    {session.is_current && (
+                                      <span className="text-xs px-2 py-0.5 bg-teal-600 text-white rounded-full">
+                                        Bu Cihaz
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-sm text-gray-500">{session.browser || "Bilinmeyen Tarayıcı"}</p>
+                                  <div className="flex items-center gap-4 mt-1 text-xs text-gray-400">
+                                    <span>{session.ip_address || "-"}</span>
+                                    <span>{session.location || "-"}</span>
+                                    <span>{getRelativeTime(session.last_active || session.created_at)}</span>
+                                  </div>
                                 </div>
                               </div>
+                              {!session.is_current && (
+                                <button
+                                  onClick={() => terminateSession(session.id)}
+                                  className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                  title="Oturumu Sonlandır"
+                                >
+                                  <Trash2 className="h-5 w-5" />
+                                </button>
+                              )}
                             </div>
-                            {!session.current && (
-                              <button
-                                onClick={() => terminateSession(session.id)}
-                                className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                                title="Oturumu Sonlandır"
-                              >
-                                <Trash2 className="h-5 w-5" />
-                              </button>
-                            )}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -710,53 +825,68 @@ export default function AdminSecurity() {
                         <h4 className="font-semibold text-gray-900">Giriş Geçmişi</h4>
                         <p className="text-sm text-gray-500">Son giriş denemeleri</p>
                       </div>
-                      <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
-                        <RefreshCw className="h-4 w-4" />
+                      <button 
+                        onClick={loadLoginHistory}
+                        disabled={loadingHistory}
+                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2"
+                      >
+                        <RefreshCw className={`h-4 w-4 ${loadingHistory ? 'animate-spin' : ''}`} />
                         Yenile
                       </button>
                     </div>
 
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="border-b border-gray-200">
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Tarih</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">IP Adresi</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Cihaz</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Konum</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Durum</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {loginActivities.map((activity) => (
-                            <tr key={activity.id} className="border-b border-gray-100 hover:bg-gray-50">
-                              <td className="py-3 px-4 text-sm text-gray-600">{activity.date}</td>
-                              <td className="py-3 px-4 text-sm text-gray-600 font-mono">{activity.ip}</td>
-                              <td className="py-3 px-4 text-sm text-gray-600">
-                                <div>
-                                  <p>{activity.device}</p>
-                                  <p className="text-xs text-gray-400">{activity.browser}</p>
-                                </div>
-                              </td>
-                              <td className="py-3 px-4 text-sm text-gray-600">{activity.location}</td>
-                              <td className="py-3 px-4">
-                                {activity.status === "success" ? (
-                                  <span className="flex items-center gap-1 text-green-600 text-sm">
-                                    <CheckCircle2 className="h-4 w-4" />
-                                    Başarılı
-                                  </span>
-                                ) : (
-                                  <span className="flex items-center gap-1 text-red-600 text-sm">
-                                    <XCircle className="h-4 w-4" />
-                                    Başarısız
-                                  </span>
-                                )}
-                              </td>
+                    {loadingHistory ? (
+                      <div className="flex items-center justify-center py-12">
+                        <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
+                      </div>
+                    ) : loginActivities.length === 0 ? (
+                      <div className="text-center py-12 text-gray-500">
+                        <History className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                        <p>Giriş geçmişi bulunamadı</p>
+                      </div>
+                    ) : (
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead>
+                            <tr className="border-b border-gray-200">
+                              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Tarih</th>
+                              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">IP Adresi</th>
+                              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Cihaz</th>
+                              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Konum</th>
+                              <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Durum</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                          </thead>
+                          <tbody>
+                            {loginActivities.map((activity) => (
+                              <tr key={activity.id} className="border-b border-gray-100 hover:bg-gray-50">
+                                <td className="py-3 px-4 text-sm text-gray-600">{formatDate(activity.created_at)}</td>
+                                <td className="py-3 px-4 text-sm text-gray-600 font-mono">{activity.ip_address || "-"}</td>
+                                <td className="py-3 px-4 text-sm text-gray-600">
+                                  <div>
+                                    <p>{activity.device || "-"}</p>
+                                    <p className="text-xs text-gray-400">{activity.browser || "-"}</p>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4 text-sm text-gray-600">{activity.location || "-"}</td>
+                                <td className="py-3 px-4">
+                                  {activity.status === "success" ? (
+                                    <span className="flex items-center gap-1 text-green-600 text-sm">
+                                      <CheckCircle2 className="h-4 w-4" />
+                                      Başarılı
+                                    </span>
+                                  ) : (
+                                    <span className="flex items-center gap-1 text-red-600 text-sm" title={activity.failure_reason}>
+                                      <XCircle className="h-4 w-4" />
+                                      Başarısız
+                                    </span>
+                                  )}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -767,4 +897,3 @@ export default function AdminSecurity() {
     </div>
   );
 }
-
