@@ -108,32 +108,7 @@ export async function POST(request: NextRequest) {
     } catch (dbError: any) {
       console.error("Database connection error:", dbError);
       useDatabase = false;
-      
-      // Veritabanı bağlantısı başarısızsa geçici kontrol
-      if (username === "admin" && password === "admin123") {
-        const cookieStore = await cookies();
-        cookieStore.set("admin_session", JSON.stringify({
-          id: 1,
-          username: "admin",
-          loginTime: Date.now(),
-        }), {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "lax",
-          maxAge: 60 * 60 * 24 * 7,
-        });
-
-        return NextResponse.json({ 
-          success: true, 
-          message: "Giriş başarılı (Geçici mod)",
-          warning: "Veritabanı bağlantısı kurulamadı."
-        });
-      }
-      
-      return NextResponse.json(
-        { success: false, message: `Veritabanı bağlantı hatası: ${dbError.message}` },
-        { status: 500 }
-      );
+      connection = null;
     }
 
     if (!useDatabase || !connection) {
