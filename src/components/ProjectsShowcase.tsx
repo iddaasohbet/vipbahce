@@ -297,7 +297,7 @@ export default function ProjectsShowcase() {
         {/* Mobile Sliders */}
         <div className="md:hidden">
           {/* Top Slider - Sağdan Sola */}
-          <div className="mb-6 overflow-hidden">
+          <div className="mb-6 overflow-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="relative">
               <div 
                 className="flex gap-4 animate-slide-left" 
@@ -305,7 +305,9 @@ export default function ProjectsShowcase() {
                   width: 'fit-content',
                   opacity: 1,
                   visibility: 'visible',
-                  willChange: 'transform'
+                  willChange: 'transform',
+                  WebkitTransform: 'translate3d(0, 0, 0)',
+                  transform: 'translate3d(0, 0, 0)'
                 }}
               >
                 {/* İki kez tekrarla smooth infinite scroll için */}
@@ -315,8 +317,15 @@ export default function ProjectsShowcase() {
                       key={`mobile-top-${project.id}-${index}`}
                       className="group relative flex-shrink-0 w-72 h-56 overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all hover:shadow-xl cursor-pointer"
                       onClick={() => openProjectModal(project.id)}
+                      style={{ 
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        transform: 'translate3d(0, 0, 0)'
+                      }}
                     >
-                      <div className="relative w-full h-full overflow-hidden">
+                      <div className="relative w-full h-full overflow-hidden" style={{ 
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        transform: 'translate3d(0, 0, 0)'
+                      }}>
                         <Image
                           src={project.image_url}
                           alt={project.title}
@@ -324,11 +333,9 @@ export default function ProjectsShowcase() {
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                           sizes="288px"
                           priority
-                          quality={75}
-                          fetchPriority="high"
+                          quality={90}
                           loading="eager"
-                          decoding="sync"
-                          unoptimized={false}
+                          unoptimized={true}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -351,7 +358,7 @@ export default function ProjectsShowcase() {
           </div>
 
           {/* Bottom Slider - Soldan Sağa */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="relative">
               <div 
                 className="flex gap-4 animate-slide-right" 
@@ -359,7 +366,9 @@ export default function ProjectsShowcase() {
                   width: 'fit-content',
                   opacity: 1,
                   visibility: 'visible',
-                  willChange: 'transform'
+                  willChange: 'transform',
+                  WebkitTransform: 'translate3d(0, 0, 0)',
+                  transform: 'translate3d(0, 0, 0)'
                 }}
               >
                 {/* İki kez tekrarla smooth infinite scroll için */}
@@ -369,8 +378,15 @@ export default function ProjectsShowcase() {
                       key={`mobile-bottom-${project.id}-${index}`}
                       className="group relative flex-shrink-0 w-72 h-56 overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all hover:shadow-xl cursor-pointer"
                       onClick={() => openProjectModal(project.id)}
+                      style={{ 
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        transform: 'translate3d(0, 0, 0)'
+                      }}
                     >
-                      <div className="relative w-full h-full overflow-hidden">
+                      <div className="relative w-full h-full overflow-hidden" style={{ 
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        transform: 'translate3d(0, 0, 0)'
+                      }}>
                         <Image
                           src={project.image_url}
                           alt={project.title}
@@ -378,11 +394,9 @@ export default function ProjectsShowcase() {
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                           sizes="288px"
                           priority
-                          quality={75}
-                          fetchPriority="high"
+                          quality={90}
                           loading="eager"
-                          decoding="sync"
-                          unoptimized={false}
+                          unoptimized={true}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">

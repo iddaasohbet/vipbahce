@@ -139,9 +139,28 @@ main {
 @media (max-width: 768px) {
   .animate-slide-left {
     animation-duration: 20s;
+    /* iOS için ekstra optimizasyon */
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   .animate-slide-right {
     animation-duration: 20s;
+    /* iOS için ekstra optimizasyon */
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* iOS Safari için GPU acceleration */
+  .animate-slide-left > *,
+  .animate-slide-right > * {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 }
 
