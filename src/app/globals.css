@@ -119,10 +119,30 @@ main {
 
 .animate-slide-left {
   animation: slide-left 25s linear infinite;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .animate-slide-right {
   animation: slide-right 25s linear infinite;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Mobile için daha hızlı animasyon */
+@media (max-width: 768px) {
+  .animate-slide-left {
+    animation-duration: 20s;
+  }
+  .animate-slide-right {
+    animation-duration: 20s;
+  }
 }
 
 .snake-border {

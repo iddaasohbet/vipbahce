@@ -113,7 +113,14 @@ export default function ProjectsShowcase() {
         {/* Top Slider - Sağdan Sola */}
         <div className="mb-8 overflow-hidden">
           <div className="relative">
-            <div className="flex gap-6 animate-slide-left" style={{ width: 'fit-content' }}>
+            <div 
+              className="flex gap-6 animate-slide-left" 
+              style={{ 
+                width: 'fit-content',
+                opacity: 1,
+                visibility: 'visible'
+              }}
+            >
               {/* İki kez tekrarla smooth infinite scroll için */}
               {topRowProjects.length > 0 ? (
                 [...topRowProjects, ...topRowProjects].map((project, index) => (
@@ -129,6 +136,8 @@ export default function ProjectsShowcase() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="320px"
+                        priority={index < 4}
+                        loading={index < 4 ? "eager" : "lazy"}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -153,7 +162,14 @@ export default function ProjectsShowcase() {
         {/* Bottom Slider - Soldan Sağa */}
         <div className="overflow-hidden">
           <div className="relative">
-            <div className="flex gap-6 animate-slide-right" style={{ width: 'fit-content' }}>
+            <div 
+              className="flex gap-6 animate-slide-right" 
+              style={{ 
+                width: 'fit-content',
+                opacity: 1,
+                visibility: 'visible'
+              }}
+            >
               {/* İki kez tekrarla smooth infinite scroll için */}
               {bottomRowProjects.length > 0 ? (
                 [...bottomRowProjects, ...bottomRowProjects].map((project, index) => (
@@ -169,6 +185,8 @@ export default function ProjectsShowcase() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="320px"
+                        priority={index < 4}
+                        loading={index < 4 ? "eager" : "lazy"}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">

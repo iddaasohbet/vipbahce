@@ -3,22 +3,63 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, Shield, Award, CheckCircle } from "lucide-react";
 
-// Malzeme resimleri
+// Malzeme resimleri ve bilgileri
 const materials = [
-  { id: 1, src: "/images/projects/v1.jpeg" },
-  { id: 2, src: "/images/projects/v2.jpeg" },
-  { id: 3, src: "/images/projects/v3.jpeg" },
-  { id: 4, src: "/images/projects/v6.jpeg" },
-  { id: 5, src: "/images/projects/v7.jpeg" },
-  { id: 6, src: "/images/projects/v8.jpeg" },
-  { id: 7, src: "/images/projects/v9.jpeg" },
+  { 
+    id: 1, 
+    src: "/images/projects/v1.jpeg",
+    title: "Alüminyum Profil",
+    description: "Isı yalıtımlı, elektrostatik boyalı"
+  },
+  { 
+    id: 2, 
+    src: "/images/projects/v2.jpeg",
+    title: "Temperli Cam",
+    description: "4+4 mm lamine güvenlik camı"
+  },
+  { 
+    id: 3, 
+    src: "/images/projects/v3.jpeg",
+    title: "Polikarbon Panel",
+    description: "UV korumalı, darbe dayanımlı"
+  },
+  { 
+    id: 4, 
+    src: "/images/projects/v6.jpeg",
+    title: "Paslanmaz Aksesuar",
+    description: "316L kalite, deniz ortamına uygun"
+  },
+  { 
+    id: 5, 
+    src: "/images/projects/v7.jpeg",
+    title: "EPDM Conta",
+    description: "Uzun ömürlü, hava-su sızdırmazlık"
+  },
+  { 
+    id: 6, 
+    src: "/images/projects/v8.jpeg",
+    title: "Motor Sistemleri",
+    description: "Alman mühendisliği, sessiz çalışma"
+  },
+  { 
+    id: 7, 
+    src: "/images/projects/v9.jpeg",
+    title: "Montaj Elemanları",
+    description: "A4 kalite paslanmaz çelik"
+  },
+];
+
+// Sertifikalar
+const certifications = [
+  { icon: Shield, label: "TSE Belgeli" },
+  { icon: Award, label: "CE Sertifikalı" },
+  { icon: CheckCircle, label: "ISO 9001" },
 ];
 
 export default function Services() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const currentIndex = selectedImage ? materials.findIndex(m => m.id === selectedImage) : -1;
 
@@ -41,10 +82,10 @@ export default function Services() {
   };
 
   return (
-    <section id="malzemeler" className="relative overflow-hidden bg-white py-20 md:py-28">
+    <section id="malzemeler" className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-20 md:py-28">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0d4c4a08_1px,transparent_1px),linear-gradient(to_bottom,#0d4c4a08_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0d4c4a05_1px,transparent_1px),linear-gradient(to_bottom,#0d4c4a05_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
       
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
@@ -71,144 +112,180 @@ export default function Services() {
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
             Projelerimizde yalnızca uluslararası standartlara uygun, TSE ve CE belgeli malzemeler kullanıyoruz.
           </p>
+
+          {/* Certifications - Desktop */}
+          <div className="hidden md:flex items-center justify-center gap-8 mt-8">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={cert.label}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-center gap-2 text-gray-600"
+              >
+                <cert.icon className="h-5 w-5 text-teal-700" />
+                <span className="text-sm font-medium">{cert.label}</span>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Bento Grid - Desktop */}
-        <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-5 h-[600px] lg:h-[700px]">
-          {/* Large Left */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            onClick={() => setSelectedImage(materials[0].id)}
-            onMouseEnter={() => setHoveredId(materials[0].id)}
-            onMouseLeave={() => setHoveredId(null)}
-            className="group relative col-span-2 row-span-2 cursor-pointer overflow-hidden rounded-3xl"
-          >
-            <Image
-              src={materials[0].src}
-              alt="Malzeme 1"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
-              sizes="50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        {/* Desktop Grid - Kurumsal Tasarım */}
+        <div className="hidden md:block">
+          {/* Ana Grid */}
+          <div className="grid grid-cols-3 gap-6 lg:gap-8">
+            {/* Sol Büyük Görsel */}
             <motion.div
-              initial={{ scale: 0 }}
-              animate={hoveredId === materials[0].id ? { scale: 1 } : { scale: 0 }}
-              className="absolute inset-0 flex items-center justify-center"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="row-span-2"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-2xl backdrop-blur-sm">
-                <ZoomIn className="h-7 w-7 text-teal-900" />
+              <div
+                onClick={() => setSelectedImage(materials[0].id)}
+                className="group relative h-full min-h-[500px] cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-lg transition-all duration-500 hover:shadow-2xl"
+              >
+                <Image
+                  src={materials[0].src}
+                  alt={materials[0].title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="33vw"
+                />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white/95 to-white/80 backdrop-blur-sm">
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-teal-600 px-3 py-1">
+                    <span className="text-xs font-semibold text-white uppercase tracking-wide">Premium</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{materials[0].title}</h3>
+                  <p className="text-gray-600 text-sm">{materials[0].description}</p>
+                </div>
+
+                {/* Zoom Icon */}
+                <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+                  <ZoomIn className="h-5 w-5 text-white" />
+                </div>
+
+                {/* Corner Borders */}
+                <div className="absolute top-3 left-3 w-10 h-10 border-l-2 border-t-2 border-teal-500/60 rounded-tl-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
+                <div className="absolute top-3 right-3 w-10 h-10 border-r-2 border-t-2 border-teal-500/60 rounded-tr-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
+                <div className="absolute bottom-3 left-3 w-10 h-10 border-l-2 border-b-2 border-teal-500/60 rounded-bl-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
+                <div className="absolute bottom-3 right-3 w-10 h-10 border-r-2 border-b-2 border-teal-500/60 rounded-br-xl transition-all duration-300 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12" />
               </div>
             </motion.div>
-            <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
+
+            {/* Sağ Üst 3'lü Grid */}
+            {materials.slice(1, 4).map((material, index) => (
+              <motion.div
+                key={material.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+              >
+                <div
+                  onClick={() => setSelectedImage(material.id)}
+                  className="group relative h-[240px] cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                >
+                  <Image
+                    src={material.src}
+                    alt={material.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="25vw"
+                  />
+                  
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white/95 to-white/80 backdrop-blur-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{material.title}</h3>
+                    <p className="text-gray-600 text-xs opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                      {material.description}
+                    </p>
+                  </div>
+
+                  {/* Corner Borders */}
+                  <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-teal-500/50 rounded-tl-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
+                  <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-teal-500/50 rounded-tr-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Sağ Alt 3'lü Grid */}
+            {materials.slice(4, 7).map((material, index) => (
+              <motion.div
+                key={material.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * (index + 4) }}
+              >
+                <div
+                  onClick={() => setSelectedImage(material.id)}
+                  className="group relative h-[240px] cursor-pointer overflow-hidden rounded-2xl bg-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                >
+                  <Image
+                    src={material.src}
+                    alt={material.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="25vw"
+                  />
+                  
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white/95 to-white/80 backdrop-blur-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{material.title}</h3>
+                    <p className="text-gray-600 text-xs opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                      {material.description}
+                    </p>
+                  </div>
+
+                  {/* Corner Borders */}
+                  <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-teal-500/50 rounded-tl-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
+                  <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-teal-500/50 rounded-tr-lg transition-all duration-300 group-hover:border-teal-400 group-hover:w-10 group-hover:h-10" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Alt Bilgi Bandı */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="mt-10 grid grid-cols-3 gap-6 lg:gap-8"
+          >
+            <div className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm border border-gray-100">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-50">
+                <Shield className="h-6 w-6 text-teal-700" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900">10 Yıl Garanti</h4>
+                <p className="text-sm text-gray-500">Tüm malzemelerde</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm border border-gray-100">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-50">
+                <Award className="h-6 w-6 text-teal-700" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900">Avrupa Standartları</h4>
+                <p className="text-sm text-gray-500">CE & TSE sertifikalı</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm border border-gray-100">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-50">
+                <CheckCircle className="h-6 w-6 text-teal-700" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900">Kalite Kontrolü</h4>
+                <p className="text-sm text-gray-500">Her projede test</p>
+              </div>
+            </div>
           </motion.div>
-
-          {/* Top Right 2 */}
-          {materials.slice(1, 3).map((material, index) => (
-            <motion.div
-              key={material.id}
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
-              onClick={() => setSelectedImage(material.id)}
-              onMouseEnter={() => setHoveredId(material.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              className="group relative cursor-pointer overflow-hidden rounded-3xl"
-            >
-              <Image
-                src={material.src}
-                alt={`Malzeme ${index + 2}`}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="25vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={hoveredId === material.id ? { scale: 1 } : { scale: 0 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
-                  <ZoomIn className="h-5 w-5 text-teal-900" />
-                </div>
-              </motion.div>
-              <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
-            </motion.div>
-          ))}
-
-          {/* Bottom Right 2 */}
-          {materials.slice(3, 5).map((material, index) => (
-            <motion.div
-              key={material.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * (index + 3) }}
-              onClick={() => setSelectedImage(material.id)}
-              onMouseEnter={() => setHoveredId(material.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              className="group relative cursor-pointer overflow-hidden rounded-3xl"
-            >
-              <Image
-                src={material.src}
-                alt={`Malzeme ${index + 4}`}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="25vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={hoveredId === material.id ? { scale: 1 } : { scale: 0 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
-                  <ZoomIn className="h-5 w-5 text-teal-900" />
-                </div>
-              </motion.div>
-              <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Second Row - Desktop */}
-        <div className="hidden md:grid md:grid-cols-2 gap-4 md:gap-5 mt-4 md:mt-5 h-[250px] lg:h-[300px]">
-          {materials.slice(5, 7).map((material, index) => (
-            <motion.div
-              key={material.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              onClick={() => setSelectedImage(material.id)}
-              onMouseEnter={() => setHoveredId(material.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              className="group relative cursor-pointer overflow-hidden rounded-3xl"
-            >
-              <Image
-                src={material.src}
-                alt={`Malzeme ${index + 6}`}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={hoveredId === material.id ? { scale: 1 } : { scale: 0 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm">
-                  <ZoomIn className="h-5 w-5 text-teal-900" />
-                </div>
-              </motion.div>
-              <div className="absolute inset-0 rounded-3xl border-2 border-white/0 transition-all duration-300 group-hover:border-teal-400/50" />
-            </motion.div>
-          ))}
         </div>
 
         {/* Mobile Grid - Swipeable Cards */}
@@ -228,17 +305,35 @@ export default function Services() {
               >
                 <Image
                   src={material.src}
-                  alt={`Malzeme ${index + 1}`}
+                  alt={material.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes={index === 0 ? "100vw" : "50vw"}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm">
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-sm">
+                  <h3 className="text-sm font-semibold text-gray-900">{material.title}</h3>
+                </div>
+                <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm">
                   <ZoomIn className="h-4 w-4 text-teal-900" />
                 </div>
-                <div className="absolute inset-0 rounded-2xl border-2 border-white/0 transition-all group-active:border-teal-400/50" />
+                
+                {/* Corner Borders - Mobile */}
+                <div className="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-teal-500/60 rounded-tl-lg" />
+                <div className="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-teal-500/60 rounded-tr-lg" />
               </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile Certifications */}
+          <div className="flex items-center justify-center gap-4 mt-6 flex-wrap">
+            {certifications.map((cert) => (
+              <div
+                key={cert.label}
+                className="flex items-center gap-1.5 text-gray-600 bg-white rounded-full px-3 py-1.5 shadow-sm"
+              >
+                <cert.icon className="h-4 w-4 text-teal-700" />
+                <span className="text-xs font-medium">{cert.label}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -293,17 +388,30 @@ export default function Services() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex h-[85vh] w-full max-w-5xl items-center justify-center"
+              className="relative flex h-[85vh] w-full max-w-5xl flex-col items-center justify-center"
             >
               {materials.find(m => m.id === selectedImage) && (
-                <Image
-                  src={materials.find(m => m.id === selectedImage)!.src}
-                  alt="Malzeme"
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                  priority
-                />
+                <>
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={materials.find(m => m.id === selectedImage)!.src}
+                      alt={materials.find(m => m.id === selectedImage)!.title}
+                      fill
+                      className="object-contain"
+                      sizes="100vw"
+                      priority
+                    />
+                  </div>
+                  {/* Caption */}
+                  <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-center">
+                    <h3 className="text-xl font-bold text-white mb-1">
+                      {materials.find(m => m.id === selectedImage)!.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm">
+                      {materials.find(m => m.id === selectedImage)!.description}
+                    </p>
+                  </div>
+                </>
               )}
             </motion.div>
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, MoveUp } from "lucide-react";
+import { ArrowRight, Phone, ChevronDown, Shield, Award, Sparkles, Leaf, Sun, Droplets, X, MoveHorizontal } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -46,14 +46,14 @@ const advantages = [
   {
     image: "/images/projects/e672ed00-ee93-49eb-8ff6-5f95772ae59e.jpg",
     imageAlt: "Modern hebeshiebe tasarımı",
-    title: "Yukarı Kaydırma Sistemi",
-    content: "Hebeshiebe sisteminiz, cam panellerin yukarı doğru kaydırılması ile çalışır. Bu sayede tamamen açık bir alan yaratabilir veya istediğiniz yüksekliğe kadar açık bırakabilirsiniz. Motorlu sistem sayesinde tek dokunuşla kontrol edebilirsiniz. Modern teknoloji ile esnek ve konforlu yaşam alanları yaratın.",
+    title: "Kaldır-Kaydır Sistemi",
+    content: "Hebeshiebe sisteminiz, cam panellerin hafifçe kaldırılıp yana doğru kaydırılması ile çalışır. Bu sayede geniş açıklıklar oluşturabilir ve tamamen açık bir alan yaratabilirsiniz. Kolay kullanım ve ergonomik tasarım sayesinde tek hareketle kontrol edebilirsiniz. Modern teknoloji ile esnek ve konforlu yaşam alanları yaratın.",
   },
   {
     image: "/images/projects/7c30fee6-861f-4949-bd08-95dd9f9a16f2.jpg",
     imageAlt: "Panoramik hebeshiebe görünümü",
     title: "Yıl Boyu Kullanılabilir Yaşam Alanı",
-    content: "Hebeshiebe sisteminiz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında kapalı konumda korunaklı bir alan oluştururken, yaz aylarında tamamen açık konumda doğayla iç içe vakit geçirebilirsiniz. İstediğiniz yüksekliğe kadar açarak kısmi açıklık da sağlayabilirsiniz.",
+    content: "Hebeshiebe sisteminiz, yılın 12 ayı kullanabileceğiniz ekstra bir yaşam alanı kazandırır. Kış aylarında kapalı konumda korunaklı bir alan oluştururken, yaz aylarında tamamen açık konumda doğayla iç içe vakit geçirebilirsiniz. Geniş açıklık sayesinde iç ve dış mekan arasında kesintisiz geçiş sağlayabilirsiniz.",
   },
   {
     image: "/images/projects/7920ba6f-b67e-47a0-9b09-5760f7bd139d.jpg",
@@ -84,7 +84,7 @@ const faqData = [
   },
   {
     question: "Hebeshiebe nasıl çalışır?",
-    answer: "Hebeshiebe sistemleri, cam panellerin yukarı doğru kaydırılması ile çalışır. Elektrikli motorlar ile uzaktan kumanda, akıllı telefon uygulaması veya duvar anahtarı ile kontrol edilebilir. Sistem tamamen açılabilir veya kapanabilir. İstediğiniz yüksekliğe kadar açık bırakabilirsiniz. Ray sistemleri sayesinde sorunsuz kaydırma sağlanır.",
+    answer: "Hebeshiebe sistemleri, cam panellerin hafifçe kaldırılıp yana doğru kaydırılması (lift-slide) prensibiyle çalışır. Kolu çevirdiğinizde panel raydan hafifçe kalkar ve kolayca yana kayar. Bu sayede büyük ve ağır cam paneller bile minimum eforla açılıp kapatılabilir. Ray sistemleri sayesinde sorunsuz ve sessiz kaydırma sağlanır. Geniş açıklıklar oluşturarak iç ve dış mekan arasında kesintisiz geçiş imkanı sunar.",
   },
   {
     question: "Hebeshiebe için ruhsat gerekir mi?",
@@ -303,7 +303,7 @@ export default function HebeshiebePage() {
                     className="absolute -bottom-6 -left-6 hidden lg:block"
                   >
                     <div className="rounded-2xl bg-white p-4 shadow-xl border border-teal-100">
-                      <MoveUp className="h-8 w-8 text-teal-900" />
+                      <MoveHorizontal className="h-8 w-8 text-teal-900" />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -333,8 +333,8 @@ export default function HebeshiebePage() {
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {[
-                  { icon: MoveUp, title: "Yukarı Kaydırma", desc: "Cam panellerin yukarı doğru kaydırılması" },
-                  { icon: Sun, title: "Esnek Kontrol", desc: "İstediğiniz yüksekliğe kadar açık bırakabilme" },
+                  { icon: MoveHorizontal, title: "Kaldır-Kaydır", desc: "Cam panellerin hafifçe kaldırılıp yana kaydırılması" },
+                  { icon: Sun, title: "Geniş Açıklık", desc: "Büyük cam paneller ile maksimum açıklık" },
                   { icon: Droplets, title: "Enerji Tasarrufu", desc: "Kapalı konumda ısı yalıtımı ile enerji tasarrufu" },
                   { icon: Sparkles, title: "Değer Artışı", desc: "Evinizin değerini önemli ölçüde artırır" },
                 ].map((feature, index) => (
