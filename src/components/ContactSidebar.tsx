@@ -264,7 +264,7 @@ export default function ContactSidebar() {
                 >
                   {/* Phone */}
                   <motion.a
-                    href="tel:+905333593466"
+                    href="tel:+905425263466"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className="group relative flex flex-col items-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-teal-100/50 p-4 shadow-lg shadow-teal-100 transition-all"
@@ -278,7 +278,7 @@ export default function ContactSidebar() {
 
                   {/* WhatsApp */}
                   <motion.a
-                    href="https://wa.me/905333593466"
+                    href="https://wa.me/905425263466"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, y: -2 }}
@@ -311,7 +311,7 @@ export default function ContactSidebar() {
 
                 {/* Premium Phone Display */}
                 <motion.a
-                  href="tel:+905333593466"
+                  href="tel:+905425263466"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
@@ -336,7 +336,7 @@ export default function ContactSidebar() {
                   <div className="relative flex items-center justify-between">
                     <div>
                       <p className="text-xs text-slate-400">Hemen Arayın</p>
-                      <p className="text-lg font-bold text-white">+90 533 359 34 66</p>
+                      <p className="text-lg font-bold text-white">+90 542 526 34 66</p>
                     </div>
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-700 text-white shadow-lg shadow-teal-700/50">
                       <Phone className="h-5 w-5" />

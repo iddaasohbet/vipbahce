@@ -19,14 +19,14 @@ export default function FloatingContactBar() {
     {
       name: "Ara",
       icon: Phone,
-      href: "tel:+905333593466",
+      href: "tel:+905425263466",
       bgColor: "from-teal-700 to-teal-800",
       shadowColor: "shadow-teal-700/40",
     },
     {
       name: "WhatsApp",
       icon: MessageCircle,
-      href: "https://wa.me/905333593466",
+      href: "https://wa.me/905425263466",
       bgColor: "from-green-500 to-green-600",
       shadowColor: "shadow-green-500/40",
     },
@@ -168,7 +168,7 @@ export default function FloatingContactBar() {
                 {/* Main CTA Button */}
                 <div className="px-4 pb-8">
                   <motion.a
-                    href="tel:+905333593466"
+                    href="tel:+905425263466"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
