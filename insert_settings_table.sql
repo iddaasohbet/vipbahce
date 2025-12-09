@@ -31,7 +31,7 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_type`, `se
 ('twitter', 'https://twitter.com/vipkisbahcesi', 'url', 'social', 'Twitter/X'),
 ('youtube', 'https://youtube.com/@vipkisbahcesi', 'url', 'social', 'YouTube'),
 ('linkedin', '', 'url', 'social', 'LinkedIn'),
-('whatsapp', '+905551234567', 'phone', 'social', 'WhatsApp'),
+('whatsapp', '+905425263466', 'phone', 'social', 'WhatsApp'),
 ('site_title', 'VIP Kış Bahçesi', 'text', 'general', 'Site Başlığı'),
 ('site_description', 'Modern Bioklimatik Çözümler', 'textarea', 'general', 'Site Açıklaması'),
 ('working_hours', 'Pazartesi - Cumartesi: 09:00 - 18:00', 'text', 'general', 'Çalışma Saatleri');

@@ -33,7 +33,7 @@ const defaultSettings: SiteSettings = {
   twitter: "",
   youtube: "https://youtube.com/@vipkisbahcesi",
   linkedin: "",
-  whatsapp: "905333593466",
+  whatsapp: "905425263466",
   site_title: "VIP Kış Bahçesi",
   site_description: "Modern Bioklimatik Çözümler",
   working_hours: "Pazartesi - Cumartesi: 09:00 - 18:00",

@@ -118,7 +118,7 @@ main {
 }
 
 .animate-slide-left {
-  animation: slide-left 25s linear infinite;
+  animation: slide-left 45s linear infinite;
   will-change: transform;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -127,7 +127,7 @@ main {
 }
 
 .animate-slide-right {
-  animation: slide-right 25s linear infinite;
+  animation: slide-right 45s linear infinite;
   will-change: transform;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -135,10 +135,10 @@ main {
   -webkit-backface-visibility: hidden;
 }
 
-/* Mobile için daha hızlı animasyon */
+/* Mobile için animasyon */
 @media (max-width: 768px) {
   .animate-slide-left {
-    animation-duration: 20s;
+    animation-duration: 35s;
     /* iOS için ekstra optimizasyon */
     -webkit-perspective: 1000;
     perspective: 1000;
@@ -146,7 +146,7 @@ main {
     transform: translate3d(0, 0, 0);
   }
   .animate-slide-right {
-    animation-duration: 20s;
+    animation-duration: 35s;
     /* iOS için ekstra optimizasyon */
     -webkit-perspective: 1000;
     perspective: 1000;

@@ -147,7 +147,7 @@ export default function TerasKapamaPage() {
         "addressLocality": "İstanbul",
         "addressCountry": "TR"
       },
-      "telephone": "+905333593466"
+      "telephone": "+905425263466"
     },
     "areaServed": {
       "@type": "City",
@@ -256,7 +256,7 @@ export default function TerasKapamaPage() {
                     className="flex flex-col sm:flex-row gap-4"
                   >
                     <Link
-                      href="https://wa.me/905333593466?text=Teras%20kapama%20hakkında%20bilgi%20almak%20istiyorum"
+                      href="https://wa.me/905425263466?text=Teras%20kapama%20hakkında%20bilgi%20almak%20istiyorum"
                       target="_blank"
                       className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
                     >
@@ -674,7 +674,7 @@ export default function TerasKapamaPage() {
                     Aradığınız cevabı bulamadınız mı? Bizimle iletişime geçin, size yardımcı olalım.
                   </p>
                   <Link
-                    href="https://wa.me/905333593466?text=Teras%20kapama%20hakkında%20soru%20sormak%20istiyorum"
+                    href="https://wa.me/905425263466?text=Teras%20kapama%20hakkında%20soru%20sormak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-900 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                   >
@@ -748,7 +748,7 @@ export default function TerasKapamaPage() {
                 </p>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
-                    href="https://wa.me/905333593466?text=Teras%20kapama%20hakkında%20bilgi%20almak%20istiyorum"
+                    href="https://wa.me/905425263466?text=Teras%20kapama%20hakkında%20bilgi%20almak%20istiyorum"
                     target="_blank"
                     className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-teal-800 shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
                   >

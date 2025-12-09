@@ -31,6 +31,7 @@ import {
   Globe
 } from "lucide-react";
 import jsPDF from "jspdf";
+import { RobotoRegular } from "@/lib/fonts";
 
 interface TeklifItem {
   id: number;
@@ -172,6 +173,10 @@ export default function AdminTeklif() {
       const margin = 20;
       let yPos = 20;
 
+      // Türkçe karakter desteği için Roboto fontunu ekle
+      doc.addFileToVFS("Roboto-Regular.ttf", RobotoRegular);
+      doc.addFont("Roboto-Regular.ttf", "Roboto", "normal");
+
       // Header - Logo alanı (yeşil bar)
       doc.setFillColor(13, 76, 74); // Teal rengi
       doc.rect(0, 0, pageWidth, 30, 'F');
@@ -202,16 +207,15 @@ export default function AdminTeklif() {
       doc.line(logoX + 8.5, logoY + 7, logoX + 8.5, logoY + 11);
       doc.line(logoX + 3.5, logoY + 9, logoX + 10.5, logoY + 9);
 
-      // Site adresi (logo yanında)
+      // Site adresi (logo yanında) - Roboto font kullan
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(14);
-      doc.setFont("helvetica", "bold");
+      doc.setFont("Roboto", "normal");
       doc.text("vipkisbahcesi.com", logoX + logoSize + 5, 17);
       
       // İletişim bilgileri (sağ tarafta)
       doc.setFontSize(8);
-      doc.setFont("helvetica", "normal");
-      doc.text("support@vipkisbahcesi.com | +90 533 359 34 66", pageWidth - margin, 17, { align: 'right' });
+      doc.text("support@vipkisbahcesi.com | +90 542 526 34 66", pageWidth - margin, 17, { align: 'right' });
 
       // Teklif No (header altında)
       const tarih = new Date();
@@ -222,11 +226,10 @@ export default function AdminTeklif() {
       // TEKLİF başlığı ve Teklif No
       doc.setTextColor(13, 76, 74);
       doc.setFontSize(24);
-      doc.setFont("helvetica", "bold");
-      doc.text("TEKLIF", margin, yPos);
+      doc.setFont("Roboto", "normal");
+      doc.text("TEKLİF", margin, yPos);
       
       doc.setFontSize(9);
-      doc.setFont("helvetica", "normal");
       doc.setTextColor(100, 100, 100);
       doc.text(`Teklif No: ${teklifNo}`, pageWidth - margin, yPos, { align: 'right' });
 
@@ -238,13 +241,12 @@ export default function AdminTeklif() {
 
       doc.setTextColor(100, 100, 100);
       doc.setFontSize(10);
-      doc.setFont("helvetica", "normal");
-      doc.text("Musteri:", margin + 5, yPos + 10);
+      doc.setFont("Roboto", "normal");
+      doc.text("Müşteri:", margin + 5, yPos + 10);
       doc.text("Tarih:", pageWidth - margin - 50, yPos + 10);
 
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
       doc.text(musteriIsmi, margin + 5, yPos + 18);
       
       const tarihStr = `${String(tarih.getDate()).padStart(2, '0')}.${String(tarih.getMonth() + 1).padStart(2, '0')}.${tarih.getFullYear()}`;
@@ -265,8 +267,8 @@ export default function AdminTeklif() {
 
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(10);
-      doc.setFont("helvetica", "bold");
-      doc.text("Hizmet / Urun", col1X + 3, yPos + 7);
+      doc.setFont("Roboto", "normal");
+      doc.text("Hizmet / Ürün", col1X + 3, yPos + 7);
       doc.text("Miktar", col2X + 3, yPos + 7);
       doc.text("Fiyat", col3X + 3, yPos + 7);
 
@@ -274,7 +276,7 @@ export default function AdminTeklif() {
 
       // Tablo satırları
       doc.setTextColor(0, 0, 0);
-      doc.setFont("helvetica", "normal");
+      doc.setFont("Roboto", "normal");
       
       items.forEach((item, index) => {
         const rowHeight = 10;
@@ -306,7 +308,7 @@ export default function AdminTeklif() {
 
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(11);
-      doc.setFont("helvetica", "bold");
+      doc.setFont("Roboto", "normal");
       doc.text("TOPLAM:", col2X - 15, yPos + 8);
       doc.text(`${formatCurrency(calculateTotal().toString())} TL`, col3X + 3, yPos + 8);
 
@@ -316,12 +318,11 @@ export default function AdminTeklif() {
       if (not.trim()) {
         doc.setTextColor(100, 100, 100);
         doc.setFontSize(10);
-        doc.setFont("helvetica", "bold");
+        doc.setFont("Roboto", "normal");
         doc.text("NOT:", margin, yPos);
         
         yPos += 7;
         doc.setTextColor(0, 0, 0);
-        doc.setFont("helvetica", "normal");
         doc.setFontSize(10);
         
         // Not metnini satırlara böl
@@ -340,7 +341,7 @@ export default function AdminTeklif() {
 
         doc.setTextColor(100, 100, 100);
         doc.setFontSize(10);
-        doc.setFont("helvetica", "bold");
+        doc.setFont("Roboto", "normal");
         doc.text("EKLER:", margin, yPos);
         yPos += 10;
 
@@ -385,9 +386,9 @@ export default function AdminTeklif() {
 
       doc.setTextColor(100, 100, 100);
       doc.setFontSize(8);
-      doc.setFont("helvetica", "normal");
-      doc.text("Bu teklif 7 gun gecerlidir. Fiyatlara KDV dahil degildir.", margin, footerY);
-      doc.text("www.vipkisbahcesi.com | support@vipkisbahcesi.com | +90 533 359 34 66", pageWidth / 2, footerY + 5, { align: 'center' });
+      doc.setFont("Roboto", "normal");
+      doc.text("Bu teklif 7 gün geçerlidir. Fiyatlara KDV dahil değildir.", margin, footerY);
+      doc.text("www.vipkisbahcesi.com | support@vipkisbahcesi.com | +90 542 526 34 66", pageWidth / 2, footerY + 5, { align: 'center' });
 
       // PDF'i kaydet
       const fileName = `teklif-${tarihStr.replace(/\./g, '-')}-${String(tarih.getHours()).padStart(2, '0')}${String(tarih.getMinutes()).padStart(2, '0')}${String(tarih.getSeconds()).padStart(2, '0')}.pdf`;
@@ -517,7 +518,7 @@ export default function AdminTeklif() {
                   <div>
                     <h3 className="text-xl font-bold">VIP Kış Bahçesi</h3>
                     <p className="text-teal-200 text-sm mt-1">www.vipkisbahcesi.com</p>
-                    <p className="text-teal-200 text-sm">info@vipkisbahcesi.com | +90 533 359 34 66</p>
+                    <p className="text-teal-200 text-sm">info@vipkisbahcesi.com | +90 542 526 34 66</p>
                   </div>
                   <div className="text-right">
                     <p className="text-teal-200 text-sm">Tarih</p>

@@ -336,10 +336,10 @@ export default function GizlilikPage() {
                   İletişime Geçin
                 </a>
                 <a
-                  href="tel:+905333593466"
+                  href="tel:+905425263466"
                   className="inline-flex items-center justify-center rounded-full border-2 border-white px-8 py-4 font-semibold text-white transition-all hover:bg-white/10"
                 >
-                  0533 359 34 66
+                  0542 526 34 66
                 </a>
               </div>
             </motion.div>

@@ -143,13 +143,13 @@ export default function ComingSoon() {
             <p className="text-sm text-gray-400">Şimdiden iletişime geçebilirsiniz:</p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="tel:+905333593466"
+                href="tel:+905425263466"
                 className="group flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                0533 359 34 66
+                0542 526 34 66
               </a>
               <a
                 href="mailto:info@vipkisbahcesi.com"

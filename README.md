@@ -190,7 +190,7 @@ Bu proje özel bir projedir. Tüm hakları saklıdır.
 
 - **Website:** https://kisbahcesi.com
 - **Email:** support@kisbahcesi.com
-- **Telefon:** 0533 359 34 66
+- **Telefon:** 0542 526 34 66
 - **Adres:** İstanbul, Türkiye
 
 ---

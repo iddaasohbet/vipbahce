@@ -179,11 +179,11 @@ export default function PremiumComingSoon() {
                   <motion.a
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    href="tel:+905333593466"
+                    href="tel:+905425263466"
                     className="group flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 backdrop-blur-sm transition-all hover:border-teal-400/50 hover:bg-white/10"
                   >
                     <Phone className="h-4 w-4 text-teal-300" />
-                    <span className="text-sm font-medium text-white">0533 359 34 66</span>
+                    <span className="text-sm font-medium text-white">0542 526 34 66</span>
                   </motion.a>
                   
                   <motion.a

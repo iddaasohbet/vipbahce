@@ -181,7 +181,7 @@ export default function Hero() {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 w-full md:w-auto px-6 md:px-0">
           <a
-            href="https://wa.me/905333593466?text=Merhaba,%20ücretsiz%20keşif%20hizmeti%20almak%20istiyorum."
+            href="https://wa.me/905425263466?text=Merhaba,%20ücretsiz%20keşif%20hizmeti%20almak%20istiyorum."
             target="_blank"
             rel="noopener noreferrer"
             className="group relative overflow-hidden rounded-full bg-gradient-to-r from-teal-800 to-teal-900 px-5 md:px-8 py-2.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-lg shadow-teal-800/30 transition-all duration-300 hover:shadow-xl hover:shadow-teal-800/40 hover:scale-[1.02] min-h-[44px] md:min-h-[48px] flex items-center justify-center w-[240px] md:w-auto"
