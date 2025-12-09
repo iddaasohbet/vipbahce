@@ -33,7 +33,7 @@ export default function FloatingContactBar() {
     {
       name: "Instagram",
       icon: Instagram,
-      href: "https://instagram.com",
+      href: "https://www.instagram.com/vipkisbahcesi",
       bgColor: "from-purple-500 via-pink-500 to-orange-400",
       shadowColor: "shadow-pink-500/40",
     },
