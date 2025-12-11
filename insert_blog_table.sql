@@ -43,3 +43,6 @@ SELECT COUNT(*) as total_posts FROM blog_posts WHERE is_published = 1;
 
 
 
+
+
+
