@@ -100,6 +100,3 @@ Bu size detaylı bağlantı bilgileri verecek.
 
 
 
-
-
-

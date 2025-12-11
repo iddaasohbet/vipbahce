@@ -299,37 +299,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Sponsors Section */}
-        <div className="mb-8 border-t border-gray-200 pt-8">
-          <h4 className="mb-4 text-center text-sm font-bold text-gray-900">Sponsorlarımız</h4>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <a
-              href="https://www.lyyildirimlarinsaat.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-teal-900 hover:text-white"
-            >
-              Silivri Tesisat
-            </a>
-            <a
-              href="https://www.lyyildirimlarinsaat.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-teal-900 hover:text-white"
-            >
-              Silivri Tadilat
-            </a>
-            <a
-              href="https://www.lyyildirimlarinsaat.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-teal-900 hover:text-white"
-            >
-              Silivri Duşakabin
-            </a>
-          </div>
-        </div>
-
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 text-center md:flex-row md:text-left">
           <p className="text-xs text-gray-500">
