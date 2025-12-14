@@ -107,8 +107,9 @@ export default function RootLayout({
         <PageTransition>
           {children}
         </PageTransition>
-        <FloatingContactBar />
-        <ContactSidebar />
+        {/* TODO: Google Ads onayı sonrası açılabilir */}
+        {/* <FloatingContactBar /> */}
+        {/* <ContactSidebar /> */}
         <CookieConsent />
       </body>
     </html>
