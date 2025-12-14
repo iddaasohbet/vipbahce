@@ -14,7 +14,8 @@ import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
 
 export default function HomeContent() {
-  const [showSplash, setShowSplash] = useState(true);
+  // TODO: Google Ads onayı sonrası true yapılabilir
+  const [showSplash, setShowSplash] = useState(false); // Geçici olarak kapatıldı
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
