@@ -304,12 +304,12 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Kış Bahçesi. Tüm hakları saklıdır.
           </p>
-          <div className="flex items-center gap-4 text-xs text-gray-500">
-            <Link href="/gizlilik" className="transition-colors hover:text-gray-900">Gizlilik</Link>
-            <span>•</span>
-            <Link href="/kosullar" className="transition-colors hover:text-gray-900">Koşullar</Link>
-            <span>•</span>
-            <Link href="/kvkk" className="transition-colors hover:text-gray-900">KVKK</Link>
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 md:gap-4">
+            <Link href="/gizlilik" className="transition-colors hover:text-gray-900">Gizlilik Politikası</Link>
+            <span className="hidden md:inline">•</span>
+            <Link href="/kosullar" className="transition-colors hover:text-gray-900">Çerez Politikası</Link>
+            <span className="hidden md:inline">•</span>
+            <Link href="/kvkk" className="transition-colors hover:text-gray-900">KVKK Aydınlatma Metni</Link>
           </div>
         </div>
       </div>
