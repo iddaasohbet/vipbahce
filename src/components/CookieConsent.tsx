@@ -54,6 +54,7 @@ export default function CookieConsent() {
           transition={{ duration: 0.3 }}
           className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg"
           style={{ maxHeight: '20vh' }}
+          suppressHydrationWarning
         >
           <div className="mx-auto max-w-7xl px-3 py-2 md:px-6 md:py-3">
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-4">
