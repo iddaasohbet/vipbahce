@@ -79,6 +79,20 @@ export default function RootLayout({
           `}
         </Script>
         
+        {/* Google Ads */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17717008404"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17717008404');
+          `}
+        </Script>
+        
         <style dangerouslySetInnerHTML={{ __html: `
           *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
           html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;scroll-behavior:smooth}
